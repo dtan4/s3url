@@ -32,3 +32,5 @@ _testmain.go
 
 /s3sigurl
 /bin
+/glide
+/vendor
