@@ -19,19 +19,22 @@ export AWS_REGION=xx-yyyy-0
 Just type the command below and get Pre-signed URL on the screen.
 
 ```bash
-$ s3url -b BUCKET -k KEY [-d DURATION]
+# https:// URL
+$ s3url https://s3-region.amazonaws.com/BUCKET/KEY [-d DURATION]
 
-# or
-
+# s3:// URL
 $ s3url s3://BUCKET/KEY [-d DURATION]
+
+# Using options
+$ s3url -b BUCKET -k KEY [-d DURATION]
 ```
 
 ### Options
 
 |Option|Description|Required|Default|
 |---------|-----------|-------|-------|
-|`-b`, `-bucket`|Bucket name|Required||
-|`-k`, `-key`|Object key|Required||
+|`-b`, `-bucket`|Bucket name|Required (if no URL specified)||
+|`-k`, `-key`|Object key|Required (if no URL specified)||
 |`-d`, `-duration`|Valid duration in minutes||5|
 |`-h`, `-help`|Print command line usage|||
 

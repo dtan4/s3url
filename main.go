@@ -17,6 +17,26 @@ const (
 	defaultDuration = 5
 )
 
+func parseURL(s3URL string) (string, string, error) {
+	var bucket, key string
+
+	u, err := url.Parse(s3URL)
+	if err != nil {
+		return "", "", fmt.Errorf("Invalid URL: %s.\n", s3URL)
+	}
+
+	if u.Scheme == "s3" { // s3://bucket/key
+		bucket = u.Host
+		key = strings.Replace(u.Path, "/", "", 1)
+	} else { // https://s3-ap-northeast-1.amazonaws.com/bucket/key
+		ss := strings.SplitN(u.Path, "/", 3)
+		bucket = ss[1]
+		key = ss[2]
+	}
+
+	return bucket, key, nil
+}
+
 func main() {
 	var (
 		bucket   string
@@ -28,11 +48,12 @@ func main() {
 
 	f.Usage = func() {
 		fmt.Fprintf(os.Stderr, `Usage of %s:
-   %s [OPTIONS]
-   %s s3://BUCKET/KEY [OPTIONS]
+   %s https://s3-region.amazonaws.com/BUCKET/KEY [-d DURATION]
+   %s s3://BUCKET/KEY [-d DURATION]
+   %s -b BUCKET -k KEY [-d DURATION]
 
 Options:
-`, os.Args[0], os.Args[0], os.Args[0])
+`, os.Args[0], os.Args[0], os.Args[0], os.Args[0])
 		f.PrintDefaults()
 	}
 
@@ -53,14 +74,13 @@ Options:
 	}
 
 	if s3URL != "" {
-		u, err := url.Parse(s3URL)
+		b, k, err := parseURL(s3URL)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Invalid URL: %s.\n", s3URL)
+			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
 
-		bucket = u.Host
-		key = strings.Replace(u.Path, "/", "", 1)
+		bucket, key = b, k
 	}
 
 	if bucket == "" {
