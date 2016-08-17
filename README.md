@@ -33,8 +33,8 @@ $ s3url -b BUCKET -k KEY [-d DURATION]
 
 |Option|Description|Required|Default|
 |---------|-----------|-------|-------|
-|`-b`, `-bucket`|Bucket name|Required (if no URL specified)||
-|`-k`, `-key`|Object key|Required (if no URL specified)||
+|`-b`, `-bucket`|Bucket name|Required (if no URL is specified)||
+|`-k`, `-key`|Object key|Required (if no URL is specified)||
 |`-d`, `-duration`|Valid duration in minutes||5|
 |`-h`, `-help`|Print command line usage|||
 
