@@ -1,0 +1,14 @@
+language: go
+go:
+  - '1.6'
+script:
+  - make
+deploy:
+  provider: script
+  script:
+    - GIT_TAG=$TRAVIS_TAG make github-release
+  on:
+    tags: true
+env:
+  global:
+    secure: VaQE8E+mTs2oGNXbiGGFO+SHDiWvOi3urF2OzkgbYQOqxQbh07J6W6+E6kSGChcafKr1qfYdJd8aOkmpdXH5nLgR67lklC50cfgVlUsorCdaZLbVwa2PgC/vXsaMCkMo9Fzbr34FLnMSwBb3udee9QbbhncXKa3ZvzVKB+V0NNy0ZyBF6buvaGaW02YWs5HFpG3gjCv4sfuN+SkYh6rjav1Fg/9QKkYq8HIsuCHEiZKJiE41D7BcWCirzmCrJY/b0g4zPnSRZgfvv9Ad8mLHC0I1elfmRi4ZfepUrCgi82x+x3Giwcbb3beeavzYsdMymcBNyC5LBlfK63yp9Pe0JJn1Q8nhD53h+oqLOnpxkUzOgnGeIf2CosJJNbrem9cN7Y6XZjWTAyB/Tu2vCS4mqQ9mXQ9Lx47vMUesAaGTRZN1hehtPoNTMU+sr5iV3fTITjQflBTKweL/vdjHUp1FjlDV2Tgu7Rg0iwZIcPhEpTJmBsQXW5/J6PbIFen3IXIYIfa+Ogx5sAUB86pzLT3flfkbo67FFHSm4eADBhvmxvPWg8Le22zaIfrxfkwyNM1+JzAVj2T7sGC9LO+k0ADnvS6m9gqln2l6Fsq5YuwKdjkEiVDoSt+IonA+dSJtRKRUr+IaSB23/+c7/0UfxcXKw0NLSzNcKzThgWBruaxo2Gg=

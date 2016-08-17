@@ -1,13 +1,13 @@
-BINARY := s3url
+NAME := s3url
 LDFLAGS := -ldflags="-s -w"
 SOURCES := $(shell find . -name "*.go")
 
 GLIDE_VERSION := 0.11.1
 
-.DEFAULT_GOAL := bin/$(BINARY)
+.DEFAULT_GOAL := bin/$(NAME)
 
-bin/$(BINARY): deps $(SOURCES)
-	go build $(LDFLAGS) -o bin/$(BINARY)
+bin/$(NAME): deps $(SOURCES)
+	go build $(LDFLAGS) -o bin/$(NAME)
 
 .PHONY: clean
 clean:
@@ -17,6 +17,11 @@ clean:
 .PHONY: deps
 deps: glide
 	./glide install
+
+.PHONY: github-release
+github-release:
+	go get -u github.com/tcnksm/ghr
+	ghr -t $(GITHUB_TOKEN) -u dtan4 -r $(NAME) $(GIT_TAG) bin/
 
 glide:
 ifeq ($(shell uname),Darwin)
