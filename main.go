@@ -45,17 +45,17 @@ Options:
 
 	f.Parse(os.Args[1:])
 
-	var s3url string
+	var s3URL string
 
 	for 0 < f.NArg() {
-		s3url = f.Args()[0]
+		s3URL = f.Args()[0]
 		f.Parse(f.Args()[1:])
 	}
 
-	if s3url != "" {
-		u, err := url.Parse(s3url)
+	if s3URL != "" {
+		u, err := url.Parse(s3URL)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Invalid URL: %s.\n", s3url)
+			fmt.Fprintf(os.Stderr, "Invalid URL: %s.\n", s3URL)
 			os.Exit(1)
 		}
 
