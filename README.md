@@ -20,6 +20,10 @@ Just type the command below and get Pre-signed URL on the screen.
 
 ```bash
 $ s3url -b BUCKET -k KEY [-d DURATION]
+
+# or
+
+$ s3url s3://BUCKET/KEY [-d DURATION]
 ```
 
 ### Options

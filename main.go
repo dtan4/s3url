@@ -3,7 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"net/url"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -22,23 +24,44 @@ func main() {
 		key      string
 	)
 
-	flag.Usage = func() {
+	f := flag.NewFlagSet("s3url", flag.ExitOnError)
+
+	f.Usage = func() {
 		fmt.Fprintf(os.Stderr, `Usage of %s:
    %s [OPTIONS]
+   %s s3://BUCKET/KEY [OPTIONS]
 
 Options:
-`, os.Args[0], os.Args[0])
-		flag.PrintDefaults()
+`, os.Args[0], os.Args[0], os.Args[0])
+		f.PrintDefaults()
 	}
 
-	flag.StringVar(&bucket, "bucket", "", "Bucket name")
-	flag.StringVar(&bucket, "b", "", "Bucket name")
-	flag.Int64Var(&duration, "duration", defaultDuration, "Valid duration in minutes")
-	flag.Int64Var(&duration, "d", defaultDuration, "Valid duration in minutes")
-	flag.StringVar(&key, "key", "", "Object key")
-	flag.StringVar(&key, "k", "", "Object key")
+	f.StringVar(&bucket, "bucket", "", "Bucket name")
+	f.StringVar(&bucket, "b", "", "Bucket name")
+	f.Int64Var(&duration, "duration", defaultDuration, "Valid duration in minutes")
+	f.Int64Var(&duration, "d", defaultDuration, "Valid duration in minutes")
+	f.StringVar(&key, "key", "", "Object key")
+	f.StringVar(&key, "k", "", "Object key")
 
-	flag.Parse()
+	f.Parse(os.Args[1:])
+
+	var s3url string
+
+	for 0 < f.NArg() {
+		s3url = f.Args()[0]
+		f.Parse(f.Args()[1:])
+	}
+
+	if s3url != "" {
+		u, err := url.Parse(s3url)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Invalid URL: %s.\n", s3url)
+			os.Exit(1)
+		}
+
+		bucket = u.Host
+		key = strings.Replace(u.Path, "/", "", 1)
+	}
 
 	if bucket == "" {
 		fmt.Fprintln(os.Stderr, "Bucket name is required.")
@@ -56,11 +79,11 @@ Options:
 		Key:    aws.String(key),
 	})
 
-	url, err := req.Presign(time.Duration(duration) * time.Minute)
+	signedURL, err := req.Presign(time.Duration(duration) * time.Minute)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 
-	fmt.Println(url)
+	fmt.Println(signedURL)
 }
