@@ -1,4 +1,4 @@
-BINARY := s3psurl
+BINARY := s3url
 LDFLAGS := -ldflags="-s -w"
 SOURCES := $(shell find . -name "*.go")
 

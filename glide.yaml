@@ -1,4 +1,4 @@
-package: github.com/dtan4/s3psurl
+package: github.com/dtan4/s3url
 import:
 - package: github.com/aws/aws-sdk-go
   subpackages:

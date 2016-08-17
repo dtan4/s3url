@@ -1,3 +1,3 @@
-# s3psurl(1)
+# s3url(1)
 
 Retrive S3 object pre-signed URL
