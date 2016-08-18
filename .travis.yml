@@ -9,6 +9,7 @@ deploy:
     - make cross-build
     - GIT_TAG=$TRAVIS_TAG make github-release
   on:
+    all_branches: true
     tags: true
 env:
   global:
