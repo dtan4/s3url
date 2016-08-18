@@ -9,7 +9,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: GIT_TAG=$TRAVIS_TAG make github-release
+  script: make github-release
   on:
     all_branches: true
     tags: true

@@ -4,6 +4,8 @@ SOURCES := $(shell find . -name "*.go")
 
 GLIDE_VERSION := 0.11.1
 
+GIT_TAG ?= $(TRAVIS_TAG)
+
 .DEFAULT_GOAL := bin/$(NAME)
 
 bin/$(NAME): deps $(SOURCES)
