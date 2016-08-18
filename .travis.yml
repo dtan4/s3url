@@ -5,7 +5,9 @@ script:
   - make
 deploy:
   provider: script
+  skip_cleanup: true
   script:
+    - make clean
     - make cross-build
     - GIT_TAG=$TRAVIS_TAG make github-release
   on:
