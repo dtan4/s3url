@@ -14,6 +14,14 @@ clean:
 	rm -rf bin/*
 	rm -rf vendor/*
 
+.PHONY: cross-build
+cross-build: deps $(SOURCES)
+	for os in darwin linux windows; do \
+		for arch in 386 amd64; do \
+			GOOS=$$os GOARCH=$$arch go build $(LDFLAGS) -o bin/$(NAME)-$$os-$$arch; \
+		done; \
+	done
+
 .PHONY: deps
 deps: glide
 	./glide install

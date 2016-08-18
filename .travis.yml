@@ -6,6 +6,7 @@ script:
 deploy:
   provider: script
   script:
+    - make cross-build
     - GIT_TAG=$TRAVIS_TAG make github-release
   on:
     tags: true
