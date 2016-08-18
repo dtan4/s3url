@@ -30,7 +30,7 @@ deps: glide
 
 .PHONY: github-release
 github-release:
-	go get -u github.com/tcnksm/ghr
+	go get github.com/tcnksm/ghr
 	ghr -t $(GITHUB_TOKEN) -u dtan4 -r $(NAME) -replace -delete $(GIT_TAG) bin/
 
 glide:
