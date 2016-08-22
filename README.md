@@ -34,15 +34,13 @@ $ make install
 
 ## Usage
 
-You need to set AWS credentials beforehand,
+You need to set AWS credentials beforehand, or you can also use [named profile](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-multiple-profiles) written in `~/.aws/credentials` and `~/.aws/config`.
 
 ```bash
 export AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXX
 export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 export AWS_REGION=xx-yyyy-0
 ```
-
-or you can also use [named profile](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-multiple-profiles) in `~/.aws/credentials` and `~/.aws/config`
 
 Put object into S3 bucket using Management Console or awscli.
 
@@ -67,10 +65,10 @@ $ s3url -b BUCKET -k KEY [-d DURATION] [--profile PROFILE]
 
 |Option|Description|Required|Default|
 |---------|-----------|-------|-------|
-|`-b`, `-bucket`|Bucket name|Required (if no URL is specified)||
-|`-k`, `-key`|Object key|Required (if no URL is specified)||
-|`-d`, `-duration`|Valid duration in minutes||5|
-|`--profile`|[AWS named profile](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-multiple-profiles)|||
+|`-b`, `-bucket=BUCKET`|Bucket name|Required (if no URL is specified)||
+|`-k`, `-key=KEY`|Object key|Required (if no URL is specified)||
+|`-d`, `-duration=DURATION`|Valid duration in minutes||5|
+|`--profile=PROFILE`|AWS profile name|||
 |`-h`, `-help`|Print command line usage|||
 
 ## Development
