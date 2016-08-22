@@ -48,6 +48,10 @@ else
 	rm ./glide.zip
 endif
 
+.PHONY: install
+install:
+	go install $(LDFLAGS)
+
 .PHONY: update-deps
 update-deps: glide
 	./glide update
