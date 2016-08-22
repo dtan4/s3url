@@ -11,7 +11,7 @@ Retrive S3 object pre-signed URL
 * [Usage](#usage)
   + [Options](#options)
 * [Development](#development)
-* [License](#license)%
+* [License](#license)
 
 ## Installation
 
