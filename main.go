@@ -42,6 +42,7 @@ func main() {
 		bucket   string
 		duration int64
 		key      string
+		profile  string
 	)
 
 	f := flag.NewFlagSet("s3url", flag.ExitOnError)
@@ -63,6 +64,7 @@ Options:
 	f.Int64Var(&duration, "d", defaultDuration, "Valid duration in minutes")
 	f.StringVar(&key, "key", "", "Object key")
 	f.StringVar(&key, "k", "", "Object key")
+	f.StringVar(&profile, "profile", "", "AWS profile name")
 
 	f.Parse(os.Args[1:])
 
@@ -73,14 +75,27 @@ Options:
 		f.Parse(f.Args()[1:])
 	}
 
-	if s3URL != "" {
-		b, k, err := parseURL(s3URL)
+	var sess *session.Session
+	var err error
+
+	if profile != "" {
+		sess, err = session.NewSessionWithOptions(session.Options{
+			Profile: profile,
+		})
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
+	} else {
+		sess = session.New()
+	}
 
-		bucket, key = b, k
+	if s3URL != "" {
+		bucket, key, err = parseURL(s3URL)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
 	}
 
 	if bucket == "" {
@@ -93,7 +108,7 @@ Options:
 		os.Exit(1)
 	}
 
-	svc := s3.New(session.New(), &aws.Config{})
+	svc := s3.New(sess, &aws.Config{})
 	req, _ := svc.GetObjectRequest(&s3.GetObjectInput{
 		Bucket: aws.String(bucket),
 		Key:    aws.String(key),
