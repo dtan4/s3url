@@ -1,8 +1,8 @@
-hash: a711f0406a274b2bc0d433a31165e638ceb6076b559ff5426dac62e904dddbd7
-updated: 2016-08-17T19:57:31.645200808+09:00
+hash: 577ba73a5322aeb0b3cc4c1015b311f515f42f381574843cd701b34fa34331b2
+updated: 2016-08-22T16:23:01.544860496+09:00
 imports:
 - name: github.com/aws/aws-sdk-go
-  version: f80e7d0182a463dff0c0da6bbed57f21369d4346
+  version: 94673f7d41219ea3e94e4b1edc01315f14268f72
   subpackages:
   - aws
   - aws/session
@@ -30,7 +30,7 @@ imports:
   - private/protocol/xml/xmlutil
   - private/protocol/query/queryutil
 - name: github.com/go-ini/ini
-  version: cefc24de9422bb3a6422b307cb3f4502ffd5640c
+  version: a2610b3a793cfa7fdf0b07038068af5ddc12aba1
 - name: github.com/jmespath/go-jmespath
   version: bd40a432e4c76585ef6b72d3fd96fb9b6dc7b68d
 testImports: []
