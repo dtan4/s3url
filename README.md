@@ -2,11 +2,11 @@
 
 Retrive S3 object pre-signed URL
 
-## How to install
+## Installation
 
 TBD
 
-## How to use
+## Usage
 
 You need to set AWS credentials beforehand.
 
