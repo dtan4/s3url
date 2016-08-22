@@ -16,6 +16,12 @@ export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 export AWS_REGION=xx-yyyy-0
 ```
 
+Put object into S3 bucket using Management Console or awscli.
+
+```bash
+$ aws s3 cp foo_file s3://BUCKET/KEY
+```
+
 Just type the command below and get Pre-signed URL on the screen.
 
 ```bash
