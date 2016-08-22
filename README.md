@@ -2,9 +2,35 @@
 
 Retrive S3 object pre-signed URL
 
+## Contents
+
+* [Installation](#installation)
+  + [Using Homebrew (OS X only)](#using-homebrew-os-x-only)
+  + [Precompiled binary](#precompiled-binary)
+  + [From source](#from-source)
+* [Usage](#usage)
+  + [Options](#options)
+* [Development](#development)
+* [License](#license)%
+
 ## Installation
 
-TBD
+### Using Homebrew (OS X only)
+
+Preparing... :construction_worker:
+
+### Precompiled binary
+
+Preparing... :construction_worker:
+
+### From source
+
+```bash
+$ go get -d github.com/dtan4/s3url
+$ cd $GOPATH/src/github.com/dtan4/s3url
+$ make
+$ make install
+```
 
 ## Usage
 
