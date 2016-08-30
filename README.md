@@ -1,5 +1,7 @@
 # s3url(1)
 
+[![Build Status](https://travis-ci.org/dtan4/s3url.svg?branch=master)](https://travis-ci.org/dtan4/s3url)
+
 Retrive S3 object pre-signed URL
 
 ## Contents
