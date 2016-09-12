@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dtan4/s3url.svg?branch=master)](https://travis-ci.org/dtan4/s3url)
 
-Retrive S3 object pre-signed URL
+Generate [S3 object pre-signed URL](http://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html) in one command.
 
 ## Contents
 
