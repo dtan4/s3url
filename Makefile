@@ -2,7 +2,6 @@ NAME := s3url
 LDFLAGS := -ldflags="-s -w"
 SOURCES := $(shell find . -name "*.go")
 
-GLIDE_VERSION := 0.11.1
 GLIDE := $(shell command -v glide 2> /dev/null)
 
 GIT_TAG ?= $(TRAVIS_TAG)
