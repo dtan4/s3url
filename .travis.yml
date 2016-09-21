@@ -1,6 +1,8 @@
 language: go
 go:
   - '1.7'
+before_script:
+  - mkdir -p $GOPATH/bin
 script:
   - make
 before_deploy:
