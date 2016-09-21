@@ -1,14 +1,13 @@
 NAME := s3url
+VERSION := v0.1.0
+
 LDFLAGS := -ldflags="-s -w"
-SOURCES := $(shell find . -name "*.go")
 
-GLIDE := $(shell command -v glide 2> /dev/null)
-
-GIT_TAG ?= $(TRAVIS_TAG)
+DIST_DIRS := find * -type d -exec
 
 .DEFAULT_GOAL := bin/$(NAME)
 
-bin/$(NAME): deps $(SOURCES)
+bin/$(NAME): deps
 	go build $(LDFLAGS) -o bin/$(NAME)
 
 .PHONY: clean
@@ -17,10 +16,10 @@ clean:
 	rm -rf vendor/*
 
 .PHONY: cross-build
-cross-build: deps $(SOURCES)
+cross-build: deps
 	for os in darwin linux windows; do \
-		for arch in 386 amd64; do \
-			GOOS=$$os GOARCH=$$arch go build $(LDFLAGS) -o bin/$(NAME)-$$os-$$arch; \
+		for arch in amd64 386; do \
+			GOOS=$$os GOARCH=$$arch go build $(LDFLAGS) -o dist/$$os-$$arch/$(NAME); \
 		done; \
 	done
 
@@ -28,9 +27,14 @@ cross-build: deps $(SOURCES)
 deps: glide
 	glide install
 
-.PHONY: github-release
-github-release:
-	ghr -t $(GITHUB_TOKEN) -u dtan4 -r $(NAME) -replace -delete $(GIT_TAG) bin/
+.PHONY: dist
+dist:
+	cd dist && \
+	$(DIST_DIRS) cp ../LICENSE {} \; && \
+	$(DIST_DIRS) cp ../README.md {} \; && \
+	$(DIST_DIRS) tar -zcf $(NAME)-$(VERSION)-{}.tar.gz {} \; && \
+	$(DIST_DIRS) zip -r $(NAME)-$(VERSION)-{}.zip {} \; && \
+	cd ..
 
 .PHONY: glide
 glide:
