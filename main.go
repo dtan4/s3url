@@ -17,6 +17,20 @@ const (
 	defaultDuration = 5
 )
 
+func getPresignedURL(svc *s3.S3, bucket, key string, duration int64) (string, error) {
+	req, _ := svc.GetObjectRequest(&s3.GetObjectInput{
+		Bucket: aws.String(bucket),
+		Key:    aws.String(key),
+	})
+
+	signedURL, err := req.Presign(time.Duration(duration) * time.Minute)
+	if err != nil {
+		return "", err
+	}
+
+	return signedURL, nil
+}
+
 func parseURL(s3URL string) (string, string, error) {
 	var bucket, key string
 
@@ -109,12 +123,8 @@ Options:
 	}
 
 	svc := s3.New(sess, &aws.Config{})
-	req, _ := svc.GetObjectRequest(&s3.GetObjectInput{
-		Bucket: aws.String(bucket),
-		Key:    aws.String(key),
-	})
 
-	signedURL, err := req.Presign(time.Duration(duration) * time.Minute)
+	signedURL, err := getPresignedURL(svc, bucket, key, duration)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
