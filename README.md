@@ -11,6 +11,7 @@ Generate [S3 object pre-signed URL](http://docs.aws.amazon.com/AmazonS3/latest/d
   + [Precompiled binary](#precompiled-binary)
   + [From source](#from-source)
 * [Usage](#usage)
+  + [Upload file together](#upload-file-together)
   + [Options](#options)
 * [Development](#development)
 * [License](#license)
