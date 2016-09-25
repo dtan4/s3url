@@ -53,7 +53,8 @@ export AWS_REGION=xx-yyyy-0
 Just type the command below and get Pre-signed URL on the screen.
 
 ```bash
-# https:// URL
+# https:// URL (both virtual-hosted-style and path-style)
+$ s3url https://BUCKET.s3-region.amazonaws.com/KEY [-d DURATION] [--profile PROFILE] [--upload UPLOAD]
 $ s3url https://s3-region.amazonaws.com/BUCKET/KEY [-d DURATION] [--profile PROFILE] [--upload UPLOAD]
 
 # s3:// URL

@@ -4,11 +4,16 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+	"regexp"
 	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/s3"
+)
+
+var (
+	virtualHostRegexp = regexp.MustCompile("^s3-[a-z0-9.]+\\.amazonaws\\.com$")
 )
 
 func getPresignedURL(svc *s3.S3, bucket, key string, duration int64) (string, error) {
@@ -36,10 +41,16 @@ func parseURL(s3URL string) (string, string, error) {
 	if u.Scheme == "s3" { // s3://bucket/key
 		bucket = u.Host
 		key = strings.Replace(u.Path, "/", "", 1)
-	} else { // https://s3-ap-northeast-1.amazonaws.com/bucket/key
-		ss := strings.SplitN(u.Path, "/", 3)
-		bucket = ss[1]
-		key = ss[2]
+	} else {
+		if virtualHostRegexp.MatchString(u.Host) { // https://s3-ap-northeast-1.amazonaws.com/bucket/key
+			ss := strings.SplitN(u.Path, "/", 3)
+			bucket = ss[1]
+			key = ss[2]
+		} else { // https://bucket.s3-ap-northeast-1.amazonaws.com/key
+			ss := strings.Split(u.Host, ".")
+			bucket = strings.Join(ss[0:len(ss)-3], ".")
+			key = u.Path[1:]
+		}
 	}
 
 	return bucket, key, nil

@@ -12,6 +12,10 @@ func TestParseURL(t *testing.T) {
 	}{
 		{"https://s3-region.amazonaws.com/bucket/key.txt", "bucket", "key.txt"},
 		{"https://s3-region.amazonaws.com/bucket/dir/key.txt", "bucket", "dir/key.txt"},
+		{"https://bucket.s3.amazonaws.com/key.txt", "bucket", "key.txt"},
+		{"https://bucket.s3.amazonaws.com/dir/key.txt", "bucket", "dir/key.txt"},
+		{"https://bucket.s3-region.amazonaws.com/key.txt", "bucket", "key.txt"},
+		{"https://bucket.s3-region.amazonaws.com/dir/key.txt", "bucket", "dir/key.txt"},
 		{"s3://bucket/key.txt", "bucket", "key.txt"},
 		{"s3://bucket/dir/key.txt", "bucket", "dir/key.txt"},
 	}
