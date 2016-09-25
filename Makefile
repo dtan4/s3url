@@ -46,6 +46,10 @@ endif
 install:
 	go install $(LDFLAGS)
 
+.PHONY: test
+test:
+	go test -cover -v `glide novendor`
+
 .PHONY: update-deps
 update-deps: glide
 	glide update
