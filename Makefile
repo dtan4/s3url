@@ -1,5 +1,5 @@
 NAME := s3url
-VERSION := v0.1.0
+VERSION := v0.2.0
 
 LDFLAGS := -ldflags="-s -w"
 
