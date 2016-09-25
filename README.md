@@ -65,7 +65,7 @@ $ s3url -b BUCKET -k KEY [-d DURATION] [--profile PROFILE] [--upload UPLOAD]
 
 ### Upload file together
 
-If there is no target object in the bucket yet, you can also upload file with `--upload` flag before getting Pre-signed URL. Following example shows that uploading `foo.key` to `s3://my-bucket/foo.key` and getting Pre-signed URL of `s3://my-bucket/foo.key` will be executed in series.
+If target object does not exist in the bucket yet, you can upload file with `--upload` flag before getting Pre-signed URL. Following example shows that uploading `foo.key` to `s3://my-bucket/foo.key` and getting Pre-signed URL of `s3://my-bucket/foo.key` will be executed in series.
 
 ```bash
 $ s3url s3://my-bucket/foo.key --upload foo.key
