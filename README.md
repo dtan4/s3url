@@ -24,7 +24,7 @@ Preparing... :construction_worker:
 
 ### Precompiled binary
 
-Preparing... :construction_worker:
+Precompiled binaries for Windows, OS X, Linux are available at [Releases](https://github.com/dtan4/s3url/releases).
 
 ### From source
 
