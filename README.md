@@ -11,6 +11,7 @@ Generate [S3 object pre-signed URL](http://docs.aws.amazon.com/AmazonS3/latest/d
   + [Precompiled binary](#precompiled-binary)
   + [From source](#from-source)
 * [Usage](#usage)
+  + [Upload file together](#upload-file-together)
   + [Options](#options)
 * [Development](#development)
 * [License](#license)
@@ -44,23 +45,27 @@ export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 export AWS_REGION=xx-yyyy-0
 ```
 
-Put object into S3 bucket using Management Console or awscli.
-
-```bash
-$ aws s3 cp foo_file s3://BUCKET/KEY
-```
-
 Just type the command below and get Pre-signed URL on the screen.
 
 ```bash
 # https:// URL
-$ s3url https://s3-region.amazonaws.com/BUCKET/KEY [-d DURATION] [--profile PROFILE]
+$ s3url https://s3-region.amazonaws.com/BUCKET/KEY [-d DURATION] [--profile PROFILE] [--upload UPLOAD]
 
 # s3:// URL
-$ s3url s3://BUCKET/KEY [-d DURATION] [--profile PROFILE]
+$ s3url s3://BUCKET/KEY [-d DURATION] [--profile PROFILE] [--upload UPLOAD]
 
 # Using options
-$ s3url -b BUCKET -k KEY [-d DURATION] [--profile PROFILE]
+$ s3url -b BUCKET -k KEY [-d DURATION] [--profile PROFILE] [--upload UPLOAD]
+```
+
+### Upload file together
+
+If there is no target object in the bucket yet, you can also upload file with `--upload` flag before getting Pre-signed URL. Following example shows that uploading `foo.key` to `s3://my-bucket/foo.key` and getting Pre-signed URL of `s3://my-bucket/foo.key` will be executed in series.
+
+```bash
+$ s3url s3://my-bucket/foo.key --upload foo.key
+uploaded: /path/to/foo.key
+https://my-bucket.s3-ap-northeast-1.amazonaws.com/foo.key?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA***************************%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20160923T010227Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=****************************************************************
 ```
 
 ### Options
@@ -71,6 +76,7 @@ $ s3url -b BUCKET -k KEY [-d DURATION] [--profile PROFILE]
 |`-k`, `-key=KEY`|Object key|Required (if no URL is specified)||
 |`-d`, `-duration=DURATION`|Valid duration in minutes||5|
 |`--profile=PROFILE`|AWS profile name|||
+|`--upload=UPLOAD`|File to upload|||
 |`-h`, `-help`|Print command line usage|||
 
 ## Development

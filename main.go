@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -16,6 +17,20 @@ import (
 const (
 	defaultDuration = 5
 )
+
+func getPresignedURL(svc *s3.S3, bucket, key string, duration int64) (string, error) {
+	req, _ := svc.GetObjectRequest(&s3.GetObjectInput{
+		Bucket: aws.String(bucket),
+		Key:    aws.String(key),
+	})
+
+	signedURL, err := req.Presign(time.Duration(duration) * time.Minute)
+	if err != nil {
+		return "", err
+	}
+
+	return signedURL, nil
+}
 
 func parseURL(s3URL string) (string, string, error) {
 	var bucket, key string
@@ -37,12 +52,32 @@ func parseURL(s3URL string) (string, string, error) {
 	return bucket, key, nil
 }
 
+func uploadToS3(svc *s3.S3, path, bucket, key string) error {
+	fp, err := os.Open(path)
+	if err != nil {
+		return err
+	}
+	defer fp.Close()
+
+	_, err = svc.PutObject(&s3.PutObjectInput{
+		Bucket: aws.String(bucket),
+		Key:    aws.String(key),
+		Body:   fp,
+	})
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func main() {
 	var (
 		bucket   string
 		duration int64
 		key      string
 		profile  string
+		upload   string
 	)
 
 	f := flag.NewFlagSet("s3url", flag.ExitOnError)
@@ -65,6 +100,7 @@ Options:
 	f.StringVar(&key, "key", "", "Object key")
 	f.StringVar(&key, "k", "", "Object key")
 	f.StringVar(&profile, "profile", "", "AWS profile name")
+	f.StringVar(&upload, "upload", "", "File to upload")
 
 	f.Parse(os.Args[1:])
 
@@ -109,12 +145,23 @@ Options:
 	}
 
 	svc := s3.New(sess, &aws.Config{})
-	req, _ := svc.GetObjectRequest(&s3.GetObjectInput{
-		Bucket: aws.String(bucket),
-		Key:    aws.String(key),
-	})
 
-	signedURL, err := req.Presign(time.Duration(duration) * time.Minute)
+	if upload != "" {
+		path, err := filepath.Abs(upload)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+
+		if err := uploadToS3(svc, path, bucket, key); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+
+		fmt.Fprintln(os.Stderr, "uploaded: "+path)
+	}
+
+	signedURL, err := getPresignedURL(svc, bucket, key, duration)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
