@@ -4,6 +4,11 @@
 
 Generate [S3 object pre-signed URL](http://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html) in one command.
 
+```bash
+$ s3url s3://my-bucket/foo.key
+https://my-bucket.s3-ap-northeast-1.amazonaws.com/foo.key?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA***************************%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Date=20160923T010227Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=****************************************************************
+```
+
 ## Contents
 
 * [Installation](#installation)
