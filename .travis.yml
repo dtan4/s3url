@@ -1,7 +1,7 @@
 language: go
 go:
   - '1.7'
-before_script:
+before_install:
   - mkdir -p $GOPATH/bin
 install:
   - make deps
