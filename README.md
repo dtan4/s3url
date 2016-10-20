@@ -25,7 +25,12 @@ https://my-bucket.s3-ap-northeast-1.amazonaws.com/foo.key?X-Amz-Algorithm=AWS4-H
 
 ### Using Homebrew (OS X only)
 
-Preparing... :construction_worker:
+Formula is available at [dtan4/homebrew-dtan4](https://github.com/dtan4/homebrew-dtan4).
+
+```bash
+$ brew tap dtan4/dtan4
+$ brew install s3url
+```
 
 ### Precompiled binary
 
