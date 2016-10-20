@@ -19,6 +19,7 @@ func main() {
 	var (
 		bucket   string
 		duration int64
+		help     bool
 		key      string
 		profile  string
 		upload   string
@@ -41,12 +42,19 @@ Options:
 	f.StringVar(&bucket, "b", "", "Bucket name")
 	f.Int64Var(&duration, "duration", defaultDuration, "Valid duration in minutes")
 	f.Int64Var(&duration, "d", defaultDuration, "Valid duration in minutes")
+	f.BoolVar(&help, "help", false, "Show usage")
+	f.BoolVar(&help, "h", false, "Show usage")
 	f.StringVar(&key, "key", "", "Object key")
 	f.StringVar(&key, "k", "", "Object key")
 	f.StringVar(&profile, "profile", "", "AWS profile name")
 	f.StringVar(&upload, "upload", "", "File to upload")
 
 	f.Parse(os.Args[1:])
+
+	if help {
+		f.Usage()
+		os.Exit(0)
+	}
 
 	var s3URL string
 
