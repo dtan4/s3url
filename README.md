@@ -93,7 +93,7 @@ https://my-bucket.s3-ap-northeast-1.amazonaws.com/foo.key?X-Amz-Algorithm=AWS4-H
 
 ## Development
 
-Retrive this repository and build using `make`.
+Retrieve this repository and build using `make`.
 
 ```bash
 $ go get -d github.com/dtan4/s3url
