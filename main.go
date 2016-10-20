@@ -19,9 +19,11 @@ func main() {
 	var (
 		bucket   string
 		duration int64
+		help     bool
 		key      string
 		profile  string
 		upload   string
+		version  bool
 	)
 
 	f := flag.NewFlagSet("s3url", flag.ExitOnError)
@@ -41,18 +43,36 @@ Options:
 	f.StringVar(&bucket, "b", "", "Bucket name")
 	f.Int64Var(&duration, "duration", defaultDuration, "Valid duration in minutes")
 	f.Int64Var(&duration, "d", defaultDuration, "Valid duration in minutes")
+	f.BoolVar(&help, "help", false, "Print command line usage")
+	f.BoolVar(&help, "h", false, "Print command line usage")
 	f.StringVar(&key, "key", "", "Object key")
 	f.StringVar(&key, "k", "", "Object key")
 	f.StringVar(&profile, "profile", "", "AWS profile name")
-	f.StringVar(&upload, "upload", "", "File to upload")
+	f.BoolVar(&version, "version", false, "Print version")
+	f.BoolVar(&version, "v", false, "Print version")
 
 	f.Parse(os.Args[1:])
+
+	if help {
+		f.Usage()
+		os.Exit(0)
+	}
+
+	if version {
+		printVersion()
+		os.Exit(0)
+	}
 
 	var s3URL string
 
 	for 0 < f.NArg() {
 		s3URL = f.Args()[0]
 		f.Parse(f.Args()[1:])
+	}
+
+	if s3URL == "" {
+		f.Usage()
+		os.Exit(1)
 	}
 
 	var sess *session.Session
