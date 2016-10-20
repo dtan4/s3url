@@ -1,7 +1,8 @@
 NAME := s3url
 VERSION := v0.3.0
+REVISION := $(shell git rev-parse --short HEAD)
 
-LDFLAGS := -ldflags="-s -w"
+LDFLAGS := -ldflags="-s -w -X \"main.Version=$(VERSION)\" -X \"main.Revision=$(REVISION)\""
 
 DIST_DIRS := find * -type d -exec
 

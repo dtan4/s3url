@@ -23,6 +23,7 @@ func main() {
 		key      string
 		profile  string
 		upload   string
+		version  bool
 	)
 
 	f := flag.NewFlagSet("s3url", flag.ExitOnError)
@@ -47,12 +48,18 @@ Options:
 	f.StringVar(&key, "key", "", "Object key")
 	f.StringVar(&key, "k", "", "Object key")
 	f.StringVar(&profile, "profile", "", "AWS profile name")
-	f.StringVar(&upload, "upload", "", "File to upload")
+	f.BoolVar(&version, "version", false, "Show version")
+	f.BoolVar(&version, "v", false, "Show version")
 
 	f.Parse(os.Args[1:])
 
 	if help {
 		f.Usage()
+		os.Exit(0)
+	}
+
+	if version {
+		printVersion()
 		os.Exit(0)
 	}
 
