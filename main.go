@@ -43,13 +43,13 @@ Options:
 	f.StringVar(&bucket, "b", "", "Bucket name")
 	f.Int64Var(&duration, "duration", defaultDuration, "Valid duration in minutes")
 	f.Int64Var(&duration, "d", defaultDuration, "Valid duration in minutes")
-	f.BoolVar(&help, "help", false, "Show usage")
-	f.BoolVar(&help, "h", false, "Show usage")
+	f.BoolVar(&help, "help", false, "Print command line usage")
+	f.BoolVar(&help, "h", false, "Print command line usage")
 	f.StringVar(&key, "key", "", "Object key")
 	f.StringVar(&key, "k", "", "Object key")
 	f.StringVar(&profile, "profile", "", "AWS profile name")
-	f.BoolVar(&version, "version", false, "Show version")
-	f.BoolVar(&version, "v", false, "Show version")
+	f.BoolVar(&version, "version", false, "Print version")
+	f.BoolVar(&version, "v", false, "Print version")
 
 	f.Parse(os.Args[1:])
 
