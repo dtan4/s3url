@@ -1,5 +1,5 @@
 NAME := s3url
-VERSION := v0.3.0
+VERSION := v0.3.1
 REVISION := $(shell git rev-parse --short HEAD)
 
 LDFLAGS := -ldflags="-s -w -X \"main.Version=$(VERSION)\" -X \"main.Revision=$(REVISION)\""

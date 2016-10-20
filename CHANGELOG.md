@@ -1,3 +1,10 @@
+# [v0.3.1](https://github.com/dtan4/s3url/releases/tag/v0.3.1) (2016-10-21)
+
+## Features
+
+- Add `-h`, `--help` flag to print command line usage
+- Add `-v`, `--version` flag to print binary version
+
 # [v0.3.0](https://github.com/dtan4/s3url/releases/tag/v0.3.0) (2016-09-26)
 
 ## Features
