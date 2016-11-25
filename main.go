@@ -42,6 +42,7 @@ Options:
 	f.Int64VarP(&duration, "duration", "d", defaultDuration, "Valid duration in minutes")
 	f.StringVarP(&key, "key", "k", "", "Object key")
 	f.StringVar(&profile, "profile", "", "AWS profile name")
+	f.StringVar(&upload, "upload", "", "File to upload")
 	f.BoolVarP(&version, "version", "v", false, "Print version")
 
 	f.Parse(os.Args[1:])
