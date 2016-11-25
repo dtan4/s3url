@@ -73,6 +73,11 @@ Options:
 		sess = session.New()
 	}
 
+	if s3URL == "" && (bucket == "" || key == "") {
+		f.Usage()
+		os.Exit(1)
+	}
+
 	if s3URL != "" {
 		bucket, key, err = parseURL(s3URL)
 		if err != nil {
