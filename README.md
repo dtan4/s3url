@@ -41,7 +41,7 @@ Precompiled binaries for Windows, OS X, Linux are available at [Releases](https:
 ```bash
 $ go get -d github.com/dtan4/s3url
 $ cd $GOPATH/src/github.com/dtan4/s3url
-$ make
+$ make deps
 $ make install
 ```
 
@@ -98,6 +98,7 @@ Retrieve this repository and build using `make`.
 ```bash
 $ go get -d github.com/dtan4/s3url
 $ cd $GOPATH/src/github.com/dtan4/s3url
+$ make deps
 $ make
 ```
 
