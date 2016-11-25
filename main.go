@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -9,6 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
+	flag "github.com/spf13/pflag"
 )
 
 const (
@@ -19,7 +19,6 @@ func main() {
 	var (
 		bucket   string
 		duration int64
-		help     bool
 		key      string
 		profile  string
 		upload   string
@@ -39,24 +38,13 @@ Options:
 		f.PrintDefaults()
 	}
 
-	f.StringVar(&bucket, "bucket", "", "Bucket name")
-	f.StringVar(&bucket, "b", "", "Bucket name")
-	f.Int64Var(&duration, "duration", defaultDuration, "Valid duration in minutes")
-	f.Int64Var(&duration, "d", defaultDuration, "Valid duration in minutes")
-	f.BoolVar(&help, "help", false, "Print command line usage")
-	f.BoolVar(&help, "h", false, "Print command line usage")
-	f.StringVar(&key, "key", "", "Object key")
-	f.StringVar(&key, "k", "", "Object key")
+	f.StringVarP(&bucket, "bucket", "b", "", "Bucket name")
+	f.Int64VarP(&duration, "duration", "d", defaultDuration, "Valid duration in minutes")
+	f.StringVarP(&key, "key", "k", "", "Object key")
 	f.StringVar(&profile, "profile", "", "AWS profile name")
-	f.BoolVar(&version, "version", false, "Print version")
-	f.BoolVar(&version, "v", false, "Print version")
+	f.BoolVarP(&version, "version", "v", false, "Print version")
 
 	f.Parse(os.Args[1:])
-
-	if help {
-		f.Usage()
-		os.Exit(0)
-	}
 
 	if version {
 		printVersion()

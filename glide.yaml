@@ -6,3 +6,4 @@ import:
   - aws
   - aws/session
   - service/s3
+- package: github.com/spf13/pflag
