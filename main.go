@@ -58,11 +58,6 @@ Options:
 		f.Parse(f.Args()[1:])
 	}
 
-	if s3URL == "" {
-		f.Usage()
-		os.Exit(1)
-	}
-
 	var sess *session.Session
 	var err error
 
@@ -76,6 +71,11 @@ Options:
 		}
 	} else {
 		sess = session.New()
+	}
+
+	if s3URL == "" && (bucket == "" || key == "") {
+		f.Usage()
+		os.Exit(1)
 	}
 
 	if s3URL != "" {
