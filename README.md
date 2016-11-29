@@ -1,6 +1,7 @@
 # s3url(1)
 
 [![Build Status](https://travis-ci.org/dtan4/s3url.svg?branch=master)](https://travis-ci.org/dtan4/s3url)
+[![codecov](https://codecov.io/gh/dtan4/s3url/branch/master/graph/badge.svg)](https://codecov.io/gh/dtan4/s3url)
 
 Generate [S3 object pre-signed URL](http://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html) in one command
 
