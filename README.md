@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/dtan4/s3url.svg?branch=master)](https://travis-ci.org/dtan4/s3url)
 [![codecov](https://codecov.io/gh/dtan4/s3url/branch/master/graph/badge.svg)](https://codecov.io/gh/dtan4/s3url)
+[![GitHub release](https://img.shields.io/github/release/dtan4/s3url.svg)](https://github.com/dtan4/s3url/releases)
 
 Generate [S3 object pre-signed URL](http://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html) in one command
 
