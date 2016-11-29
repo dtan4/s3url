@@ -5,7 +5,7 @@ import (
 )
 
 func TestParseURL(t *testing.T) {
-	testdata := []struct {
+	testcases := []struct {
 		url    string
 		bucket string
 		key    string
@@ -20,18 +20,18 @@ func TestParseURL(t *testing.T) {
 		{"s3://bucket/dir/key.txt", "bucket", "dir/key.txt"},
 	}
 
-	for _, tt := range testdata {
-		bucket, key, err := parseURL(tt.url)
+	for _, tc := range testcases {
+		bucket, key, err := parseURL(tc.url)
 		if err != nil {
-			t.Errorf("Error should not be raised. url: %s, error: %v", tt.url, err)
+			t.Errorf("Error should not be raised. url: %s, error: %v", tc.url, err)
 		}
 
-		if bucket != tt.bucket {
-			t.Errorf("Bucket does not matched. expect: %s, actual: %s", tt.bucket, bucket)
+		if bucket != tc.bucket {
+			t.Errorf("Bucket does not matched. expect: %s, actual: %s", tc.bucket, bucket)
 		}
 
-		if key != tt.key {
-			t.Errorf("Key does not matched. expect: %s, actual: %s", tt.key, key)
+		if key != tc.key {
+			t.Errorf("Key does not matched. expect: %s, actual: %s", tc.key, key)
 		}
 	}
 }
