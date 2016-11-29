@@ -12,6 +12,17 @@ DIST_DIRS := find * -type d -exec
 bin/$(NAME): $(SRCS)
 	go build $(LDFLAGS) -o bin/$(NAME)
 
+.PHONY: ci-test
+ci-test:
+	echo "" > coverage.txt
+	for d in `glide novendor`; do \
+		go test -coverprofile=profile.out -covermode=atomic -v $$d; \
+		if [ -f profile.out ]; then \
+			cat profile.out >> coverage.txt; \
+			rm profile.out; \
+		fi; \
+	done
+
 .PHONY: clean
 clean:
 	rm -rf bin/*
