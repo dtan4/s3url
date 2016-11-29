@@ -100,7 +100,7 @@ Options:
 	}
 
 	api := s3api.New(sess, &aws.Config{})
-	s3Client := s3.NewClient(api)
+	s3Client := s3.New(api)
 
 	if upload != "" {
 		path, err := filepath.Abs(upload)

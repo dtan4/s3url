@@ -49,8 +49,8 @@ func ParseURL(s3URL string) (string, string, error) {
 	return bucket, key, nil
 }
 
-// NewClient creates new Client
-func NewClient(api s3iface.S3API) *Client {
+// New creates new Client
+func New(api s3iface.S3API) *Client {
 	return &Client{
 		api: api,
 	}

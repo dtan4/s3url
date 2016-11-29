@@ -45,12 +45,12 @@ func TestParseURL(t *testing.T) {
 	}
 }
 
-func TestNewClient(t *testing.T) {
+func TestNew(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
 	s3mock := awsmock.NewMockS3API(ctrl)
-	client := NewClient(s3mock)
+	client := New(s3mock)
 
 	if client.api != s3mock {
 		t.Error("api does not match.")
