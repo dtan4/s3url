@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3"
+	s3api "github.com/aws/aws-sdk-go/service/s3"
+	"github.com/dtan4/s3url/s3"
 	flag "github.com/spf13/pflag"
 )
 
@@ -80,7 +82,7 @@ Options:
 	}
 
 	if s3URL != "" {
-		bucket, key, err = parseURL(s3URL)
+		bucket, key, err = s3.ParseURL(s3URL)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
@@ -97,7 +99,8 @@ Options:
 		os.Exit(1)
 	}
 
-	svc := s3.New(sess, &aws.Config{})
+	api := s3api.New(sess, &aws.Config{})
+	s3Client := s3.New(api)
 
 	if upload != "" {
 		path, err := filepath.Abs(upload)
@@ -106,7 +109,13 @@ Options:
 			os.Exit(1)
 		}
 
-		if err := uploadToS3(svc, path, bucket, key); err != nil {
+		body, err := ioutil.ReadFile(path)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+
+		if err := s3Client.UploadToS3(bucket, key, body); err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
@@ -114,7 +123,7 @@ Options:
 		fmt.Fprintln(os.Stderr, "uploaded: "+path)
 	}
 
-	signedURL, err := getPresignedURL(svc, bucket, key, duration)
+	signedURL, err := s3Client.GetPresignedURL(bucket, key, duration)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

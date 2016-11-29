@@ -1,5 +1,5 @@
-hash: 421b8337497247472970e0f844dbdab56e480262d5c6e7ec27f8f410c28f9b3a
-updated: 2016-11-25T10:26:33.569898751+09:00
+hash: f8020a4db04e69b0d5274137bac0cb5c1e2da6dea7ac6d1de7d4df5b22a2d252
+updated: 2016-11-30T00:55:29.741229515+09:00
 imports:
 - name: github.com/aws/aws-sdk-go
   version: 4a6ff995f57ee4f8994db17ae83f01a9c9cc2274
@@ -28,9 +28,14 @@ imports:
   - private/protocol/xml/xmlutil
   - private/waiter
   - service/s3
+  - service/s3/s3iface
   - service/sts
 - name: github.com/go-ini/ini
   version: a2610b3a793cfa7fdf0b07038068af5ddc12aba1
+- name: github.com/golang/mock
+  version: bd3c8e81be01eef76d4b503f5e687d2d1354d2d9
+  subpackages:
+  - gomock
 - name: github.com/jmespath/go-jmespath
   version: bd40a432e4c76585ef6b72d3fd96fb9b6dc7b68d
 - name: github.com/spf13/pflag
