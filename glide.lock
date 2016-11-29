@@ -1,5 +1,5 @@
-hash: 4ef34ff9185802a6e9af9107deb5caf238b4ed3ae4d063ac1893b40c6ece2c83
-updated: 2016-11-30T00:17:58.605395083+09:00
+hash: f8020a4db04e69b0d5274137bac0cb5c1e2da6dea7ac6d1de7d4df5b22a2d252
+updated: 2016-11-30T00:55:29.741229515+09:00
 imports:
 - name: github.com/aws/aws-sdk-go
   version: 4a6ff995f57ee4f8994db17ae83f01a9c9cc2274

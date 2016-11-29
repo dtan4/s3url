@@ -7,6 +7,7 @@ import:
   - aws/session
   - service/s3
   - service/s3/s3iface
+  - aws/request
 - package: github.com/spf13/pflag
 - package: github.com/golang/mock
   subpackages:

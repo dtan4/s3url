@@ -2,6 +2,7 @@ package s3
 
 import (
 	"bytes"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/s3"
@@ -18,6 +19,21 @@ func NewClient(api s3iface.S3API) *Client {
 	return &Client{
 		api: api,
 	}
+}
+
+// GetPresignedURL returns S3 object pre-signed URL
+func (c *Client) GetPresignedURL(bucket, key string, duration int64) (string, error) {
+	req, _ := c.api.GetObjectRequest(&s3.GetObjectInput{
+		Bucket: aws.String(bucket),
+		Key:    aws.String(key),
+	})
+
+	signedURL, err := req.Presign(time.Duration(duration) * time.Minute)
+	if err != nil {
+		return "", err
+	}
+
+	return signedURL, nil
 }
 
 // UploadToS3 uploads local file to the specified S3 location
