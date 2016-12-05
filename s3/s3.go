@@ -28,7 +28,7 @@ func ParseURL(s3URL string) (string, string, error) {
 
 	u, err := url.Parse(s3URL)
 	if err != nil {
-		return "", "", fmt.Errorf("Invalid URL: %s.\n", s3URL)
+		return "", "", fmt.Errorf("Invalid URL: %s", s3URL)
 	}
 
 	if u.Scheme == "s3" { // s3://bucket/key
