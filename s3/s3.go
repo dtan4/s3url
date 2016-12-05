@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	virtualHostRegexp = regexp.MustCompile("^s3-[a-z0-9.]+\\.amazonaws\\.com$")
+	virtualHostRegexp = regexp.MustCompile(`^s3-[a-z0-9-]+\.amazonaws\.com$`)
 )
 
 // Client represents the wrapper of S3 API Client
