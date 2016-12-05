@@ -51,23 +51,23 @@ func TestParseURL_invalid(t *testing.T) {
 		errMsg string
 	}{
 		{
-			url:    "foobarobaz",
-			errMsg: "Invalid hostname: ",
+			url:    "foobarbaz",
+			errMsg: "Invalid URL, hostname is invalid. url: \"foobarbaz\", hostname: \"\"",
 		},
 		{
 			url:    "https://s3-ap-northeast-1.amazonaws.com/bucket",
-			errMsg: "Invalid path: /bucket",
+			errMsg: "Invalid URL, path is invalid. url: \"https://s3-ap-northeast-1.amazonaws.com/bucket\", path: \"/bucket\"",
 		},
 	}
 
 	for _, tc := range testcases {
 		_, _, err := ParseURL(tc.url)
 		if err == nil {
-			t.Fatal("Error should be raised.")
+			t.Error("Error should be raised.")
 		}
 
 		if err.Error() != tc.errMsg {
-			t.Fatalf("Error message does not match. expected: %s, actual: %s", tc.errMsg, err.Error())
+			t.Errorf("Error message does not match. expected: %s, actual: %s", tc.errMsg, err.Error())
 		}
 	}
 }

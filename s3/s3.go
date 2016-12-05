@@ -38,7 +38,7 @@ func ParseURL(s3URL string) (string, string, error) {
 		if virtualHostRegexp.MatchString(u.Host) { // https://s3-ap-northeast-1.amazonaws.com/bucket/key
 			ss := strings.SplitN(u.Path, "/", 3)
 			if len(ss) < 3 {
-				return "", "", fmt.Errorf("Invalid path: %s", u.Path)
+				return "", "", fmt.Errorf("Invalid URL, path is invalid. url: %q, path: %q", s3URL, u.Path)
 			}
 
 			bucket = ss[1]
@@ -46,7 +46,7 @@ func ParseURL(s3URL string) (string, string, error) {
 		} else { // https://bucket.s3-ap-northeast-1.amazonaws.com/key
 			ss := strings.Split(u.Host, ".")
 			if len(ss) < 4 {
-				return "", "", fmt.Errorf("Invalid hostname: %s", u.Host)
+				return "", "", fmt.Errorf("Invalid URL, hostname is invalid. url: %q, hostname: %q", s3URL, u.Host)
 			}
 
 			bucket = strings.Join(ss[0:len(ss)-3], ".")
