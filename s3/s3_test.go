@@ -36,11 +36,11 @@ func TestParseURL(t *testing.T) {
 		}
 
 		if bucket != tc.bucket {
-			t.Errorf("Bucket does not matched. expect: %s, actual: %s", tc.bucket, bucket)
+			t.Errorf("Bucket does not match. expected: %s, actual: %s", tc.bucket, bucket)
 		}
 
 		if key != tc.key {
-			t.Errorf("Key does not matched. expect: %s, actual: %s", tc.key, key)
+			t.Errorf("Key does not match. expected: %s, actual: %s", tc.key, key)
 		}
 	}
 }
