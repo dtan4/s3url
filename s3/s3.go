@@ -41,6 +41,10 @@ func ParseURL(s3URL string) (string, string, error) {
 			key = ss[2]
 		} else { // https://bucket.s3-ap-northeast-1.amazonaws.com/key
 			ss := strings.Split(u.Host, ".")
+			if len(ss) < 4 {
+				return "", "", fmt.Errorf("Invalid hostname: %s", u.Host)
+			}
+
 			bucket = strings.Join(ss[0:len(ss)-3], ".")
 			key = u.Path[1:]
 		}

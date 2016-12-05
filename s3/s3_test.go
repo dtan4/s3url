@@ -45,6 +45,21 @@ func TestParseURL(t *testing.T) {
 	}
 }
 
+func TestParseURL_invalid(t *testing.T) {
+	url := "foobarbaz"
+
+	_, _, err := ParseURL(url)
+	if err == nil {
+		t.Fatal("Error should be raised.")
+	}
+
+	expected := "Invalid hostname: "
+
+	if err.Error() != expected {
+		t.Fatalf("Error message does not match. expected: %s, actual: %s", expected, err.Error())
+	}
+}
+
 func TestNew(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
