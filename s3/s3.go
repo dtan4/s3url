@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	virtualHostRegexp = regexp.MustCompile("^s3-[a-z0-9.]+\\.amazonaws\\.com$")
+	virtualHostRegexp = regexp.MustCompile(`^s3-[a-z0-9-]+\.amazonaws\.com$`)
 )
 
 // Client represents the wrapper of S3 API Client
@@ -28,7 +28,7 @@ func ParseURL(s3URL string) (string, string, error) {
 
 	u, err := url.Parse(s3URL)
 	if err != nil {
-		return "", "", fmt.Errorf("Invalid URL: %s.\n", s3URL)
+		return "", "", fmt.Errorf("Invalid URL: %s", s3URL)
 	}
 
 	if u.Scheme == "s3" { // s3://bucket/key
@@ -37,10 +37,18 @@ func ParseURL(s3URL string) (string, string, error) {
 	} else {
 		if virtualHostRegexp.MatchString(u.Host) { // https://s3-ap-northeast-1.amazonaws.com/bucket/key
 			ss := strings.SplitN(u.Path, "/", 3)
+			if len(ss) < 3 {
+				return "", "", fmt.Errorf("Invalid URL, path is invalid. url: %q, path: %q", s3URL, u.Path)
+			}
+
 			bucket = ss[1]
 			key = ss[2]
 		} else { // https://bucket.s3-ap-northeast-1.amazonaws.com/key
 			ss := strings.Split(u.Host, ".")
+			if len(ss) < 4 {
+				return "", "", fmt.Errorf("Invalid URL, hostname is invalid. url: %q, hostname: %q", s3URL, u.Host)
+			}
+
 			bucket = strings.Join(ss[0:len(ss)-3], ".")
 			key = u.Path[1:]
 		}
