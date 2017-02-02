@@ -3,6 +3,7 @@ VERSION  := v0.3.1
 REVISION := $(shell git rev-parse --short HEAD)
 
 SRCS    := $(shell find . -type f -name '*.go')
+PKGS    := $(shell go list ./... | grep -v /vendor/)
 LDFLAGS := -ldflags="-s -w -X \"main.Version=$(VERSION)\" -X \"main.Revision=$(REVISION)\" -extldflags \"-static\""
 
 DIST_DIRS := find * -type d -exec
@@ -14,8 +15,9 @@ bin/$(NAME): $(SRCS)
 
 .PHONY: ci-test
 ci-test:
+	@set -e
 	echo "" > coverage.txt
-	for d in `glide novendor`; do \
+	for d in $(PKGS); do \
 		go test -coverprofile=profile.out -covermode=atomic -v $$d; \
 		if [ -f profile.out ]; then \
 			cat profile.out >> coverage.txt; \
@@ -61,7 +63,7 @@ install:
 
 .PHONY: test
 test:
-	go test -cover -v $(shell go list ./... | grep -v /vendor/)
+	go test -cover -v $(PKGS)
 
 .PHONY: update-deps
 update-deps: dep
