@@ -1,5 +1,5 @@
 {
-    "memo": "de89b11d537e89c62b05fad0fb434c61708d90835fe622635455745d5294818a",
+    "memo": "2e3f4d4eb7bb79754e29e50442a8f987e52626b0eb15217a78744c8de6cc50de",
     "projects": [
         {
             "name": "github.com/aws/aws-sdk-go",
@@ -40,7 +40,7 @@
         {
             "name": "github.com/spf13/pflag",
             "branch": "master",
-            "revision": "a9a634f3de0a7529baded7ad6b0c7467d5c6eca7",
+            "revision": "9ff6c6923cfffbcd502984b8e0c80539a94968b7",
             "packages": [
                 "."
             ]
