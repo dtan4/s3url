@@ -1,8 +1,8 @@
-hash: f8020a4db04e69b0d5274137bac0cb5c1e2da6dea7ac6d1de7d4df5b22a2d252
-updated: 2016-11-30T00:55:29.741229515+09:00
+hash: c144b2e0127d050a4d7472e087abc5d5e9ecffd8266b799435494abd5edd2d1c
+updated: 2017-02-03T01:05:29.100487642+09:00
 imports:
 - name: github.com/aws/aws-sdk-go
-  version: 4a6ff995f57ee4f8994db17ae83f01a9c9cc2274
+  version: 3f8f870ec9939e32b3372abf74d24e468bcd285d
   subpackages:
   - aws
   - aws/awserr
@@ -16,10 +16,10 @@ imports:
   - aws/credentials/stscreds
   - aws/defaults
   - aws/ec2metadata
+  - aws/endpoints
   - aws/request
   - aws/session
   - aws/signer/v4
-  - private/endpoints
   - private/protocol
   - private/protocol/query
   - private/protocol/query/queryutil
