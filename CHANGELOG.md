@@ -4,6 +4,8 @@
 
 - Do not raise panic if invalid URL is given [#12](https://github.com/dtan4/s3url/pull/12)
 - Reborn `--upload` flag [#7](https://github.com/dtan4/s3url/pull/7)
+- Work with `-b` and `-k` correctly [#6](https://github.com/dtan4/s3url/pull/6/files)
+- Use spf13/pflag [#5](https://github.com/dtan4/s3url/pull/5)
 
 # [v0.3.1](https://github.com/dtan4/s3url/releases/tag/v0.3.1) (2016-10-21)
 
