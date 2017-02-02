@@ -1,0 +1,49 @@
+{
+    "memo": "de89b11d537e89c62b05fad0fb434c61708d90835fe622635455745d5294818a",
+    "projects": [
+        {
+            "name": "github.com/aws/aws-sdk-go",
+            "branch": "master",
+            "revision": "7524cb911daddd6e5c9195def8e59ae892bef8d9",
+            "packages": [
+                "aws",
+                "aws/request",
+                "aws/session",
+                "service/s3",
+                "service/s3/s3iface"
+            ]
+        },
+        {
+            "name": "github.com/go-ini/ini",
+            "version": "v1.24.0",
+            "revision": "e3c2d47c61e5333f9aa2974695dd94396eb69c75",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/golang/mock",
+            "branch": "master",
+            "revision": "bd3c8e81be01eef76d4b503f5e687d2d1354d2d9",
+            "packages": [
+                "gomock"
+            ]
+        },
+        {
+            "name": "github.com/jmespath/go-jmespath",
+            "version": "0.2.2",
+            "revision": "3433f3ea46d9f8019119e7dd41274e112a2359a9",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/spf13/pflag",
+            "branch": "master",
+            "revision": "a9a634f3de0a7529baded7ad6b0c7467d5c6eca7",
+            "packages": [
+                "."
+            ]
+        }
+    ]
+}
