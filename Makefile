@@ -15,6 +15,7 @@ bin/$(NAME): $(SRCS)
 .PHONY: ci-test
 ci-test:
 	echo "" > coverage.txt
+	set -e; \
 	for d in `glide novendor`; do \
 		go test -coverprofile=profile.out -covermode=atomic -v $$d; \
 		if [ -f profile.out ]; then \
@@ -30,6 +31,7 @@ clean:
 
 .PHONY: cross-build
 cross-build: deps
+	set -e; \
 	for os in darwin linux windows; do \
 		for arch in amd64 386; do \
 			GOOS=$$os GOARCH=$$arch go build -a -tags netgo -installsuffix netgo $(LDFLAGS) -o dist/$$os-$$arch/$(NAME); \
