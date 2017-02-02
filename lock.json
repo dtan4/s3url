@@ -1,10 +1,10 @@
 {
-    "memo": "2e3f4d4eb7bb79754e29e50442a8f987e52626b0eb15217a78744c8de6cc50de",
+    "memo": "f914f636f2ad485bf32d15abeaba4d5cbcecf0dc1f249a80d4f54d151c158ab6",
     "projects": [
         {
             "name": "github.com/aws/aws-sdk-go",
-            "branch": "master",
-            "revision": "7524cb911daddd6e5c9195def8e59ae892bef8d9",
+            "version": "v1.6.18",
+            "revision": "3f8f870ec9939e32b3372abf74d24e468bcd285d",
             "packages": [
                 "aws",
                 "aws/request",
