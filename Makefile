@@ -36,9 +36,15 @@ cross-build: deps
 		done; \
 	done
 
+.PHONY: dep
+dep:
+ifeq ($(shell command -v dep 2> /dev/null),)
+	go get -u github.com/golang/dep/...
+endif
+
 .PHONY: deps
-deps: glide
-	glide install
+deps: dep
+	dep ensure -v
 
 .PHONY: dist
 dist:
@@ -49,20 +55,14 @@ dist:
 	$(DIST_DIRS) zip -r $(NAME)-$(VERSION)-{}.zip {} \; && \
 	cd ..
 
-.PHONY: glide
-glide:
-ifeq ($(shell command -v glide 2> /dev/null),)
-	curl https://glide.sh/get | sh
-endif
-
 .PHONY: install
 install:
 	go install $(LDFLAGS)
 
 .PHONY: test
 test:
-	go test -cover -v `glide novendor`
+	go test -cover -v $(shell go list ./... | grep -v /vendor/)
 
 .PHONY: update-deps
-update-deps: glide
-	glide update
+update-deps: dep
+	dep ensure -update
