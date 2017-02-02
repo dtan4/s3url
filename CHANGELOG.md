@@ -1,3 +1,10 @@
+# [v1.0.0](https://github.com/dtan4/s3url/releases/tag/v1.0.0) (2017-02-03)
+
+## Fixed
+
+- Do not raise panic if invalid URL is given [#12](https://github.com/dtan4/s3url/pull/12)
+- Reborn `--upload` flag [#7](https://github.com/dtan4/s3url/pull/7)
+
 # [v0.3.1](https://github.com/dtan4/s3url/releases/tag/v0.3.1) (2016-10-21)
 
 ## Features
