@@ -2,6 +2,7 @@
 
 ## Fixed
 
+- Use aws-sdk-go v1.6 [#14](https://github.com/dtan4/s3url/pull/14)
 - Do not raise panic if invalid URL is given [#12](https://github.com/dtan4/s3url/pull/12)
 - Reborn `--upload` flag [#7](https://github.com/dtan4/s3url/pull/7)
 - Work with `-b` and `-k` correctly [#6](https://github.com/dtan4/s3url/pull/6/files)
