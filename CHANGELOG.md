@@ -1,4 +1,4 @@
-# [v1.0.0](https://github.com/dtan4/s3url/releases/tag/v1.0.0) (2017-02-03)
+# [v1.0.0](https://github.com/dtan4/s3url/releases/tag/v1.0.0) (2017-02-06)
 
 ## Fixed
 
