@@ -106,6 +106,7 @@ func TestGetPresignedURL(t *testing.T) {
 		HTTPRequest: &http.Request{
 			URL: u,
 		},
+		Operation: &request.Operation{},
 	}, &s3.GetObjectOutput{})
 	client := &Client{
 		api: s3mock,
