@@ -42,11 +42,7 @@ cross-build: deps
 .PHONY: dep
 dep:
 ifeq ($(shell command -v dep 2> /dev/null),)
-ifeq ($(shell uname),Darwin)
-	brew install dep
-else
 	go get -u github.com/golang/dep/cmd/dep
-endif
 endif
 
 .PHONY: deps
