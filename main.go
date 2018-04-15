@@ -9,7 +9,6 @@ import (
 	flag "github.com/spf13/pflag"
 
 	"github.com/dtan4/s3url/aws"
-	"github.com/dtan4/s3url/aws/s3"
 	"github.com/dtan4/s3url/config"
 )
 
@@ -31,7 +30,7 @@ Options:
 		f.PrintDefaults()
 	}
 
-	c := config.Config{}
+	c := &config.Config{}
 
 	f.StringVarP(&c.Bucket, "bucket", "b", "", "Bucket name")
 	f.Int64VarP(&c.Duration, "duration", "d", defaultDuration, "Valid duration in minutes")
@@ -60,10 +59,7 @@ Options:
 	}
 
 	if s3URL != "" {
-		var err error
-
-		c.Bucket, c.Key, err = s3.ParseURL(s3URL)
-		if err != nil {
+		if err := c.ParseS3URL(s3URL); err != nil {
 			return err
 		}
 	}
