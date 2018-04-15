@@ -5,6 +5,8 @@ import (
 )
 
 func TestParseS3URL(t *testing.T) {
+	t.Parallel()
+
 	testcases := []struct {
 		url    string
 		bucket string
@@ -38,6 +40,8 @@ func TestParseS3URL(t *testing.T) {
 }
 
 func TestParseURL_invalid(t *testing.T) {
+	t.Parallel()
+
 	testcases := []struct {
 		url    string
 		errMsg string
