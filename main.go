@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	s3api "github.com/aws/aws-sdk-go/service/s3"
-	"github.com/dtan4/s3url/s3"
+	"github.com/dtan4/s3url/aws/s3"
 	flag "github.com/spf13/pflag"
 
 	"github.com/dtan4/s3url/config"
