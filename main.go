@@ -54,10 +54,6 @@ Options:
 		f.Parse(f.Args()[1:])
 	}
 
-	if err := aws.Initialize(c.Profile); err != nil {
-		return err
-	}
-
 	if s3URL == "" && (c.Bucket == "" || c.Key == "") {
 		f.Usage()
 		return fmt.Errorf("insufficient arguments")
@@ -78,6 +74,10 @@ Options:
 
 	if c.Key == "" {
 		return fmt.Errorf("Object key is required.")
+	}
+
+	if err := aws.Initialize(c.Profile); err != nil {
+		return err
 	}
 
 	if c.Upload != "" {
