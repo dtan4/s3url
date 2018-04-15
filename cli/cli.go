@@ -35,7 +35,7 @@ func New(stdout, stderr io.Writer, version, revision string) *CLI {
 	}
 }
 
-// Execute executes s3url command process
+// Run executes s3url command process
 func (cli *CLI) Run(args []string) int {
 	f := flag.NewFlagSet("s3url", flag.ExitOnError)
 
