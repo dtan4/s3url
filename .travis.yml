@@ -5,6 +5,9 @@ branches:
   only:
     - master
     - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+cache:
+  directories:
+    - vendor
 install:
   - make deps
 script:
