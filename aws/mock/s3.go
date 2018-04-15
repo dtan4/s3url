@@ -4,6 +4,7 @@
 package mock
 
 import (
+	aws "github.com/aws/aws-sdk-go/aws"
 	request "github.com/aws/aws-sdk-go/aws/request"
 	s3 "github.com/aws/aws-sdk-go/service/s3"
 	gomock "github.com/golang/mock/gomock"
@@ -30,17 +31,6 @@ func (_m *MockS3API) EXPECT() *_MockS3APIRecorder {
 	return _m.recorder
 }
 
-func (_m *MockS3API) AbortMultipartUploadRequest(_param0 *s3.AbortMultipartUploadInput) (*request.Request, *s3.AbortMultipartUploadOutput) {
-	ret := _m.ctrl.Call(_m, "AbortMultipartUploadRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.AbortMultipartUploadOutput)
-	return ret0, ret1
-}
-
-func (_mr *_MockS3APIRecorder) AbortMultipartUploadRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "AbortMultipartUploadRequest", arg0)
-}
-
 func (_m *MockS3API) AbortMultipartUpload(_param0 *s3.AbortMultipartUploadInput) (*s3.AbortMultipartUploadOutput, error) {
 	ret := _m.ctrl.Call(_m, "AbortMultipartUpload", _param0)
 	ret0, _ := ret[0].(*s3.AbortMultipartUploadOutput)
@@ -52,15 +42,31 @@ func (_mr *_MockS3APIRecorder) AbortMultipartUpload(arg0 interface{}) *gomock.Ca
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "AbortMultipartUpload", arg0)
 }
 
-func (_m *MockS3API) CompleteMultipartUploadRequest(_param0 *s3.CompleteMultipartUploadInput) (*request.Request, *s3.CompleteMultipartUploadOutput) {
-	ret := _m.ctrl.Call(_m, "CompleteMultipartUploadRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.CompleteMultipartUploadOutput)
+func (_m *MockS3API) AbortMultipartUploadWithContext(_param0 aws.Context, _param1 *s3.AbortMultipartUploadInput, _param2 ...request.Option) (*s3.AbortMultipartUploadOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "AbortMultipartUploadWithContext", _s...)
+	ret0, _ := ret[0].(*s3.AbortMultipartUploadOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) CompleteMultipartUploadRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CompleteMultipartUploadRequest", arg0)
+func (_mr *_MockS3APIRecorder) AbortMultipartUploadWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "AbortMultipartUploadWithContext", _s...)
+}
+
+func (_m *MockS3API) AbortMultipartUploadRequest(_param0 *s3.AbortMultipartUploadInput) (*request.Request, *s3.AbortMultipartUploadOutput) {
+	ret := _m.ctrl.Call(_m, "AbortMultipartUploadRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.AbortMultipartUploadOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) AbortMultipartUploadRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "AbortMultipartUploadRequest", arg0)
 }
 
 func (_m *MockS3API) CompleteMultipartUpload(_param0 *s3.CompleteMultipartUploadInput) (*s3.CompleteMultipartUploadOutput, error) {
@@ -74,15 +80,31 @@ func (_mr *_MockS3APIRecorder) CompleteMultipartUpload(arg0 interface{}) *gomock
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "CompleteMultipartUpload", arg0)
 }
 
-func (_m *MockS3API) CopyObjectRequest(_param0 *s3.CopyObjectInput) (*request.Request, *s3.CopyObjectOutput) {
-	ret := _m.ctrl.Call(_m, "CopyObjectRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.CopyObjectOutput)
+func (_m *MockS3API) CompleteMultipartUploadWithContext(_param0 aws.Context, _param1 *s3.CompleteMultipartUploadInput, _param2 ...request.Option) (*s3.CompleteMultipartUploadOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "CompleteMultipartUploadWithContext", _s...)
+	ret0, _ := ret[0].(*s3.CompleteMultipartUploadOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) CopyObjectRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CopyObjectRequest", arg0)
+func (_mr *_MockS3APIRecorder) CompleteMultipartUploadWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CompleteMultipartUploadWithContext", _s...)
+}
+
+func (_m *MockS3API) CompleteMultipartUploadRequest(_param0 *s3.CompleteMultipartUploadInput) (*request.Request, *s3.CompleteMultipartUploadOutput) {
+	ret := _m.ctrl.Call(_m, "CompleteMultipartUploadRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.CompleteMultipartUploadOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) CompleteMultipartUploadRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CompleteMultipartUploadRequest", arg0)
 }
 
 func (_m *MockS3API) CopyObject(_param0 *s3.CopyObjectInput) (*s3.CopyObjectOutput, error) {
@@ -96,15 +118,31 @@ func (_mr *_MockS3APIRecorder) CopyObject(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "CopyObject", arg0)
 }
 
-func (_m *MockS3API) CreateBucketRequest(_param0 *s3.CreateBucketInput) (*request.Request, *s3.CreateBucketOutput) {
-	ret := _m.ctrl.Call(_m, "CreateBucketRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.CreateBucketOutput)
+func (_m *MockS3API) CopyObjectWithContext(_param0 aws.Context, _param1 *s3.CopyObjectInput, _param2 ...request.Option) (*s3.CopyObjectOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "CopyObjectWithContext", _s...)
+	ret0, _ := ret[0].(*s3.CopyObjectOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) CreateBucketRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateBucketRequest", arg0)
+func (_mr *_MockS3APIRecorder) CopyObjectWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CopyObjectWithContext", _s...)
+}
+
+func (_m *MockS3API) CopyObjectRequest(_param0 *s3.CopyObjectInput) (*request.Request, *s3.CopyObjectOutput) {
+	ret := _m.ctrl.Call(_m, "CopyObjectRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.CopyObjectOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) CopyObjectRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CopyObjectRequest", arg0)
 }
 
 func (_m *MockS3API) CreateBucket(_param0 *s3.CreateBucketInput) (*s3.CreateBucketOutput, error) {
@@ -118,15 +156,31 @@ func (_mr *_MockS3APIRecorder) CreateBucket(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateBucket", arg0)
 }
 
-func (_m *MockS3API) CreateMultipartUploadRequest(_param0 *s3.CreateMultipartUploadInput) (*request.Request, *s3.CreateMultipartUploadOutput) {
-	ret := _m.ctrl.Call(_m, "CreateMultipartUploadRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.CreateMultipartUploadOutput)
+func (_m *MockS3API) CreateBucketWithContext(_param0 aws.Context, _param1 *s3.CreateBucketInput, _param2 ...request.Option) (*s3.CreateBucketOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "CreateBucketWithContext", _s...)
+	ret0, _ := ret[0].(*s3.CreateBucketOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) CreateMultipartUploadRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateMultipartUploadRequest", arg0)
+func (_mr *_MockS3APIRecorder) CreateBucketWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateBucketWithContext", _s...)
+}
+
+func (_m *MockS3API) CreateBucketRequest(_param0 *s3.CreateBucketInput) (*request.Request, *s3.CreateBucketOutput) {
+	ret := _m.ctrl.Call(_m, "CreateBucketRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.CreateBucketOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) CreateBucketRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateBucketRequest", arg0)
 }
 
 func (_m *MockS3API) CreateMultipartUpload(_param0 *s3.CreateMultipartUploadInput) (*s3.CreateMultipartUploadOutput, error) {
@@ -140,15 +194,31 @@ func (_mr *_MockS3APIRecorder) CreateMultipartUpload(arg0 interface{}) *gomock.C
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateMultipartUpload", arg0)
 }
 
-func (_m *MockS3API) DeleteBucketRequest(_param0 *s3.DeleteBucketInput) (*request.Request, *s3.DeleteBucketOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteBucketRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteBucketOutput)
+func (_m *MockS3API) CreateMultipartUploadWithContext(_param0 aws.Context, _param1 *s3.CreateMultipartUploadInput, _param2 ...request.Option) (*s3.CreateMultipartUploadOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "CreateMultipartUploadWithContext", _s...)
+	ret0, _ := ret[0].(*s3.CreateMultipartUploadOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteBucketRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketRequest", arg0)
+func (_mr *_MockS3APIRecorder) CreateMultipartUploadWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateMultipartUploadWithContext", _s...)
+}
+
+func (_m *MockS3API) CreateMultipartUploadRequest(_param0 *s3.CreateMultipartUploadInput) (*request.Request, *s3.CreateMultipartUploadOutput) {
+	ret := _m.ctrl.Call(_m, "CreateMultipartUploadRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.CreateMultipartUploadOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) CreateMultipartUploadRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateMultipartUploadRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteBucket(_param0 *s3.DeleteBucketInput) (*s3.DeleteBucketOutput, error) {
@@ -162,15 +232,31 @@ func (_mr *_MockS3APIRecorder) DeleteBucket(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucket", arg0)
 }
 
-func (_m *MockS3API) DeleteBucketAnalyticsConfigurationRequest(_param0 *s3.DeleteBucketAnalyticsConfigurationInput) (*request.Request, *s3.DeleteBucketAnalyticsConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteBucketAnalyticsConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteBucketAnalyticsConfigurationOutput)
+func (_m *MockS3API) DeleteBucketWithContext(_param0 aws.Context, _param1 *s3.DeleteBucketInput, _param2 ...request.Option) (*s3.DeleteBucketOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteBucketWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteBucketOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteBucketAnalyticsConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketAnalyticsConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteBucketWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteBucketRequest(_param0 *s3.DeleteBucketInput) (*request.Request, *s3.DeleteBucketOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteBucketOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteBucketAnalyticsConfiguration(_param0 *s3.DeleteBucketAnalyticsConfigurationInput) (*s3.DeleteBucketAnalyticsConfigurationOutput, error) {
@@ -184,15 +270,31 @@ func (_mr *_MockS3APIRecorder) DeleteBucketAnalyticsConfiguration(arg0 interface
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketAnalyticsConfiguration", arg0)
 }
 
-func (_m *MockS3API) DeleteBucketCorsRequest(_param0 *s3.DeleteBucketCorsInput) (*request.Request, *s3.DeleteBucketCorsOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteBucketCorsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteBucketCorsOutput)
+func (_m *MockS3API) DeleteBucketAnalyticsConfigurationWithContext(_param0 aws.Context, _param1 *s3.DeleteBucketAnalyticsConfigurationInput, _param2 ...request.Option) (*s3.DeleteBucketAnalyticsConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteBucketAnalyticsConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteBucketAnalyticsConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteBucketCorsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketCorsRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteBucketAnalyticsConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketAnalyticsConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteBucketAnalyticsConfigurationRequest(_param0 *s3.DeleteBucketAnalyticsConfigurationInput) (*request.Request, *s3.DeleteBucketAnalyticsConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketAnalyticsConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteBucketAnalyticsConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketAnalyticsConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketAnalyticsConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteBucketCors(_param0 *s3.DeleteBucketCorsInput) (*s3.DeleteBucketCorsOutput, error) {
@@ -206,15 +308,69 @@ func (_mr *_MockS3APIRecorder) DeleteBucketCors(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketCors", arg0)
 }
 
-func (_m *MockS3API) DeleteBucketInventoryConfigurationRequest(_param0 *s3.DeleteBucketInventoryConfigurationInput) (*request.Request, *s3.DeleteBucketInventoryConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteBucketInventoryConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteBucketInventoryConfigurationOutput)
+func (_m *MockS3API) DeleteBucketCorsWithContext(_param0 aws.Context, _param1 *s3.DeleteBucketCorsInput, _param2 ...request.Option) (*s3.DeleteBucketCorsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteBucketCorsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteBucketCorsOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteBucketInventoryConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketInventoryConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteBucketCorsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketCorsWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteBucketCorsRequest(_param0 *s3.DeleteBucketCorsInput) (*request.Request, *s3.DeleteBucketCorsOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketCorsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteBucketCorsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketCorsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketCorsRequest", arg0)
+}
+
+func (_m *MockS3API) DeleteBucketEncryption(_param0 *s3.DeleteBucketEncryptionInput) (*s3.DeleteBucketEncryptionOutput, error) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketEncryption", _param0)
+	ret0, _ := ret[0].(*s3.DeleteBucketEncryptionOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketEncryption(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketEncryption", arg0)
+}
+
+func (_m *MockS3API) DeleteBucketEncryptionWithContext(_param0 aws.Context, _param1 *s3.DeleteBucketEncryptionInput, _param2 ...request.Option) (*s3.DeleteBucketEncryptionOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteBucketEncryptionWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteBucketEncryptionOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketEncryptionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketEncryptionWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteBucketEncryptionRequest(_param0 *s3.DeleteBucketEncryptionInput) (*request.Request, *s3.DeleteBucketEncryptionOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketEncryptionRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteBucketEncryptionOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketEncryptionRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketEncryptionRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteBucketInventoryConfiguration(_param0 *s3.DeleteBucketInventoryConfigurationInput) (*s3.DeleteBucketInventoryConfigurationOutput, error) {
@@ -228,15 +384,31 @@ func (_mr *_MockS3APIRecorder) DeleteBucketInventoryConfiguration(arg0 interface
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketInventoryConfiguration", arg0)
 }
 
-func (_m *MockS3API) DeleteBucketLifecycleRequest(_param0 *s3.DeleteBucketLifecycleInput) (*request.Request, *s3.DeleteBucketLifecycleOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteBucketLifecycleRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteBucketLifecycleOutput)
+func (_m *MockS3API) DeleteBucketInventoryConfigurationWithContext(_param0 aws.Context, _param1 *s3.DeleteBucketInventoryConfigurationInput, _param2 ...request.Option) (*s3.DeleteBucketInventoryConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteBucketInventoryConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteBucketInventoryConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteBucketLifecycleRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketLifecycleRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteBucketInventoryConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketInventoryConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteBucketInventoryConfigurationRequest(_param0 *s3.DeleteBucketInventoryConfigurationInput) (*request.Request, *s3.DeleteBucketInventoryConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketInventoryConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteBucketInventoryConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketInventoryConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketInventoryConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteBucketLifecycle(_param0 *s3.DeleteBucketLifecycleInput) (*s3.DeleteBucketLifecycleOutput, error) {
@@ -250,15 +422,31 @@ func (_mr *_MockS3APIRecorder) DeleteBucketLifecycle(arg0 interface{}) *gomock.C
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketLifecycle", arg0)
 }
 
-func (_m *MockS3API) DeleteBucketMetricsConfigurationRequest(_param0 *s3.DeleteBucketMetricsConfigurationInput) (*request.Request, *s3.DeleteBucketMetricsConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteBucketMetricsConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteBucketMetricsConfigurationOutput)
+func (_m *MockS3API) DeleteBucketLifecycleWithContext(_param0 aws.Context, _param1 *s3.DeleteBucketLifecycleInput, _param2 ...request.Option) (*s3.DeleteBucketLifecycleOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteBucketLifecycleWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteBucketLifecycleOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteBucketMetricsConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketMetricsConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteBucketLifecycleWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketLifecycleWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteBucketLifecycleRequest(_param0 *s3.DeleteBucketLifecycleInput) (*request.Request, *s3.DeleteBucketLifecycleOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketLifecycleRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteBucketLifecycleOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketLifecycleRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketLifecycleRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteBucketMetricsConfiguration(_param0 *s3.DeleteBucketMetricsConfigurationInput) (*s3.DeleteBucketMetricsConfigurationOutput, error) {
@@ -272,15 +460,31 @@ func (_mr *_MockS3APIRecorder) DeleteBucketMetricsConfiguration(arg0 interface{}
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketMetricsConfiguration", arg0)
 }
 
-func (_m *MockS3API) DeleteBucketPolicyRequest(_param0 *s3.DeleteBucketPolicyInput) (*request.Request, *s3.DeleteBucketPolicyOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteBucketPolicyRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteBucketPolicyOutput)
+func (_m *MockS3API) DeleteBucketMetricsConfigurationWithContext(_param0 aws.Context, _param1 *s3.DeleteBucketMetricsConfigurationInput, _param2 ...request.Option) (*s3.DeleteBucketMetricsConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteBucketMetricsConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteBucketMetricsConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteBucketPolicyRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketPolicyRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteBucketMetricsConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketMetricsConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteBucketMetricsConfigurationRequest(_param0 *s3.DeleteBucketMetricsConfigurationInput) (*request.Request, *s3.DeleteBucketMetricsConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketMetricsConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteBucketMetricsConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketMetricsConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketMetricsConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteBucketPolicy(_param0 *s3.DeleteBucketPolicyInput) (*s3.DeleteBucketPolicyOutput, error) {
@@ -294,15 +498,31 @@ func (_mr *_MockS3APIRecorder) DeleteBucketPolicy(arg0 interface{}) *gomock.Call
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketPolicy", arg0)
 }
 
-func (_m *MockS3API) DeleteBucketReplicationRequest(_param0 *s3.DeleteBucketReplicationInput) (*request.Request, *s3.DeleteBucketReplicationOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteBucketReplicationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteBucketReplicationOutput)
+func (_m *MockS3API) DeleteBucketPolicyWithContext(_param0 aws.Context, _param1 *s3.DeleteBucketPolicyInput, _param2 ...request.Option) (*s3.DeleteBucketPolicyOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteBucketPolicyWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteBucketPolicyOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteBucketReplicationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketReplicationRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteBucketPolicyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketPolicyWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteBucketPolicyRequest(_param0 *s3.DeleteBucketPolicyInput) (*request.Request, *s3.DeleteBucketPolicyOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketPolicyRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteBucketPolicyOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketPolicyRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketPolicyRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteBucketReplication(_param0 *s3.DeleteBucketReplicationInput) (*s3.DeleteBucketReplicationOutput, error) {
@@ -316,15 +536,31 @@ func (_mr *_MockS3APIRecorder) DeleteBucketReplication(arg0 interface{}) *gomock
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketReplication", arg0)
 }
 
-func (_m *MockS3API) DeleteBucketTaggingRequest(_param0 *s3.DeleteBucketTaggingInput) (*request.Request, *s3.DeleteBucketTaggingOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteBucketTaggingRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteBucketTaggingOutput)
+func (_m *MockS3API) DeleteBucketReplicationWithContext(_param0 aws.Context, _param1 *s3.DeleteBucketReplicationInput, _param2 ...request.Option) (*s3.DeleteBucketReplicationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteBucketReplicationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteBucketReplicationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteBucketTaggingRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketTaggingRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteBucketReplicationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketReplicationWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteBucketReplicationRequest(_param0 *s3.DeleteBucketReplicationInput) (*request.Request, *s3.DeleteBucketReplicationOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketReplicationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteBucketReplicationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketReplicationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketReplicationRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteBucketTagging(_param0 *s3.DeleteBucketTaggingInput) (*s3.DeleteBucketTaggingOutput, error) {
@@ -338,15 +574,31 @@ func (_mr *_MockS3APIRecorder) DeleteBucketTagging(arg0 interface{}) *gomock.Cal
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketTagging", arg0)
 }
 
-func (_m *MockS3API) DeleteBucketWebsiteRequest(_param0 *s3.DeleteBucketWebsiteInput) (*request.Request, *s3.DeleteBucketWebsiteOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteBucketWebsiteRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteBucketWebsiteOutput)
+func (_m *MockS3API) DeleteBucketTaggingWithContext(_param0 aws.Context, _param1 *s3.DeleteBucketTaggingInput, _param2 ...request.Option) (*s3.DeleteBucketTaggingOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteBucketTaggingWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteBucketTaggingOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteBucketWebsiteRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketWebsiteRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteBucketTaggingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketTaggingWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteBucketTaggingRequest(_param0 *s3.DeleteBucketTaggingInput) (*request.Request, *s3.DeleteBucketTaggingOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketTaggingRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteBucketTaggingOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketTaggingRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketTaggingRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteBucketWebsite(_param0 *s3.DeleteBucketWebsiteInput) (*s3.DeleteBucketWebsiteOutput, error) {
@@ -360,15 +612,31 @@ func (_mr *_MockS3APIRecorder) DeleteBucketWebsite(arg0 interface{}) *gomock.Cal
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketWebsite", arg0)
 }
 
-func (_m *MockS3API) DeleteObjectRequest(_param0 *s3.DeleteObjectInput) (*request.Request, *s3.DeleteObjectOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteObjectRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteObjectOutput)
+func (_m *MockS3API) DeleteBucketWebsiteWithContext(_param0 aws.Context, _param1 *s3.DeleteBucketWebsiteInput, _param2 ...request.Option) (*s3.DeleteBucketWebsiteOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteBucketWebsiteWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteBucketWebsiteOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteObjectRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObjectRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteBucketWebsiteWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketWebsiteWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteBucketWebsiteRequest(_param0 *s3.DeleteBucketWebsiteInput) (*request.Request, *s3.DeleteBucketWebsiteOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteBucketWebsiteRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteBucketWebsiteOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteBucketWebsiteRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteBucketWebsiteRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteObject(_param0 *s3.DeleteObjectInput) (*s3.DeleteObjectOutput, error) {
@@ -382,15 +650,31 @@ func (_mr *_MockS3APIRecorder) DeleteObject(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObject", arg0)
 }
 
-func (_m *MockS3API) DeleteObjectTaggingRequest(_param0 *s3.DeleteObjectTaggingInput) (*request.Request, *s3.DeleteObjectTaggingOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteObjectTaggingRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteObjectTaggingOutput)
+func (_m *MockS3API) DeleteObjectWithContext(_param0 aws.Context, _param1 *s3.DeleteObjectInput, _param2 ...request.Option) (*s3.DeleteObjectOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteObjectWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteObjectOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteObjectTaggingRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObjectTaggingRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteObjectWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObjectWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteObjectRequest(_param0 *s3.DeleteObjectInput) (*request.Request, *s3.DeleteObjectOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteObjectRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteObjectOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteObjectRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObjectRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteObjectTagging(_param0 *s3.DeleteObjectTaggingInput) (*s3.DeleteObjectTaggingOutput, error) {
@@ -404,15 +688,31 @@ func (_mr *_MockS3APIRecorder) DeleteObjectTagging(arg0 interface{}) *gomock.Cal
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObjectTagging", arg0)
 }
 
-func (_m *MockS3API) DeleteObjectsRequest(_param0 *s3.DeleteObjectsInput) (*request.Request, *s3.DeleteObjectsOutput) {
-	ret := _m.ctrl.Call(_m, "DeleteObjectsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.DeleteObjectsOutput)
+func (_m *MockS3API) DeleteObjectTaggingWithContext(_param0 aws.Context, _param1 *s3.DeleteObjectTaggingInput, _param2 ...request.Option) (*s3.DeleteObjectTaggingOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteObjectTaggingWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteObjectTaggingOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) DeleteObjectsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObjectsRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteObjectTaggingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObjectTaggingWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteObjectTaggingRequest(_param0 *s3.DeleteObjectTaggingInput) (*request.Request, *s3.DeleteObjectTaggingOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteObjectTaggingRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteObjectTaggingOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteObjectTaggingRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObjectTaggingRequest", arg0)
 }
 
 func (_m *MockS3API) DeleteObjects(_param0 *s3.DeleteObjectsInput) (*s3.DeleteObjectsOutput, error) {
@@ -426,15 +726,31 @@ func (_mr *_MockS3APIRecorder) DeleteObjects(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObjects", arg0)
 }
 
-func (_m *MockS3API) GetBucketAccelerateConfigurationRequest(_param0 *s3.GetBucketAccelerateConfigurationInput) (*request.Request, *s3.GetBucketAccelerateConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketAccelerateConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketAccelerateConfigurationOutput)
+func (_m *MockS3API) DeleteObjectsWithContext(_param0 aws.Context, _param1 *s3.DeleteObjectsInput, _param2 ...request.Option) (*s3.DeleteObjectsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "DeleteObjectsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.DeleteObjectsOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketAccelerateConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAccelerateConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) DeleteObjectsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObjectsWithContext", _s...)
+}
+
+func (_m *MockS3API) DeleteObjectsRequest(_param0 *s3.DeleteObjectsInput) (*request.Request, *s3.DeleteObjectsOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteObjectsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.DeleteObjectsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) DeleteObjectsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteObjectsRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketAccelerateConfiguration(_param0 *s3.GetBucketAccelerateConfigurationInput) (*s3.GetBucketAccelerateConfigurationOutput, error) {
@@ -448,15 +764,31 @@ func (_mr *_MockS3APIRecorder) GetBucketAccelerateConfiguration(arg0 interface{}
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAccelerateConfiguration", arg0)
 }
 
-func (_m *MockS3API) GetBucketAclRequest(_param0 *s3.GetBucketAclInput) (*request.Request, *s3.GetBucketAclOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketAclRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketAclOutput)
+func (_m *MockS3API) GetBucketAccelerateConfigurationWithContext(_param0 aws.Context, _param1 *s3.GetBucketAccelerateConfigurationInput, _param2 ...request.Option) (*s3.GetBucketAccelerateConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketAccelerateConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketAccelerateConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketAclRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAclRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketAccelerateConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAccelerateConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketAccelerateConfigurationRequest(_param0 *s3.GetBucketAccelerateConfigurationInput) (*request.Request, *s3.GetBucketAccelerateConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketAccelerateConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketAccelerateConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketAccelerateConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAccelerateConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketAcl(_param0 *s3.GetBucketAclInput) (*s3.GetBucketAclOutput, error) {
@@ -470,15 +802,31 @@ func (_mr *_MockS3APIRecorder) GetBucketAcl(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAcl", arg0)
 }
 
-func (_m *MockS3API) GetBucketAnalyticsConfigurationRequest(_param0 *s3.GetBucketAnalyticsConfigurationInput) (*request.Request, *s3.GetBucketAnalyticsConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketAnalyticsConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketAnalyticsConfigurationOutput)
+func (_m *MockS3API) GetBucketAclWithContext(_param0 aws.Context, _param1 *s3.GetBucketAclInput, _param2 ...request.Option) (*s3.GetBucketAclOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketAclWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketAclOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketAnalyticsConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAnalyticsConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketAclWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAclWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketAclRequest(_param0 *s3.GetBucketAclInput) (*request.Request, *s3.GetBucketAclOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketAclRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketAclOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketAclRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAclRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketAnalyticsConfiguration(_param0 *s3.GetBucketAnalyticsConfigurationInput) (*s3.GetBucketAnalyticsConfigurationOutput, error) {
@@ -492,15 +840,31 @@ func (_mr *_MockS3APIRecorder) GetBucketAnalyticsConfiguration(arg0 interface{})
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAnalyticsConfiguration", arg0)
 }
 
-func (_m *MockS3API) GetBucketCorsRequest(_param0 *s3.GetBucketCorsInput) (*request.Request, *s3.GetBucketCorsOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketCorsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketCorsOutput)
+func (_m *MockS3API) GetBucketAnalyticsConfigurationWithContext(_param0 aws.Context, _param1 *s3.GetBucketAnalyticsConfigurationInput, _param2 ...request.Option) (*s3.GetBucketAnalyticsConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketAnalyticsConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketAnalyticsConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketCorsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketCorsRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketAnalyticsConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAnalyticsConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketAnalyticsConfigurationRequest(_param0 *s3.GetBucketAnalyticsConfigurationInput) (*request.Request, *s3.GetBucketAnalyticsConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketAnalyticsConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketAnalyticsConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketAnalyticsConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketAnalyticsConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketCors(_param0 *s3.GetBucketCorsInput) (*s3.GetBucketCorsOutput, error) {
@@ -514,15 +878,69 @@ func (_mr *_MockS3APIRecorder) GetBucketCors(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketCors", arg0)
 }
 
-func (_m *MockS3API) GetBucketInventoryConfigurationRequest(_param0 *s3.GetBucketInventoryConfigurationInput) (*request.Request, *s3.GetBucketInventoryConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketInventoryConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketInventoryConfigurationOutput)
+func (_m *MockS3API) GetBucketCorsWithContext(_param0 aws.Context, _param1 *s3.GetBucketCorsInput, _param2 ...request.Option) (*s3.GetBucketCorsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketCorsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketCorsOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketInventoryConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketInventoryConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketCorsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketCorsWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketCorsRequest(_param0 *s3.GetBucketCorsInput) (*request.Request, *s3.GetBucketCorsOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketCorsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketCorsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketCorsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketCorsRequest", arg0)
+}
+
+func (_m *MockS3API) GetBucketEncryption(_param0 *s3.GetBucketEncryptionInput) (*s3.GetBucketEncryptionOutput, error) {
+	ret := _m.ctrl.Call(_m, "GetBucketEncryption", _param0)
+	ret0, _ := ret[0].(*s3.GetBucketEncryptionOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketEncryption(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketEncryption", arg0)
+}
+
+func (_m *MockS3API) GetBucketEncryptionWithContext(_param0 aws.Context, _param1 *s3.GetBucketEncryptionInput, _param2 ...request.Option) (*s3.GetBucketEncryptionOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketEncryptionWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketEncryptionOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketEncryptionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketEncryptionWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketEncryptionRequest(_param0 *s3.GetBucketEncryptionInput) (*request.Request, *s3.GetBucketEncryptionOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketEncryptionRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketEncryptionOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketEncryptionRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketEncryptionRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketInventoryConfiguration(_param0 *s3.GetBucketInventoryConfigurationInput) (*s3.GetBucketInventoryConfigurationOutput, error) {
@@ -536,15 +954,31 @@ func (_mr *_MockS3APIRecorder) GetBucketInventoryConfiguration(arg0 interface{})
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketInventoryConfiguration", arg0)
 }
 
-func (_m *MockS3API) GetBucketLifecycleRequest(_param0 *s3.GetBucketLifecycleInput) (*request.Request, *s3.GetBucketLifecycleOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketLifecycleRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketLifecycleOutput)
+func (_m *MockS3API) GetBucketInventoryConfigurationWithContext(_param0 aws.Context, _param1 *s3.GetBucketInventoryConfigurationInput, _param2 ...request.Option) (*s3.GetBucketInventoryConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketInventoryConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketInventoryConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketLifecycleRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLifecycleRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketInventoryConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketInventoryConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketInventoryConfigurationRequest(_param0 *s3.GetBucketInventoryConfigurationInput) (*request.Request, *s3.GetBucketInventoryConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketInventoryConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketInventoryConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketInventoryConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketInventoryConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketLifecycle(_param0 *s3.GetBucketLifecycleInput) (*s3.GetBucketLifecycleOutput, error) {
@@ -558,15 +992,31 @@ func (_mr *_MockS3APIRecorder) GetBucketLifecycle(arg0 interface{}) *gomock.Call
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLifecycle", arg0)
 }
 
-func (_m *MockS3API) GetBucketLifecycleConfigurationRequest(_param0 *s3.GetBucketLifecycleConfigurationInput) (*request.Request, *s3.GetBucketLifecycleConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketLifecycleConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketLifecycleConfigurationOutput)
+func (_m *MockS3API) GetBucketLifecycleWithContext(_param0 aws.Context, _param1 *s3.GetBucketLifecycleInput, _param2 ...request.Option) (*s3.GetBucketLifecycleOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketLifecycleWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketLifecycleOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketLifecycleConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLifecycleConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketLifecycleWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLifecycleWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketLifecycleRequest(_param0 *s3.GetBucketLifecycleInput) (*request.Request, *s3.GetBucketLifecycleOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketLifecycleRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketLifecycleOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketLifecycleRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLifecycleRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketLifecycleConfiguration(_param0 *s3.GetBucketLifecycleConfigurationInput) (*s3.GetBucketLifecycleConfigurationOutput, error) {
@@ -580,15 +1030,31 @@ func (_mr *_MockS3APIRecorder) GetBucketLifecycleConfiguration(arg0 interface{})
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLifecycleConfiguration", arg0)
 }
 
-func (_m *MockS3API) GetBucketLocationRequest(_param0 *s3.GetBucketLocationInput) (*request.Request, *s3.GetBucketLocationOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketLocationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketLocationOutput)
+func (_m *MockS3API) GetBucketLifecycleConfigurationWithContext(_param0 aws.Context, _param1 *s3.GetBucketLifecycleConfigurationInput, _param2 ...request.Option) (*s3.GetBucketLifecycleConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketLifecycleConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketLifecycleConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketLocationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLocationRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketLifecycleConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLifecycleConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketLifecycleConfigurationRequest(_param0 *s3.GetBucketLifecycleConfigurationInput) (*request.Request, *s3.GetBucketLifecycleConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketLifecycleConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketLifecycleConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketLifecycleConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLifecycleConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketLocation(_param0 *s3.GetBucketLocationInput) (*s3.GetBucketLocationOutput, error) {
@@ -602,15 +1068,31 @@ func (_mr *_MockS3APIRecorder) GetBucketLocation(arg0 interface{}) *gomock.Call 
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLocation", arg0)
 }
 
-func (_m *MockS3API) GetBucketLoggingRequest(_param0 *s3.GetBucketLoggingInput) (*request.Request, *s3.GetBucketLoggingOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketLoggingRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketLoggingOutput)
+func (_m *MockS3API) GetBucketLocationWithContext(_param0 aws.Context, _param1 *s3.GetBucketLocationInput, _param2 ...request.Option) (*s3.GetBucketLocationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketLocationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketLocationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketLoggingRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLoggingRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketLocationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLocationWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketLocationRequest(_param0 *s3.GetBucketLocationInput) (*request.Request, *s3.GetBucketLocationOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketLocationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketLocationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketLocationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLocationRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketLogging(_param0 *s3.GetBucketLoggingInput) (*s3.GetBucketLoggingOutput, error) {
@@ -624,15 +1106,31 @@ func (_mr *_MockS3APIRecorder) GetBucketLogging(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLogging", arg0)
 }
 
-func (_m *MockS3API) GetBucketMetricsConfigurationRequest(_param0 *s3.GetBucketMetricsConfigurationInput) (*request.Request, *s3.GetBucketMetricsConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketMetricsConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketMetricsConfigurationOutput)
+func (_m *MockS3API) GetBucketLoggingWithContext(_param0 aws.Context, _param1 *s3.GetBucketLoggingInput, _param2 ...request.Option) (*s3.GetBucketLoggingOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketLoggingWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketLoggingOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketMetricsConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketMetricsConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketLoggingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLoggingWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketLoggingRequest(_param0 *s3.GetBucketLoggingInput) (*request.Request, *s3.GetBucketLoggingOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketLoggingRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketLoggingOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketLoggingRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketLoggingRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketMetricsConfiguration(_param0 *s3.GetBucketMetricsConfigurationInput) (*s3.GetBucketMetricsConfigurationOutput, error) {
@@ -646,15 +1144,31 @@ func (_mr *_MockS3APIRecorder) GetBucketMetricsConfiguration(arg0 interface{}) *
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketMetricsConfiguration", arg0)
 }
 
-func (_m *MockS3API) GetBucketNotificationRequest(_param0 *s3.GetBucketNotificationConfigurationRequest) (*request.Request, *s3.NotificationConfigurationDeprecated) {
-	ret := _m.ctrl.Call(_m, "GetBucketNotificationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.NotificationConfigurationDeprecated)
+func (_m *MockS3API) GetBucketMetricsConfigurationWithContext(_param0 aws.Context, _param1 *s3.GetBucketMetricsConfigurationInput, _param2 ...request.Option) (*s3.GetBucketMetricsConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketMetricsConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketMetricsConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketNotificationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketNotificationRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketMetricsConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketMetricsConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketMetricsConfigurationRequest(_param0 *s3.GetBucketMetricsConfigurationInput) (*request.Request, *s3.GetBucketMetricsConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketMetricsConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketMetricsConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketMetricsConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketMetricsConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketNotification(_param0 *s3.GetBucketNotificationConfigurationRequest) (*s3.NotificationConfigurationDeprecated, error) {
@@ -668,15 +1182,31 @@ func (_mr *_MockS3APIRecorder) GetBucketNotification(arg0 interface{}) *gomock.C
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketNotification", arg0)
 }
 
-func (_m *MockS3API) GetBucketNotificationConfigurationRequest(_param0 *s3.GetBucketNotificationConfigurationRequest) (*request.Request, *s3.NotificationConfiguration) {
-	ret := _m.ctrl.Call(_m, "GetBucketNotificationConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.NotificationConfiguration)
+func (_m *MockS3API) GetBucketNotificationWithContext(_param0 aws.Context, _param1 *s3.GetBucketNotificationConfigurationRequest, _param2 ...request.Option) (*s3.NotificationConfigurationDeprecated, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketNotificationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.NotificationConfigurationDeprecated)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketNotificationConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketNotificationConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketNotificationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketNotificationWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketNotificationRequest(_param0 *s3.GetBucketNotificationConfigurationRequest) (*request.Request, *s3.NotificationConfigurationDeprecated) {
+	ret := _m.ctrl.Call(_m, "GetBucketNotificationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.NotificationConfigurationDeprecated)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketNotificationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketNotificationRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketNotificationConfiguration(_param0 *s3.GetBucketNotificationConfigurationRequest) (*s3.NotificationConfiguration, error) {
@@ -690,15 +1220,31 @@ func (_mr *_MockS3APIRecorder) GetBucketNotificationConfiguration(arg0 interface
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketNotificationConfiguration", arg0)
 }
 
-func (_m *MockS3API) GetBucketPolicyRequest(_param0 *s3.GetBucketPolicyInput) (*request.Request, *s3.GetBucketPolicyOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketPolicyRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketPolicyOutput)
+func (_m *MockS3API) GetBucketNotificationConfigurationWithContext(_param0 aws.Context, _param1 *s3.GetBucketNotificationConfigurationRequest, _param2 ...request.Option) (*s3.NotificationConfiguration, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketNotificationConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.NotificationConfiguration)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketPolicyRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketPolicyRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketNotificationConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketNotificationConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketNotificationConfigurationRequest(_param0 *s3.GetBucketNotificationConfigurationRequest) (*request.Request, *s3.NotificationConfiguration) {
+	ret := _m.ctrl.Call(_m, "GetBucketNotificationConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.NotificationConfiguration)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketNotificationConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketNotificationConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketPolicy(_param0 *s3.GetBucketPolicyInput) (*s3.GetBucketPolicyOutput, error) {
@@ -712,15 +1258,31 @@ func (_mr *_MockS3APIRecorder) GetBucketPolicy(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketPolicy", arg0)
 }
 
-func (_m *MockS3API) GetBucketReplicationRequest(_param0 *s3.GetBucketReplicationInput) (*request.Request, *s3.GetBucketReplicationOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketReplicationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketReplicationOutput)
+func (_m *MockS3API) GetBucketPolicyWithContext(_param0 aws.Context, _param1 *s3.GetBucketPolicyInput, _param2 ...request.Option) (*s3.GetBucketPolicyOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketPolicyWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketPolicyOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketReplicationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketReplicationRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketPolicyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketPolicyWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketPolicyRequest(_param0 *s3.GetBucketPolicyInput) (*request.Request, *s3.GetBucketPolicyOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketPolicyRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketPolicyOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketPolicyRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketPolicyRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketReplication(_param0 *s3.GetBucketReplicationInput) (*s3.GetBucketReplicationOutput, error) {
@@ -734,15 +1296,31 @@ func (_mr *_MockS3APIRecorder) GetBucketReplication(arg0 interface{}) *gomock.Ca
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketReplication", arg0)
 }
 
-func (_m *MockS3API) GetBucketRequestPaymentRequest(_param0 *s3.GetBucketRequestPaymentInput) (*request.Request, *s3.GetBucketRequestPaymentOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketRequestPaymentRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketRequestPaymentOutput)
+func (_m *MockS3API) GetBucketReplicationWithContext(_param0 aws.Context, _param1 *s3.GetBucketReplicationInput, _param2 ...request.Option) (*s3.GetBucketReplicationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketReplicationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketReplicationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketRequestPaymentRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketRequestPaymentRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketReplicationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketReplicationWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketReplicationRequest(_param0 *s3.GetBucketReplicationInput) (*request.Request, *s3.GetBucketReplicationOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketReplicationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketReplicationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketReplicationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketReplicationRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketRequestPayment(_param0 *s3.GetBucketRequestPaymentInput) (*s3.GetBucketRequestPaymentOutput, error) {
@@ -756,15 +1334,31 @@ func (_mr *_MockS3APIRecorder) GetBucketRequestPayment(arg0 interface{}) *gomock
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketRequestPayment", arg0)
 }
 
-func (_m *MockS3API) GetBucketTaggingRequest(_param0 *s3.GetBucketTaggingInput) (*request.Request, *s3.GetBucketTaggingOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketTaggingRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketTaggingOutput)
+func (_m *MockS3API) GetBucketRequestPaymentWithContext(_param0 aws.Context, _param1 *s3.GetBucketRequestPaymentInput, _param2 ...request.Option) (*s3.GetBucketRequestPaymentOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketRequestPaymentWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketRequestPaymentOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketTaggingRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketTaggingRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketRequestPaymentWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketRequestPaymentWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketRequestPaymentRequest(_param0 *s3.GetBucketRequestPaymentInput) (*request.Request, *s3.GetBucketRequestPaymentOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketRequestPaymentRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketRequestPaymentOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketRequestPaymentRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketRequestPaymentRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketTagging(_param0 *s3.GetBucketTaggingInput) (*s3.GetBucketTaggingOutput, error) {
@@ -778,15 +1372,31 @@ func (_mr *_MockS3APIRecorder) GetBucketTagging(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketTagging", arg0)
 }
 
-func (_m *MockS3API) GetBucketVersioningRequest(_param0 *s3.GetBucketVersioningInput) (*request.Request, *s3.GetBucketVersioningOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketVersioningRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketVersioningOutput)
+func (_m *MockS3API) GetBucketTaggingWithContext(_param0 aws.Context, _param1 *s3.GetBucketTaggingInput, _param2 ...request.Option) (*s3.GetBucketTaggingOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketTaggingWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketTaggingOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketVersioningRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketVersioningRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketTaggingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketTaggingWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketTaggingRequest(_param0 *s3.GetBucketTaggingInput) (*request.Request, *s3.GetBucketTaggingOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketTaggingRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketTaggingOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketTaggingRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketTaggingRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketVersioning(_param0 *s3.GetBucketVersioningInput) (*s3.GetBucketVersioningOutput, error) {
@@ -800,15 +1410,31 @@ func (_mr *_MockS3APIRecorder) GetBucketVersioning(arg0 interface{}) *gomock.Cal
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketVersioning", arg0)
 }
 
-func (_m *MockS3API) GetBucketWebsiteRequest(_param0 *s3.GetBucketWebsiteInput) (*request.Request, *s3.GetBucketWebsiteOutput) {
-	ret := _m.ctrl.Call(_m, "GetBucketWebsiteRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetBucketWebsiteOutput)
+func (_m *MockS3API) GetBucketVersioningWithContext(_param0 aws.Context, _param1 *s3.GetBucketVersioningInput, _param2 ...request.Option) (*s3.GetBucketVersioningOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketVersioningWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketVersioningOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetBucketWebsiteRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketWebsiteRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketVersioningWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketVersioningWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketVersioningRequest(_param0 *s3.GetBucketVersioningInput) (*request.Request, *s3.GetBucketVersioningOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketVersioningRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketVersioningOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketVersioningRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketVersioningRequest", arg0)
 }
 
 func (_m *MockS3API) GetBucketWebsite(_param0 *s3.GetBucketWebsiteInput) (*s3.GetBucketWebsiteOutput, error) {
@@ -822,15 +1448,31 @@ func (_mr *_MockS3APIRecorder) GetBucketWebsite(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketWebsite", arg0)
 }
 
-func (_m *MockS3API) GetObjectRequest(_param0 *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
-	ret := _m.ctrl.Call(_m, "GetObjectRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetObjectOutput)
+func (_m *MockS3API) GetBucketWebsiteWithContext(_param0 aws.Context, _param1 *s3.GetBucketWebsiteInput, _param2 ...request.Option) (*s3.GetBucketWebsiteOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetBucketWebsiteWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetBucketWebsiteOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetObjectRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetBucketWebsiteWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketWebsiteWithContext", _s...)
+}
+
+func (_m *MockS3API) GetBucketWebsiteRequest(_param0 *s3.GetBucketWebsiteInput) (*request.Request, *s3.GetBucketWebsiteOutput) {
+	ret := _m.ctrl.Call(_m, "GetBucketWebsiteRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetBucketWebsiteOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetBucketWebsiteRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetBucketWebsiteRequest", arg0)
 }
 
 func (_m *MockS3API) GetObject(_param0 *s3.GetObjectInput) (*s3.GetObjectOutput, error) {
@@ -844,15 +1486,31 @@ func (_mr *_MockS3APIRecorder) GetObject(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObject", arg0)
 }
 
-func (_m *MockS3API) GetObjectAclRequest(_param0 *s3.GetObjectAclInput) (*request.Request, *s3.GetObjectAclOutput) {
-	ret := _m.ctrl.Call(_m, "GetObjectAclRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetObjectAclOutput)
+func (_m *MockS3API) GetObjectWithContext(_param0 aws.Context, _param1 *s3.GetObjectInput, _param2 ...request.Option) (*s3.GetObjectOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetObjectWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetObjectOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetObjectAclRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectAclRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetObjectWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectWithContext", _s...)
+}
+
+func (_m *MockS3API) GetObjectRequest(_param0 *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
+	ret := _m.ctrl.Call(_m, "GetObjectRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetObjectOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetObjectRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectRequest", arg0)
 }
 
 func (_m *MockS3API) GetObjectAcl(_param0 *s3.GetObjectAclInput) (*s3.GetObjectAclOutput, error) {
@@ -866,15 +1524,31 @@ func (_mr *_MockS3APIRecorder) GetObjectAcl(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectAcl", arg0)
 }
 
-func (_m *MockS3API) GetObjectTaggingRequest(_param0 *s3.GetObjectTaggingInput) (*request.Request, *s3.GetObjectTaggingOutput) {
-	ret := _m.ctrl.Call(_m, "GetObjectTaggingRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetObjectTaggingOutput)
+func (_m *MockS3API) GetObjectAclWithContext(_param0 aws.Context, _param1 *s3.GetObjectAclInput, _param2 ...request.Option) (*s3.GetObjectAclOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetObjectAclWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetObjectAclOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetObjectTaggingRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectTaggingRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetObjectAclWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectAclWithContext", _s...)
+}
+
+func (_m *MockS3API) GetObjectAclRequest(_param0 *s3.GetObjectAclInput) (*request.Request, *s3.GetObjectAclOutput) {
+	ret := _m.ctrl.Call(_m, "GetObjectAclRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetObjectAclOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetObjectAclRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectAclRequest", arg0)
 }
 
 func (_m *MockS3API) GetObjectTagging(_param0 *s3.GetObjectTaggingInput) (*s3.GetObjectTaggingOutput, error) {
@@ -888,15 +1562,31 @@ func (_mr *_MockS3APIRecorder) GetObjectTagging(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectTagging", arg0)
 }
 
-func (_m *MockS3API) GetObjectTorrentRequest(_param0 *s3.GetObjectTorrentInput) (*request.Request, *s3.GetObjectTorrentOutput) {
-	ret := _m.ctrl.Call(_m, "GetObjectTorrentRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.GetObjectTorrentOutput)
+func (_m *MockS3API) GetObjectTaggingWithContext(_param0 aws.Context, _param1 *s3.GetObjectTaggingInput, _param2 ...request.Option) (*s3.GetObjectTaggingOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetObjectTaggingWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetObjectTaggingOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) GetObjectTorrentRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectTorrentRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetObjectTaggingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectTaggingWithContext", _s...)
+}
+
+func (_m *MockS3API) GetObjectTaggingRequest(_param0 *s3.GetObjectTaggingInput) (*request.Request, *s3.GetObjectTaggingOutput) {
+	ret := _m.ctrl.Call(_m, "GetObjectTaggingRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetObjectTaggingOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetObjectTaggingRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectTaggingRequest", arg0)
 }
 
 func (_m *MockS3API) GetObjectTorrent(_param0 *s3.GetObjectTorrentInput) (*s3.GetObjectTorrentOutput, error) {
@@ -910,15 +1600,31 @@ func (_mr *_MockS3APIRecorder) GetObjectTorrent(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectTorrent", arg0)
 }
 
-func (_m *MockS3API) HeadBucketRequest(_param0 *s3.HeadBucketInput) (*request.Request, *s3.HeadBucketOutput) {
-	ret := _m.ctrl.Call(_m, "HeadBucketRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.HeadBucketOutput)
+func (_m *MockS3API) GetObjectTorrentWithContext(_param0 aws.Context, _param1 *s3.GetObjectTorrentInput, _param2 ...request.Option) (*s3.GetObjectTorrentOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "GetObjectTorrentWithContext", _s...)
+	ret0, _ := ret[0].(*s3.GetObjectTorrentOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) HeadBucketRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "HeadBucketRequest", arg0)
+func (_mr *_MockS3APIRecorder) GetObjectTorrentWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectTorrentWithContext", _s...)
+}
+
+func (_m *MockS3API) GetObjectTorrentRequest(_param0 *s3.GetObjectTorrentInput) (*request.Request, *s3.GetObjectTorrentOutput) {
+	ret := _m.ctrl.Call(_m, "GetObjectTorrentRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.GetObjectTorrentOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) GetObjectTorrentRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetObjectTorrentRequest", arg0)
 }
 
 func (_m *MockS3API) HeadBucket(_param0 *s3.HeadBucketInput) (*s3.HeadBucketOutput, error) {
@@ -932,15 +1638,31 @@ func (_mr *_MockS3APIRecorder) HeadBucket(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "HeadBucket", arg0)
 }
 
-func (_m *MockS3API) HeadObjectRequest(_param0 *s3.HeadObjectInput) (*request.Request, *s3.HeadObjectOutput) {
-	ret := _m.ctrl.Call(_m, "HeadObjectRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.HeadObjectOutput)
+func (_m *MockS3API) HeadBucketWithContext(_param0 aws.Context, _param1 *s3.HeadBucketInput, _param2 ...request.Option) (*s3.HeadBucketOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "HeadBucketWithContext", _s...)
+	ret0, _ := ret[0].(*s3.HeadBucketOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) HeadObjectRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "HeadObjectRequest", arg0)
+func (_mr *_MockS3APIRecorder) HeadBucketWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "HeadBucketWithContext", _s...)
+}
+
+func (_m *MockS3API) HeadBucketRequest(_param0 *s3.HeadBucketInput) (*request.Request, *s3.HeadBucketOutput) {
+	ret := _m.ctrl.Call(_m, "HeadBucketRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.HeadBucketOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) HeadBucketRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "HeadBucketRequest", arg0)
 }
 
 func (_m *MockS3API) HeadObject(_param0 *s3.HeadObjectInput) (*s3.HeadObjectOutput, error) {
@@ -954,15 +1676,31 @@ func (_mr *_MockS3APIRecorder) HeadObject(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "HeadObject", arg0)
 }
 
-func (_m *MockS3API) ListBucketAnalyticsConfigurationsRequest(_param0 *s3.ListBucketAnalyticsConfigurationsInput) (*request.Request, *s3.ListBucketAnalyticsConfigurationsOutput) {
-	ret := _m.ctrl.Call(_m, "ListBucketAnalyticsConfigurationsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.ListBucketAnalyticsConfigurationsOutput)
+func (_m *MockS3API) HeadObjectWithContext(_param0 aws.Context, _param1 *s3.HeadObjectInput, _param2 ...request.Option) (*s3.HeadObjectOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "HeadObjectWithContext", _s...)
+	ret0, _ := ret[0].(*s3.HeadObjectOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) ListBucketAnalyticsConfigurationsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketAnalyticsConfigurationsRequest", arg0)
+func (_mr *_MockS3APIRecorder) HeadObjectWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "HeadObjectWithContext", _s...)
+}
+
+func (_m *MockS3API) HeadObjectRequest(_param0 *s3.HeadObjectInput) (*request.Request, *s3.HeadObjectOutput) {
+	ret := _m.ctrl.Call(_m, "HeadObjectRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.HeadObjectOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) HeadObjectRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "HeadObjectRequest", arg0)
 }
 
 func (_m *MockS3API) ListBucketAnalyticsConfigurations(_param0 *s3.ListBucketAnalyticsConfigurationsInput) (*s3.ListBucketAnalyticsConfigurationsOutput, error) {
@@ -976,15 +1714,31 @@ func (_mr *_MockS3APIRecorder) ListBucketAnalyticsConfigurations(arg0 interface{
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketAnalyticsConfigurations", arg0)
 }
 
-func (_m *MockS3API) ListBucketInventoryConfigurationsRequest(_param0 *s3.ListBucketInventoryConfigurationsInput) (*request.Request, *s3.ListBucketInventoryConfigurationsOutput) {
-	ret := _m.ctrl.Call(_m, "ListBucketInventoryConfigurationsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.ListBucketInventoryConfigurationsOutput)
+func (_m *MockS3API) ListBucketAnalyticsConfigurationsWithContext(_param0 aws.Context, _param1 *s3.ListBucketAnalyticsConfigurationsInput, _param2 ...request.Option) (*s3.ListBucketAnalyticsConfigurationsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListBucketAnalyticsConfigurationsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.ListBucketAnalyticsConfigurationsOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) ListBucketInventoryConfigurationsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketInventoryConfigurationsRequest", arg0)
+func (_mr *_MockS3APIRecorder) ListBucketAnalyticsConfigurationsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketAnalyticsConfigurationsWithContext", _s...)
+}
+
+func (_m *MockS3API) ListBucketAnalyticsConfigurationsRequest(_param0 *s3.ListBucketAnalyticsConfigurationsInput) (*request.Request, *s3.ListBucketAnalyticsConfigurationsOutput) {
+	ret := _m.ctrl.Call(_m, "ListBucketAnalyticsConfigurationsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.ListBucketAnalyticsConfigurationsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListBucketAnalyticsConfigurationsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketAnalyticsConfigurationsRequest", arg0)
 }
 
 func (_m *MockS3API) ListBucketInventoryConfigurations(_param0 *s3.ListBucketInventoryConfigurationsInput) (*s3.ListBucketInventoryConfigurationsOutput, error) {
@@ -998,15 +1752,31 @@ func (_mr *_MockS3APIRecorder) ListBucketInventoryConfigurations(arg0 interface{
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketInventoryConfigurations", arg0)
 }
 
-func (_m *MockS3API) ListBucketMetricsConfigurationsRequest(_param0 *s3.ListBucketMetricsConfigurationsInput) (*request.Request, *s3.ListBucketMetricsConfigurationsOutput) {
-	ret := _m.ctrl.Call(_m, "ListBucketMetricsConfigurationsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.ListBucketMetricsConfigurationsOutput)
+func (_m *MockS3API) ListBucketInventoryConfigurationsWithContext(_param0 aws.Context, _param1 *s3.ListBucketInventoryConfigurationsInput, _param2 ...request.Option) (*s3.ListBucketInventoryConfigurationsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListBucketInventoryConfigurationsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.ListBucketInventoryConfigurationsOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) ListBucketMetricsConfigurationsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketMetricsConfigurationsRequest", arg0)
+func (_mr *_MockS3APIRecorder) ListBucketInventoryConfigurationsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketInventoryConfigurationsWithContext", _s...)
+}
+
+func (_m *MockS3API) ListBucketInventoryConfigurationsRequest(_param0 *s3.ListBucketInventoryConfigurationsInput) (*request.Request, *s3.ListBucketInventoryConfigurationsOutput) {
+	ret := _m.ctrl.Call(_m, "ListBucketInventoryConfigurationsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.ListBucketInventoryConfigurationsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListBucketInventoryConfigurationsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketInventoryConfigurationsRequest", arg0)
 }
 
 func (_m *MockS3API) ListBucketMetricsConfigurations(_param0 *s3.ListBucketMetricsConfigurationsInput) (*s3.ListBucketMetricsConfigurationsOutput, error) {
@@ -1020,15 +1790,31 @@ func (_mr *_MockS3APIRecorder) ListBucketMetricsConfigurations(arg0 interface{})
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketMetricsConfigurations", arg0)
 }
 
-func (_m *MockS3API) ListBucketsRequest(_param0 *s3.ListBucketsInput) (*request.Request, *s3.ListBucketsOutput) {
-	ret := _m.ctrl.Call(_m, "ListBucketsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.ListBucketsOutput)
+func (_m *MockS3API) ListBucketMetricsConfigurationsWithContext(_param0 aws.Context, _param1 *s3.ListBucketMetricsConfigurationsInput, _param2 ...request.Option) (*s3.ListBucketMetricsConfigurationsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListBucketMetricsConfigurationsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.ListBucketMetricsConfigurationsOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) ListBucketsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketsRequest", arg0)
+func (_mr *_MockS3APIRecorder) ListBucketMetricsConfigurationsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketMetricsConfigurationsWithContext", _s...)
+}
+
+func (_m *MockS3API) ListBucketMetricsConfigurationsRequest(_param0 *s3.ListBucketMetricsConfigurationsInput) (*request.Request, *s3.ListBucketMetricsConfigurationsOutput) {
+	ret := _m.ctrl.Call(_m, "ListBucketMetricsConfigurationsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.ListBucketMetricsConfigurationsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListBucketMetricsConfigurationsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketMetricsConfigurationsRequest", arg0)
 }
 
 func (_m *MockS3API) ListBuckets(_param0 *s3.ListBucketsInput) (*s3.ListBucketsOutput, error) {
@@ -1042,15 +1828,31 @@ func (_mr *_MockS3APIRecorder) ListBuckets(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBuckets", arg0)
 }
 
-func (_m *MockS3API) ListMultipartUploadsRequest(_param0 *s3.ListMultipartUploadsInput) (*request.Request, *s3.ListMultipartUploadsOutput) {
-	ret := _m.ctrl.Call(_m, "ListMultipartUploadsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.ListMultipartUploadsOutput)
+func (_m *MockS3API) ListBucketsWithContext(_param0 aws.Context, _param1 *s3.ListBucketsInput, _param2 ...request.Option) (*s3.ListBucketsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListBucketsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.ListBucketsOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) ListMultipartUploadsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListMultipartUploadsRequest", arg0)
+func (_mr *_MockS3APIRecorder) ListBucketsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketsWithContext", _s...)
+}
+
+func (_m *MockS3API) ListBucketsRequest(_param0 *s3.ListBucketsInput) (*request.Request, *s3.ListBucketsOutput) {
+	ret := _m.ctrl.Call(_m, "ListBucketsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.ListBucketsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListBucketsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListBucketsRequest", arg0)
 }
 
 func (_m *MockS3API) ListMultipartUploads(_param0 *s3.ListMultipartUploadsInput) (*s3.ListMultipartUploadsOutput, error) {
@@ -1064,6 +1866,33 @@ func (_mr *_MockS3APIRecorder) ListMultipartUploads(arg0 interface{}) *gomock.Ca
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListMultipartUploads", arg0)
 }
 
+func (_m *MockS3API) ListMultipartUploadsWithContext(_param0 aws.Context, _param1 *s3.ListMultipartUploadsInput, _param2 ...request.Option) (*s3.ListMultipartUploadsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListMultipartUploadsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.ListMultipartUploadsOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListMultipartUploadsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListMultipartUploadsWithContext", _s...)
+}
+
+func (_m *MockS3API) ListMultipartUploadsRequest(_param0 *s3.ListMultipartUploadsInput) (*request.Request, *s3.ListMultipartUploadsOutput) {
+	ret := _m.ctrl.Call(_m, "ListMultipartUploadsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.ListMultipartUploadsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListMultipartUploadsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListMultipartUploadsRequest", arg0)
+}
+
 func (_m *MockS3API) ListMultipartUploadsPages(_param0 *s3.ListMultipartUploadsInput, _param1 func(*s3.ListMultipartUploadsOutput, bool) bool) error {
 	ret := _m.ctrl.Call(_m, "ListMultipartUploadsPages", _param0, _param1)
 	ret0, _ := ret[0].(error)
@@ -1074,15 +1903,19 @@ func (_mr *_MockS3APIRecorder) ListMultipartUploadsPages(arg0, arg1 interface{})
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListMultipartUploadsPages", arg0, arg1)
 }
 
-func (_m *MockS3API) ListObjectVersionsRequest(_param0 *s3.ListObjectVersionsInput) (*request.Request, *s3.ListObjectVersionsOutput) {
-	ret := _m.ctrl.Call(_m, "ListObjectVersionsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.ListObjectVersionsOutput)
-	return ret0, ret1
+func (_m *MockS3API) ListMultipartUploadsPagesWithContext(_param0 aws.Context, _param1 *s3.ListMultipartUploadsInput, _param2 func(*s3.ListMultipartUploadsOutput, bool) bool, _param3 ...request.Option) error {
+	_s := []interface{}{_param0, _param1, _param2}
+	for _, _x := range _param3 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListMultipartUploadsPagesWithContext", _s...)
+	ret0, _ := ret[0].(error)
+	return ret0
 }
 
-func (_mr *_MockS3APIRecorder) ListObjectVersionsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectVersionsRequest", arg0)
+func (_mr *_MockS3APIRecorder) ListMultipartUploadsPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListMultipartUploadsPagesWithContext", _s...)
 }
 
 func (_m *MockS3API) ListObjectVersions(_param0 *s3.ListObjectVersionsInput) (*s3.ListObjectVersionsOutput, error) {
@@ -1096,6 +1929,33 @@ func (_mr *_MockS3APIRecorder) ListObjectVersions(arg0 interface{}) *gomock.Call
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectVersions", arg0)
 }
 
+func (_m *MockS3API) ListObjectVersionsWithContext(_param0 aws.Context, _param1 *s3.ListObjectVersionsInput, _param2 ...request.Option) (*s3.ListObjectVersionsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListObjectVersionsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.ListObjectVersionsOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListObjectVersionsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectVersionsWithContext", _s...)
+}
+
+func (_m *MockS3API) ListObjectVersionsRequest(_param0 *s3.ListObjectVersionsInput) (*request.Request, *s3.ListObjectVersionsOutput) {
+	ret := _m.ctrl.Call(_m, "ListObjectVersionsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.ListObjectVersionsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListObjectVersionsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectVersionsRequest", arg0)
+}
+
 func (_m *MockS3API) ListObjectVersionsPages(_param0 *s3.ListObjectVersionsInput, _param1 func(*s3.ListObjectVersionsOutput, bool) bool) error {
 	ret := _m.ctrl.Call(_m, "ListObjectVersionsPages", _param0, _param1)
 	ret0, _ := ret[0].(error)
@@ -1106,15 +1966,19 @@ func (_mr *_MockS3APIRecorder) ListObjectVersionsPages(arg0, arg1 interface{}) *
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectVersionsPages", arg0, arg1)
 }
 
-func (_m *MockS3API) ListObjectsRequest(_param0 *s3.ListObjectsInput) (*request.Request, *s3.ListObjectsOutput) {
-	ret := _m.ctrl.Call(_m, "ListObjectsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.ListObjectsOutput)
-	return ret0, ret1
+func (_m *MockS3API) ListObjectVersionsPagesWithContext(_param0 aws.Context, _param1 *s3.ListObjectVersionsInput, _param2 func(*s3.ListObjectVersionsOutput, bool) bool, _param3 ...request.Option) error {
+	_s := []interface{}{_param0, _param1, _param2}
+	for _, _x := range _param3 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListObjectVersionsPagesWithContext", _s...)
+	ret0, _ := ret[0].(error)
+	return ret0
 }
 
-func (_mr *_MockS3APIRecorder) ListObjectsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectsRequest", arg0)
+func (_mr *_MockS3APIRecorder) ListObjectVersionsPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectVersionsPagesWithContext", _s...)
 }
 
 func (_m *MockS3API) ListObjects(_param0 *s3.ListObjectsInput) (*s3.ListObjectsOutput, error) {
@@ -1128,6 +1992,33 @@ func (_mr *_MockS3APIRecorder) ListObjects(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjects", arg0)
 }
 
+func (_m *MockS3API) ListObjectsWithContext(_param0 aws.Context, _param1 *s3.ListObjectsInput, _param2 ...request.Option) (*s3.ListObjectsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListObjectsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.ListObjectsOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListObjectsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectsWithContext", _s...)
+}
+
+func (_m *MockS3API) ListObjectsRequest(_param0 *s3.ListObjectsInput) (*request.Request, *s3.ListObjectsOutput) {
+	ret := _m.ctrl.Call(_m, "ListObjectsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.ListObjectsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListObjectsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectsRequest", arg0)
+}
+
 func (_m *MockS3API) ListObjectsPages(_param0 *s3.ListObjectsInput, _param1 func(*s3.ListObjectsOutput, bool) bool) error {
 	ret := _m.ctrl.Call(_m, "ListObjectsPages", _param0, _param1)
 	ret0, _ := ret[0].(error)
@@ -1138,15 +2029,19 @@ func (_mr *_MockS3APIRecorder) ListObjectsPages(arg0, arg1 interface{}) *gomock.
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectsPages", arg0, arg1)
 }
 
-func (_m *MockS3API) ListObjectsV2Request(_param0 *s3.ListObjectsV2Input) (*request.Request, *s3.ListObjectsV2Output) {
-	ret := _m.ctrl.Call(_m, "ListObjectsV2Request", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.ListObjectsV2Output)
-	return ret0, ret1
+func (_m *MockS3API) ListObjectsPagesWithContext(_param0 aws.Context, _param1 *s3.ListObjectsInput, _param2 func(*s3.ListObjectsOutput, bool) bool, _param3 ...request.Option) error {
+	_s := []interface{}{_param0, _param1, _param2}
+	for _, _x := range _param3 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListObjectsPagesWithContext", _s...)
+	ret0, _ := ret[0].(error)
+	return ret0
 }
 
-func (_mr *_MockS3APIRecorder) ListObjectsV2Request(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectsV2Request", arg0)
+func (_mr *_MockS3APIRecorder) ListObjectsPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectsPagesWithContext", _s...)
 }
 
 func (_m *MockS3API) ListObjectsV2(_param0 *s3.ListObjectsV2Input) (*s3.ListObjectsV2Output, error) {
@@ -1160,6 +2055,33 @@ func (_mr *_MockS3APIRecorder) ListObjectsV2(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectsV2", arg0)
 }
 
+func (_m *MockS3API) ListObjectsV2WithContext(_param0 aws.Context, _param1 *s3.ListObjectsV2Input, _param2 ...request.Option) (*s3.ListObjectsV2Output, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListObjectsV2WithContext", _s...)
+	ret0, _ := ret[0].(*s3.ListObjectsV2Output)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListObjectsV2WithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectsV2WithContext", _s...)
+}
+
+func (_m *MockS3API) ListObjectsV2Request(_param0 *s3.ListObjectsV2Input) (*request.Request, *s3.ListObjectsV2Output) {
+	ret := _m.ctrl.Call(_m, "ListObjectsV2Request", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.ListObjectsV2Output)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListObjectsV2Request(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectsV2Request", arg0)
+}
+
 func (_m *MockS3API) ListObjectsV2Pages(_param0 *s3.ListObjectsV2Input, _param1 func(*s3.ListObjectsV2Output, bool) bool) error {
 	ret := _m.ctrl.Call(_m, "ListObjectsV2Pages", _param0, _param1)
 	ret0, _ := ret[0].(error)
@@ -1170,15 +2092,19 @@ func (_mr *_MockS3APIRecorder) ListObjectsV2Pages(arg0, arg1 interface{}) *gomoc
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectsV2Pages", arg0, arg1)
 }
 
-func (_m *MockS3API) ListPartsRequest(_param0 *s3.ListPartsInput) (*request.Request, *s3.ListPartsOutput) {
-	ret := _m.ctrl.Call(_m, "ListPartsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.ListPartsOutput)
-	return ret0, ret1
+func (_m *MockS3API) ListObjectsV2PagesWithContext(_param0 aws.Context, _param1 *s3.ListObjectsV2Input, _param2 func(*s3.ListObjectsV2Output, bool) bool, _param3 ...request.Option) error {
+	_s := []interface{}{_param0, _param1, _param2}
+	for _, _x := range _param3 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListObjectsV2PagesWithContext", _s...)
+	ret0, _ := ret[0].(error)
+	return ret0
 }
 
-func (_mr *_MockS3APIRecorder) ListPartsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListPartsRequest", arg0)
+func (_mr *_MockS3APIRecorder) ListObjectsV2PagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListObjectsV2PagesWithContext", _s...)
 }
 
 func (_m *MockS3API) ListParts(_param0 *s3.ListPartsInput) (*s3.ListPartsOutput, error) {
@@ -1192,6 +2118,33 @@ func (_mr *_MockS3APIRecorder) ListParts(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListParts", arg0)
 }
 
+func (_m *MockS3API) ListPartsWithContext(_param0 aws.Context, _param1 *s3.ListPartsInput, _param2 ...request.Option) (*s3.ListPartsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListPartsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.ListPartsOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListPartsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListPartsWithContext", _s...)
+}
+
+func (_m *MockS3API) ListPartsRequest(_param0 *s3.ListPartsInput) (*request.Request, *s3.ListPartsOutput) {
+	ret := _m.ctrl.Call(_m, "ListPartsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.ListPartsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) ListPartsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListPartsRequest", arg0)
+}
+
 func (_m *MockS3API) ListPartsPages(_param0 *s3.ListPartsInput, _param1 func(*s3.ListPartsOutput, bool) bool) error {
 	ret := _m.ctrl.Call(_m, "ListPartsPages", _param0, _param1)
 	ret0, _ := ret[0].(error)
@@ -1202,15 +2155,19 @@ func (_mr *_MockS3APIRecorder) ListPartsPages(arg0, arg1 interface{}) *gomock.Ca
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListPartsPages", arg0, arg1)
 }
 
-func (_m *MockS3API) PutBucketAccelerateConfigurationRequest(_param0 *s3.PutBucketAccelerateConfigurationInput) (*request.Request, *s3.PutBucketAccelerateConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketAccelerateConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketAccelerateConfigurationOutput)
-	return ret0, ret1
+func (_m *MockS3API) ListPartsPagesWithContext(_param0 aws.Context, _param1 *s3.ListPartsInput, _param2 func(*s3.ListPartsOutput, bool) bool, _param3 ...request.Option) error {
+	_s := []interface{}{_param0, _param1, _param2}
+	for _, _x := range _param3 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "ListPartsPagesWithContext", _s...)
+	ret0, _ := ret[0].(error)
+	return ret0
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketAccelerateConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAccelerateConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) ListPartsPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListPartsPagesWithContext", _s...)
 }
 
 func (_m *MockS3API) PutBucketAccelerateConfiguration(_param0 *s3.PutBucketAccelerateConfigurationInput) (*s3.PutBucketAccelerateConfigurationOutput, error) {
@@ -1224,15 +2181,31 @@ func (_mr *_MockS3APIRecorder) PutBucketAccelerateConfiguration(arg0 interface{}
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAccelerateConfiguration", arg0)
 }
 
-func (_m *MockS3API) PutBucketAclRequest(_param0 *s3.PutBucketAclInput) (*request.Request, *s3.PutBucketAclOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketAclRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketAclOutput)
+func (_m *MockS3API) PutBucketAccelerateConfigurationWithContext(_param0 aws.Context, _param1 *s3.PutBucketAccelerateConfigurationInput, _param2 ...request.Option) (*s3.PutBucketAccelerateConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketAccelerateConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketAccelerateConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketAclRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAclRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketAccelerateConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAccelerateConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketAccelerateConfigurationRequest(_param0 *s3.PutBucketAccelerateConfigurationInput) (*request.Request, *s3.PutBucketAccelerateConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketAccelerateConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketAccelerateConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketAccelerateConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAccelerateConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketAcl(_param0 *s3.PutBucketAclInput) (*s3.PutBucketAclOutput, error) {
@@ -1246,15 +2219,31 @@ func (_mr *_MockS3APIRecorder) PutBucketAcl(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAcl", arg0)
 }
 
-func (_m *MockS3API) PutBucketAnalyticsConfigurationRequest(_param0 *s3.PutBucketAnalyticsConfigurationInput) (*request.Request, *s3.PutBucketAnalyticsConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketAnalyticsConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketAnalyticsConfigurationOutput)
+func (_m *MockS3API) PutBucketAclWithContext(_param0 aws.Context, _param1 *s3.PutBucketAclInput, _param2 ...request.Option) (*s3.PutBucketAclOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketAclWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketAclOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketAnalyticsConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAnalyticsConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketAclWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAclWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketAclRequest(_param0 *s3.PutBucketAclInput) (*request.Request, *s3.PutBucketAclOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketAclRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketAclOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketAclRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAclRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketAnalyticsConfiguration(_param0 *s3.PutBucketAnalyticsConfigurationInput) (*s3.PutBucketAnalyticsConfigurationOutput, error) {
@@ -1268,15 +2257,31 @@ func (_mr *_MockS3APIRecorder) PutBucketAnalyticsConfiguration(arg0 interface{})
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAnalyticsConfiguration", arg0)
 }
 
-func (_m *MockS3API) PutBucketCorsRequest(_param0 *s3.PutBucketCorsInput) (*request.Request, *s3.PutBucketCorsOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketCorsRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketCorsOutput)
+func (_m *MockS3API) PutBucketAnalyticsConfigurationWithContext(_param0 aws.Context, _param1 *s3.PutBucketAnalyticsConfigurationInput, _param2 ...request.Option) (*s3.PutBucketAnalyticsConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketAnalyticsConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketAnalyticsConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketCorsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketCorsRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketAnalyticsConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAnalyticsConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketAnalyticsConfigurationRequest(_param0 *s3.PutBucketAnalyticsConfigurationInput) (*request.Request, *s3.PutBucketAnalyticsConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketAnalyticsConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketAnalyticsConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketAnalyticsConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketAnalyticsConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketCors(_param0 *s3.PutBucketCorsInput) (*s3.PutBucketCorsOutput, error) {
@@ -1290,15 +2295,69 @@ func (_mr *_MockS3APIRecorder) PutBucketCors(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketCors", arg0)
 }
 
-func (_m *MockS3API) PutBucketInventoryConfigurationRequest(_param0 *s3.PutBucketInventoryConfigurationInput) (*request.Request, *s3.PutBucketInventoryConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketInventoryConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketInventoryConfigurationOutput)
+func (_m *MockS3API) PutBucketCorsWithContext(_param0 aws.Context, _param1 *s3.PutBucketCorsInput, _param2 ...request.Option) (*s3.PutBucketCorsOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketCorsWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketCorsOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketInventoryConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketInventoryConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketCorsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketCorsWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketCorsRequest(_param0 *s3.PutBucketCorsInput) (*request.Request, *s3.PutBucketCorsOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketCorsRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketCorsOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketCorsRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketCorsRequest", arg0)
+}
+
+func (_m *MockS3API) PutBucketEncryption(_param0 *s3.PutBucketEncryptionInput) (*s3.PutBucketEncryptionOutput, error) {
+	ret := _m.ctrl.Call(_m, "PutBucketEncryption", _param0)
+	ret0, _ := ret[0].(*s3.PutBucketEncryptionOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketEncryption(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketEncryption", arg0)
+}
+
+func (_m *MockS3API) PutBucketEncryptionWithContext(_param0 aws.Context, _param1 *s3.PutBucketEncryptionInput, _param2 ...request.Option) (*s3.PutBucketEncryptionOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketEncryptionWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketEncryptionOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketEncryptionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketEncryptionWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketEncryptionRequest(_param0 *s3.PutBucketEncryptionInput) (*request.Request, *s3.PutBucketEncryptionOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketEncryptionRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketEncryptionOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketEncryptionRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketEncryptionRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketInventoryConfiguration(_param0 *s3.PutBucketInventoryConfigurationInput) (*s3.PutBucketInventoryConfigurationOutput, error) {
@@ -1312,15 +2371,31 @@ func (_mr *_MockS3APIRecorder) PutBucketInventoryConfiguration(arg0 interface{})
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketInventoryConfiguration", arg0)
 }
 
-func (_m *MockS3API) PutBucketLifecycleRequest(_param0 *s3.PutBucketLifecycleInput) (*request.Request, *s3.PutBucketLifecycleOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketLifecycleRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketLifecycleOutput)
+func (_m *MockS3API) PutBucketInventoryConfigurationWithContext(_param0 aws.Context, _param1 *s3.PutBucketInventoryConfigurationInput, _param2 ...request.Option) (*s3.PutBucketInventoryConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketInventoryConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketInventoryConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketLifecycleRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLifecycleRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketInventoryConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketInventoryConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketInventoryConfigurationRequest(_param0 *s3.PutBucketInventoryConfigurationInput) (*request.Request, *s3.PutBucketInventoryConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketInventoryConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketInventoryConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketInventoryConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketInventoryConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketLifecycle(_param0 *s3.PutBucketLifecycleInput) (*s3.PutBucketLifecycleOutput, error) {
@@ -1334,15 +2409,31 @@ func (_mr *_MockS3APIRecorder) PutBucketLifecycle(arg0 interface{}) *gomock.Call
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLifecycle", arg0)
 }
 
-func (_m *MockS3API) PutBucketLifecycleConfigurationRequest(_param0 *s3.PutBucketLifecycleConfigurationInput) (*request.Request, *s3.PutBucketLifecycleConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketLifecycleConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketLifecycleConfigurationOutput)
+func (_m *MockS3API) PutBucketLifecycleWithContext(_param0 aws.Context, _param1 *s3.PutBucketLifecycleInput, _param2 ...request.Option) (*s3.PutBucketLifecycleOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketLifecycleWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketLifecycleOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketLifecycleConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLifecycleConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketLifecycleWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLifecycleWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketLifecycleRequest(_param0 *s3.PutBucketLifecycleInput) (*request.Request, *s3.PutBucketLifecycleOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketLifecycleRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketLifecycleOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketLifecycleRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLifecycleRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketLifecycleConfiguration(_param0 *s3.PutBucketLifecycleConfigurationInput) (*s3.PutBucketLifecycleConfigurationOutput, error) {
@@ -1356,15 +2447,31 @@ func (_mr *_MockS3APIRecorder) PutBucketLifecycleConfiguration(arg0 interface{})
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLifecycleConfiguration", arg0)
 }
 
-func (_m *MockS3API) PutBucketLoggingRequest(_param0 *s3.PutBucketLoggingInput) (*request.Request, *s3.PutBucketLoggingOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketLoggingRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketLoggingOutput)
+func (_m *MockS3API) PutBucketLifecycleConfigurationWithContext(_param0 aws.Context, _param1 *s3.PutBucketLifecycleConfigurationInput, _param2 ...request.Option) (*s3.PutBucketLifecycleConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketLifecycleConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketLifecycleConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketLoggingRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLoggingRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketLifecycleConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLifecycleConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketLifecycleConfigurationRequest(_param0 *s3.PutBucketLifecycleConfigurationInput) (*request.Request, *s3.PutBucketLifecycleConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketLifecycleConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketLifecycleConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketLifecycleConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLifecycleConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketLogging(_param0 *s3.PutBucketLoggingInput) (*s3.PutBucketLoggingOutput, error) {
@@ -1378,15 +2485,31 @@ func (_mr *_MockS3APIRecorder) PutBucketLogging(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLogging", arg0)
 }
 
-func (_m *MockS3API) PutBucketMetricsConfigurationRequest(_param0 *s3.PutBucketMetricsConfigurationInput) (*request.Request, *s3.PutBucketMetricsConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketMetricsConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketMetricsConfigurationOutput)
+func (_m *MockS3API) PutBucketLoggingWithContext(_param0 aws.Context, _param1 *s3.PutBucketLoggingInput, _param2 ...request.Option) (*s3.PutBucketLoggingOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketLoggingWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketLoggingOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketMetricsConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketMetricsConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketLoggingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLoggingWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketLoggingRequest(_param0 *s3.PutBucketLoggingInput) (*request.Request, *s3.PutBucketLoggingOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketLoggingRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketLoggingOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketLoggingRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketLoggingRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketMetricsConfiguration(_param0 *s3.PutBucketMetricsConfigurationInput) (*s3.PutBucketMetricsConfigurationOutput, error) {
@@ -1400,15 +2523,31 @@ func (_mr *_MockS3APIRecorder) PutBucketMetricsConfiguration(arg0 interface{}) *
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketMetricsConfiguration", arg0)
 }
 
-func (_m *MockS3API) PutBucketNotificationRequest(_param0 *s3.PutBucketNotificationInput) (*request.Request, *s3.PutBucketNotificationOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketNotificationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketNotificationOutput)
+func (_m *MockS3API) PutBucketMetricsConfigurationWithContext(_param0 aws.Context, _param1 *s3.PutBucketMetricsConfigurationInput, _param2 ...request.Option) (*s3.PutBucketMetricsConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketMetricsConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketMetricsConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketNotificationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketNotificationRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketMetricsConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketMetricsConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketMetricsConfigurationRequest(_param0 *s3.PutBucketMetricsConfigurationInput) (*request.Request, *s3.PutBucketMetricsConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketMetricsConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketMetricsConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketMetricsConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketMetricsConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketNotification(_param0 *s3.PutBucketNotificationInput) (*s3.PutBucketNotificationOutput, error) {
@@ -1422,15 +2561,31 @@ func (_mr *_MockS3APIRecorder) PutBucketNotification(arg0 interface{}) *gomock.C
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketNotification", arg0)
 }
 
-func (_m *MockS3API) PutBucketNotificationConfigurationRequest(_param0 *s3.PutBucketNotificationConfigurationInput) (*request.Request, *s3.PutBucketNotificationConfigurationOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketNotificationConfigurationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketNotificationConfigurationOutput)
+func (_m *MockS3API) PutBucketNotificationWithContext(_param0 aws.Context, _param1 *s3.PutBucketNotificationInput, _param2 ...request.Option) (*s3.PutBucketNotificationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketNotificationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketNotificationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketNotificationConfigurationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketNotificationConfigurationRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketNotificationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketNotificationWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketNotificationRequest(_param0 *s3.PutBucketNotificationInput) (*request.Request, *s3.PutBucketNotificationOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketNotificationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketNotificationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketNotificationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketNotificationRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketNotificationConfiguration(_param0 *s3.PutBucketNotificationConfigurationInput) (*s3.PutBucketNotificationConfigurationOutput, error) {
@@ -1444,15 +2599,31 @@ func (_mr *_MockS3APIRecorder) PutBucketNotificationConfiguration(arg0 interface
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketNotificationConfiguration", arg0)
 }
 
-func (_m *MockS3API) PutBucketPolicyRequest(_param0 *s3.PutBucketPolicyInput) (*request.Request, *s3.PutBucketPolicyOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketPolicyRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketPolicyOutput)
+func (_m *MockS3API) PutBucketNotificationConfigurationWithContext(_param0 aws.Context, _param1 *s3.PutBucketNotificationConfigurationInput, _param2 ...request.Option) (*s3.PutBucketNotificationConfigurationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketNotificationConfigurationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketNotificationConfigurationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketPolicyRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketPolicyRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketNotificationConfigurationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketNotificationConfigurationWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketNotificationConfigurationRequest(_param0 *s3.PutBucketNotificationConfigurationInput) (*request.Request, *s3.PutBucketNotificationConfigurationOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketNotificationConfigurationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketNotificationConfigurationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketNotificationConfigurationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketNotificationConfigurationRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketPolicy(_param0 *s3.PutBucketPolicyInput) (*s3.PutBucketPolicyOutput, error) {
@@ -1466,15 +2637,31 @@ func (_mr *_MockS3APIRecorder) PutBucketPolicy(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketPolicy", arg0)
 }
 
-func (_m *MockS3API) PutBucketReplicationRequest(_param0 *s3.PutBucketReplicationInput) (*request.Request, *s3.PutBucketReplicationOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketReplicationRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketReplicationOutput)
+func (_m *MockS3API) PutBucketPolicyWithContext(_param0 aws.Context, _param1 *s3.PutBucketPolicyInput, _param2 ...request.Option) (*s3.PutBucketPolicyOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketPolicyWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketPolicyOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketReplicationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketReplicationRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketPolicyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketPolicyWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketPolicyRequest(_param0 *s3.PutBucketPolicyInput) (*request.Request, *s3.PutBucketPolicyOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketPolicyRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketPolicyOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketPolicyRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketPolicyRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketReplication(_param0 *s3.PutBucketReplicationInput) (*s3.PutBucketReplicationOutput, error) {
@@ -1488,15 +2675,31 @@ func (_mr *_MockS3APIRecorder) PutBucketReplication(arg0 interface{}) *gomock.Ca
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketReplication", arg0)
 }
 
-func (_m *MockS3API) PutBucketRequestPaymentRequest(_param0 *s3.PutBucketRequestPaymentInput) (*request.Request, *s3.PutBucketRequestPaymentOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketRequestPaymentRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketRequestPaymentOutput)
+func (_m *MockS3API) PutBucketReplicationWithContext(_param0 aws.Context, _param1 *s3.PutBucketReplicationInput, _param2 ...request.Option) (*s3.PutBucketReplicationOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketReplicationWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketReplicationOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketRequestPaymentRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketRequestPaymentRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketReplicationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketReplicationWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketReplicationRequest(_param0 *s3.PutBucketReplicationInput) (*request.Request, *s3.PutBucketReplicationOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketReplicationRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketReplicationOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketReplicationRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketReplicationRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketRequestPayment(_param0 *s3.PutBucketRequestPaymentInput) (*s3.PutBucketRequestPaymentOutput, error) {
@@ -1510,15 +2713,31 @@ func (_mr *_MockS3APIRecorder) PutBucketRequestPayment(arg0 interface{}) *gomock
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketRequestPayment", arg0)
 }
 
-func (_m *MockS3API) PutBucketTaggingRequest(_param0 *s3.PutBucketTaggingInput) (*request.Request, *s3.PutBucketTaggingOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketTaggingRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketTaggingOutput)
+func (_m *MockS3API) PutBucketRequestPaymentWithContext(_param0 aws.Context, _param1 *s3.PutBucketRequestPaymentInput, _param2 ...request.Option) (*s3.PutBucketRequestPaymentOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketRequestPaymentWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketRequestPaymentOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketTaggingRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketTaggingRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketRequestPaymentWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketRequestPaymentWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketRequestPaymentRequest(_param0 *s3.PutBucketRequestPaymentInput) (*request.Request, *s3.PutBucketRequestPaymentOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketRequestPaymentRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketRequestPaymentOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketRequestPaymentRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketRequestPaymentRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketTagging(_param0 *s3.PutBucketTaggingInput) (*s3.PutBucketTaggingOutput, error) {
@@ -1532,15 +2751,31 @@ func (_mr *_MockS3APIRecorder) PutBucketTagging(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketTagging", arg0)
 }
 
-func (_m *MockS3API) PutBucketVersioningRequest(_param0 *s3.PutBucketVersioningInput) (*request.Request, *s3.PutBucketVersioningOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketVersioningRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketVersioningOutput)
+func (_m *MockS3API) PutBucketTaggingWithContext(_param0 aws.Context, _param1 *s3.PutBucketTaggingInput, _param2 ...request.Option) (*s3.PutBucketTaggingOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketTaggingWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketTaggingOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketVersioningRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketVersioningRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketTaggingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketTaggingWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketTaggingRequest(_param0 *s3.PutBucketTaggingInput) (*request.Request, *s3.PutBucketTaggingOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketTaggingRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketTaggingOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketTaggingRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketTaggingRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketVersioning(_param0 *s3.PutBucketVersioningInput) (*s3.PutBucketVersioningOutput, error) {
@@ -1554,15 +2789,31 @@ func (_mr *_MockS3APIRecorder) PutBucketVersioning(arg0 interface{}) *gomock.Cal
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketVersioning", arg0)
 }
 
-func (_m *MockS3API) PutBucketWebsiteRequest(_param0 *s3.PutBucketWebsiteInput) (*request.Request, *s3.PutBucketWebsiteOutput) {
-	ret := _m.ctrl.Call(_m, "PutBucketWebsiteRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutBucketWebsiteOutput)
+func (_m *MockS3API) PutBucketVersioningWithContext(_param0 aws.Context, _param1 *s3.PutBucketVersioningInput, _param2 ...request.Option) (*s3.PutBucketVersioningOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketVersioningWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketVersioningOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutBucketWebsiteRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketWebsiteRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketVersioningWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketVersioningWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketVersioningRequest(_param0 *s3.PutBucketVersioningInput) (*request.Request, *s3.PutBucketVersioningOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketVersioningRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketVersioningOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketVersioningRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketVersioningRequest", arg0)
 }
 
 func (_m *MockS3API) PutBucketWebsite(_param0 *s3.PutBucketWebsiteInput) (*s3.PutBucketWebsiteOutput, error) {
@@ -1576,15 +2827,31 @@ func (_mr *_MockS3APIRecorder) PutBucketWebsite(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketWebsite", arg0)
 }
 
-func (_m *MockS3API) PutObjectRequest(_param0 *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
-	ret := _m.ctrl.Call(_m, "PutObjectRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutObjectOutput)
+func (_m *MockS3API) PutBucketWebsiteWithContext(_param0 aws.Context, _param1 *s3.PutBucketWebsiteInput, _param2 ...request.Option) (*s3.PutBucketWebsiteOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutBucketWebsiteWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutBucketWebsiteOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutObjectRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObjectRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutBucketWebsiteWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketWebsiteWithContext", _s...)
+}
+
+func (_m *MockS3API) PutBucketWebsiteRequest(_param0 *s3.PutBucketWebsiteInput) (*request.Request, *s3.PutBucketWebsiteOutput) {
+	ret := _m.ctrl.Call(_m, "PutBucketWebsiteRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutBucketWebsiteOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutBucketWebsiteRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutBucketWebsiteRequest", arg0)
 }
 
 func (_m *MockS3API) PutObject(_param0 *s3.PutObjectInput) (*s3.PutObjectOutput, error) {
@@ -1598,15 +2865,31 @@ func (_mr *_MockS3APIRecorder) PutObject(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObject", arg0)
 }
 
-func (_m *MockS3API) PutObjectAclRequest(_param0 *s3.PutObjectAclInput) (*request.Request, *s3.PutObjectAclOutput) {
-	ret := _m.ctrl.Call(_m, "PutObjectAclRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutObjectAclOutput)
+func (_m *MockS3API) PutObjectWithContext(_param0 aws.Context, _param1 *s3.PutObjectInput, _param2 ...request.Option) (*s3.PutObjectOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutObjectWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutObjectOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutObjectAclRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObjectAclRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutObjectWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObjectWithContext", _s...)
+}
+
+func (_m *MockS3API) PutObjectRequest(_param0 *s3.PutObjectInput) (*request.Request, *s3.PutObjectOutput) {
+	ret := _m.ctrl.Call(_m, "PutObjectRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutObjectOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutObjectRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObjectRequest", arg0)
 }
 
 func (_m *MockS3API) PutObjectAcl(_param0 *s3.PutObjectAclInput) (*s3.PutObjectAclOutput, error) {
@@ -1620,15 +2903,31 @@ func (_mr *_MockS3APIRecorder) PutObjectAcl(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObjectAcl", arg0)
 }
 
-func (_m *MockS3API) PutObjectTaggingRequest(_param0 *s3.PutObjectTaggingInput) (*request.Request, *s3.PutObjectTaggingOutput) {
-	ret := _m.ctrl.Call(_m, "PutObjectTaggingRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.PutObjectTaggingOutput)
+func (_m *MockS3API) PutObjectAclWithContext(_param0 aws.Context, _param1 *s3.PutObjectAclInput, _param2 ...request.Option) (*s3.PutObjectAclOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutObjectAclWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutObjectAclOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) PutObjectTaggingRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObjectTaggingRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutObjectAclWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObjectAclWithContext", _s...)
+}
+
+func (_m *MockS3API) PutObjectAclRequest(_param0 *s3.PutObjectAclInput) (*request.Request, *s3.PutObjectAclOutput) {
+	ret := _m.ctrl.Call(_m, "PutObjectAclRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutObjectAclOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutObjectAclRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObjectAclRequest", arg0)
 }
 
 func (_m *MockS3API) PutObjectTagging(_param0 *s3.PutObjectTaggingInput) (*s3.PutObjectTaggingOutput, error) {
@@ -1642,15 +2941,31 @@ func (_mr *_MockS3APIRecorder) PutObjectTagging(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObjectTagging", arg0)
 }
 
-func (_m *MockS3API) RestoreObjectRequest(_param0 *s3.RestoreObjectInput) (*request.Request, *s3.RestoreObjectOutput) {
-	ret := _m.ctrl.Call(_m, "RestoreObjectRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.RestoreObjectOutput)
+func (_m *MockS3API) PutObjectTaggingWithContext(_param0 aws.Context, _param1 *s3.PutObjectTaggingInput, _param2 ...request.Option) (*s3.PutObjectTaggingOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "PutObjectTaggingWithContext", _s...)
+	ret0, _ := ret[0].(*s3.PutObjectTaggingOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) RestoreObjectRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "RestoreObjectRequest", arg0)
+func (_mr *_MockS3APIRecorder) PutObjectTaggingWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObjectTaggingWithContext", _s...)
+}
+
+func (_m *MockS3API) PutObjectTaggingRequest(_param0 *s3.PutObjectTaggingInput) (*request.Request, *s3.PutObjectTaggingOutput) {
+	ret := _m.ctrl.Call(_m, "PutObjectTaggingRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.PutObjectTaggingOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) PutObjectTaggingRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutObjectTaggingRequest", arg0)
 }
 
 func (_m *MockS3API) RestoreObject(_param0 *s3.RestoreObjectInput) (*s3.RestoreObjectOutput, error) {
@@ -1664,15 +2979,31 @@ func (_mr *_MockS3APIRecorder) RestoreObject(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "RestoreObject", arg0)
 }
 
-func (_m *MockS3API) UploadPartRequest(_param0 *s3.UploadPartInput) (*request.Request, *s3.UploadPartOutput) {
-	ret := _m.ctrl.Call(_m, "UploadPartRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.UploadPartOutput)
+func (_m *MockS3API) RestoreObjectWithContext(_param0 aws.Context, _param1 *s3.RestoreObjectInput, _param2 ...request.Option) (*s3.RestoreObjectOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "RestoreObjectWithContext", _s...)
+	ret0, _ := ret[0].(*s3.RestoreObjectOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) UploadPartRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UploadPartRequest", arg0)
+func (_mr *_MockS3APIRecorder) RestoreObjectWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "RestoreObjectWithContext", _s...)
+}
+
+func (_m *MockS3API) RestoreObjectRequest(_param0 *s3.RestoreObjectInput) (*request.Request, *s3.RestoreObjectOutput) {
+	ret := _m.ctrl.Call(_m, "RestoreObjectRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.RestoreObjectOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) RestoreObjectRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "RestoreObjectRequest", arg0)
 }
 
 func (_m *MockS3API) UploadPart(_param0 *s3.UploadPartInput) (*s3.UploadPartOutput, error) {
@@ -1686,15 +3017,31 @@ func (_mr *_MockS3APIRecorder) UploadPart(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "UploadPart", arg0)
 }
 
-func (_m *MockS3API) UploadPartCopyRequest(_param0 *s3.UploadPartCopyInput) (*request.Request, *s3.UploadPartCopyOutput) {
-	ret := _m.ctrl.Call(_m, "UploadPartCopyRequest", _param0)
-	ret0, _ := ret[0].(*request.Request)
-	ret1, _ := ret[1].(*s3.UploadPartCopyOutput)
+func (_m *MockS3API) UploadPartWithContext(_param0 aws.Context, _param1 *s3.UploadPartInput, _param2 ...request.Option) (*s3.UploadPartOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "UploadPartWithContext", _s...)
+	ret0, _ := ret[0].(*s3.UploadPartOutput)
+	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-func (_mr *_MockS3APIRecorder) UploadPartCopyRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UploadPartCopyRequest", arg0)
+func (_mr *_MockS3APIRecorder) UploadPartWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UploadPartWithContext", _s...)
+}
+
+func (_m *MockS3API) UploadPartRequest(_param0 *s3.UploadPartInput) (*request.Request, *s3.UploadPartOutput) {
+	ret := _m.ctrl.Call(_m, "UploadPartRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.UploadPartOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) UploadPartRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UploadPartRequest", arg0)
 }
 
 func (_m *MockS3API) UploadPartCopy(_param0 *s3.UploadPartCopyInput) (*s3.UploadPartCopyOutput, error) {
@@ -1708,6 +3055,33 @@ func (_mr *_MockS3APIRecorder) UploadPartCopy(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "UploadPartCopy", arg0)
 }
 
+func (_m *MockS3API) UploadPartCopyWithContext(_param0 aws.Context, _param1 *s3.UploadPartCopyInput, _param2 ...request.Option) (*s3.UploadPartCopyOutput, error) {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "UploadPartCopyWithContext", _s...)
+	ret0, _ := ret[0].(*s3.UploadPartCopyOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) UploadPartCopyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UploadPartCopyWithContext", _s...)
+}
+
+func (_m *MockS3API) UploadPartCopyRequest(_param0 *s3.UploadPartCopyInput) (*request.Request, *s3.UploadPartCopyOutput) {
+	ret := _m.ctrl.Call(_m, "UploadPartCopyRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*s3.UploadPartCopyOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockS3APIRecorder) UploadPartCopyRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UploadPartCopyRequest", arg0)
+}
+
 func (_m *MockS3API) WaitUntilBucketExists(_param0 *s3.HeadBucketInput) error {
 	ret := _m.ctrl.Call(_m, "WaitUntilBucketExists", _param0)
 	ret0, _ := ret[0].(error)
@@ -1716,6 +3090,21 @@ func (_m *MockS3API) WaitUntilBucketExists(_param0 *s3.HeadBucketInput) error {
 
 func (_mr *_MockS3APIRecorder) WaitUntilBucketExists(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilBucketExists", arg0)
+}
+
+func (_m *MockS3API) WaitUntilBucketExistsWithContext(_param0 aws.Context, _param1 *s3.HeadBucketInput, _param2 ...request.WaiterOption) error {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "WaitUntilBucketExistsWithContext", _s...)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+func (_mr *_MockS3APIRecorder) WaitUntilBucketExistsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilBucketExistsWithContext", _s...)
 }
 
 func (_m *MockS3API) WaitUntilBucketNotExists(_param0 *s3.HeadBucketInput) error {
@@ -1728,6 +3117,21 @@ func (_mr *_MockS3APIRecorder) WaitUntilBucketNotExists(arg0 interface{}) *gomoc
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilBucketNotExists", arg0)
 }
 
+func (_m *MockS3API) WaitUntilBucketNotExistsWithContext(_param0 aws.Context, _param1 *s3.HeadBucketInput, _param2 ...request.WaiterOption) error {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "WaitUntilBucketNotExistsWithContext", _s...)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+func (_mr *_MockS3APIRecorder) WaitUntilBucketNotExistsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilBucketNotExistsWithContext", _s...)
+}
+
 func (_m *MockS3API) WaitUntilObjectExists(_param0 *s3.HeadObjectInput) error {
 	ret := _m.ctrl.Call(_m, "WaitUntilObjectExists", _param0)
 	ret0, _ := ret[0].(error)
@@ -1738,6 +3142,21 @@ func (_mr *_MockS3APIRecorder) WaitUntilObjectExists(arg0 interface{}) *gomock.C
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilObjectExists", arg0)
 }
 
+func (_m *MockS3API) WaitUntilObjectExistsWithContext(_param0 aws.Context, _param1 *s3.HeadObjectInput, _param2 ...request.WaiterOption) error {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "WaitUntilObjectExistsWithContext", _s...)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+func (_mr *_MockS3APIRecorder) WaitUntilObjectExistsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilObjectExistsWithContext", _s...)
+}
+
 func (_m *MockS3API) WaitUntilObjectNotExists(_param0 *s3.HeadObjectInput) error {
 	ret := _m.ctrl.Call(_m, "WaitUntilObjectNotExists", _param0)
 	ret0, _ := ret[0].(error)
@@ -1746,4 +3165,19 @@ func (_m *MockS3API) WaitUntilObjectNotExists(_param0 *s3.HeadObjectInput) error
 
 func (_mr *_MockS3APIRecorder) WaitUntilObjectNotExists(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilObjectNotExists", arg0)
+}
+
+func (_m *MockS3API) WaitUntilObjectNotExistsWithContext(_param0 aws.Context, _param1 *s3.HeadObjectInput, _param2 ...request.WaiterOption) error {
+	_s := []interface{}{_param0, _param1}
+	for _, _x := range _param2 {
+		_s = append(_s, _x)
+	}
+	ret := _m.ctrl.Call(_m, "WaitUntilObjectNotExistsWithContext", _s...)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+func (_mr *_MockS3APIRecorder) WaitUntilObjectNotExistsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
+	_s := append([]interface{}{arg0, arg1}, arg2...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilObjectNotExistsWithContext", _s...)
 }

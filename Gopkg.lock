@@ -20,25 +20,27 @@
     "aws/request",
     "aws/session",
     "aws/signer/v4",
+    "internal/sdkio",
+    "internal/sdkrand",
+    "internal/shareddefaults",
     "private/protocol",
     "private/protocol/query",
     "private/protocol/query/queryutil",
     "private/protocol/rest",
     "private/protocol/restxml",
     "private/protocol/xml/xmlutil",
-    "private/waiter",
     "service/s3",
     "service/s3/s3iface",
     "service/sts"
   ]
-  revision = "3f8f870ec9939e32b3372abf74d24e468bcd285d"
-  version = "v1.6.18"
+  revision = "9b0098a71f6d4d473a26ec8ad3c2feaac6eb1da6"
+  version = "v1.13.32"
 
 [[projects]]
   name = "github.com/go-ini/ini"
   packages = ["."]
-  revision = "a2610b3a793cfa7fdf0b07038068af5ddc12aba1"
-  version = "v1.21.0"
+  revision = "ace140f73450505f33e8b8418216792275ae82a7"
+  version = "v1.35.0"
 
 [[projects]]
   name = "github.com/golang/mock"
@@ -46,10 +48,9 @@
   revision = "bd3c8e81be01eef76d4b503f5e687d2d1354d2d9"
 
 [[projects]]
-  branch = "master"
   name = "github.com/jmespath/go-jmespath"
   packages = ["."]
-  revision = "bd40a432e4c76585ef6b72d3fd96fb9b6dc7b68d"
+  revision = "0b12d6b5"
 
 [[projects]]
   name = "github.com/pkg/errors"
@@ -65,6 +66,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "759c4932abdb96af7405b5e435da55563b62dfbd66ce1c2542091c75f111fe7f"
+  inputs-digest = "f9d4b8a0cde4ae9bcdc166bcbf3f1f386d11745c194937d6084ddc7f46253c70"
   solver-name = "gps-cdcl"
   solver-version = 1
