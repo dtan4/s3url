@@ -17,7 +17,7 @@ const (
 	defaultDuration = 5
 )
 
-func main() {
+func run(args []string) error {
 	var (
 		bucket   string
 		duration int64
@@ -36,7 +36,7 @@ func main() {
    %s -b BUCKET -k KEY [-d DURATION]
 
 Options:
-`, os.Args[0], os.Args[0], os.Args[0], os.Args[0])
+`, args[0], args[0], args[0], args[0])
 		f.PrintDefaults()
 	}
 
@@ -47,11 +47,11 @@ Options:
 	f.StringVar(&upload, "upload", "", "File to upload")
 	f.BoolVarP(&version, "version", "v", false, "Print version")
 
-	f.Parse(os.Args[1:])
+	f.Parse(args[1:])
 
 	if version {
 		printVersion()
-		os.Exit(0)
+		return nil
 	}
 
 	var s3URL string
@@ -69,8 +69,7 @@ Options:
 			Profile: profile,
 		})
 		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
+			return err
 		}
 	} else {
 		sess = session.New()
@@ -78,25 +77,22 @@ Options:
 
 	if s3URL == "" && (bucket == "" || key == "") {
 		f.Usage()
-		os.Exit(1)
+		return fmt.Errorf("insufficient arguments")
 	}
 
 	if s3URL != "" {
 		bucket, key, err = s3.ParseURL(s3URL)
 		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
+			return err
 		}
 	}
 
 	if bucket == "" {
-		fmt.Fprintln(os.Stderr, "Bucket name is required.")
-		os.Exit(1)
+		return fmt.Errorf("Bucket name is required.")
 	}
 
 	if key == "" {
-		fmt.Fprintln(os.Stderr, "Object key is required.")
-		os.Exit(1)
+		return fmt.Errorf("Object key is required.")
 	}
 
 	api := s3api.New(sess, &aws.Config{})
@@ -105,19 +101,16 @@ Options:
 	if upload != "" {
 		path, err := filepath.Abs(upload)
 		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
+			return err
 		}
 
 		body, err := ioutil.ReadFile(path)
 		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
+			return err
 		}
 
 		if err := s3Client.UploadToS3(bucket, key, body); err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			os.Exit(1)
+			return err
 		}
 
 		fmt.Fprintln(os.Stderr, "uploaded: "+path)
@@ -125,9 +118,17 @@ Options:
 
 	signedURL, err := s3Client.GetPresignedURL(bucket, key, duration)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		return err
 	}
 
 	fmt.Println(signedURL)
+
+	return nil
+}
+
+func main() {
+	if err := run(os.Args); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 }
