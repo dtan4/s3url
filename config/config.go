@@ -7,6 +7,11 @@ import (
 	"strings"
 )
 
+const (
+	// DefaultDuration represents default valid duration in minutes
+	DefaultDuration = 5
+)
+
 var (
 	virtualHostRegexp = regexp.MustCompile(`^s3-[a-z0-9-]+\.amazonaws\.com$`)
 )
