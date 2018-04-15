@@ -6,12 +6,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	s3api "github.com/aws/aws-sdk-go/service/s3"
-	"github.com/dtan4/s3url/aws/s3"
 	flag "github.com/spf13/pflag"
 
+	"github.com/dtan4/s3url/aws"
+	"github.com/dtan4/s3url/aws/s3"
 	"github.com/dtan4/s3url/config"
 )
 
@@ -56,18 +54,8 @@ Options:
 		f.Parse(f.Args()[1:])
 	}
 
-	var sess *session.Session
-	var err error
-
-	if c.Profile != "" {
-		sess, err = session.NewSessionWithOptions(session.Options{
-			Profile: c.Profile,
-		})
-		if err != nil {
-			return err
-		}
-	} else {
-		sess = session.New()
+	if err := aws.Initialize(c.Profile); err != nil {
+		return err
 	}
 
 	if s3URL == "" && (c.Bucket == "" || c.Key == "") {
@@ -76,6 +64,8 @@ Options:
 	}
 
 	if s3URL != "" {
+		var err error
+
 		c.Bucket, c.Key, err = s3.ParseURL(s3URL)
 		if err != nil {
 			return err
@@ -90,9 +80,6 @@ Options:
 		return fmt.Errorf("Object key is required.")
 	}
 
-	api := s3api.New(sess, &aws.Config{})
-	s3Client := s3.New(api)
-
 	if c.Upload != "" {
 		path, err := filepath.Abs(c.Upload)
 		if err != nil {
@@ -104,14 +91,14 @@ Options:
 			return err
 		}
 
-		if err := s3Client.UploadToS3(c.Bucket, c.Key, body); err != nil {
+		if err := aws.S3.UploadToS3(c.Bucket, c.Key, body); err != nil {
 			return err
 		}
 
 		fmt.Fprintln(os.Stderr, "uploaded: "+path)
 	}
 
-	signedURL, err := s3Client.GetPresignedURL(c.Bucket, c.Key, c.Duration)
+	signedURL, err := aws.S3.GetPresignedURL(c.Bucket, c.Key, c.Duration)
 	if err != nil {
 		return err
 	}
