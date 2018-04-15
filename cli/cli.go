@@ -9,7 +9,7 @@ import (
 	flag "github.com/spf13/pflag"
 
 	"github.com/dtan4/s3url/aws"
-	config "github.com/dtan4/s3url/config"
+	"github.com/dtan4/s3url/config"
 )
 
 const (
