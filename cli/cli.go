@@ -55,6 +55,7 @@ func (cli *CLI) Run(args []string) int {
 	c := config.Config{}
 
 	f.StringVarP(&c.Bucket, "bucket", "b", "", "Bucket name")
+	f.BoolVar(&c.Debug, "debug", false, "Enable debug output")
 	f.Int64VarP(&c.Duration, "duration", "d", config.DefaultDuration, "Valid duration in minutes")
 	f.StringVarP(&c.Key, "key", "k", "", "Object key")
 	f.StringVar(&c.Profile, "profile", "", "AWS profile name")
@@ -82,41 +83,41 @@ func (cli *CLI) Run(args []string) int {
 
 	if s3URL != "" {
 		if err := c.ParseS3URL(s3URL); err != nil {
-			fmt.Fprintln(cli.stderr, err)
+			cli.printError(err, c.Debug)
 			return exitCodeError
 		}
 	}
 
 	if c.Bucket == "" {
-		fmt.Fprintln(cli.stderr, "Bucket name is required.")
+		cli.printError(fmt.Errorf("Bucket name is required."), c.Debug)
 		return exitCodeError
 	}
 
 	if c.Key == "" {
-		fmt.Fprintln(cli.stderr, "Object key is required.")
+		cli.printError(fmt.Errorf("Object key is required."), c.Debug)
 		return exitCodeError
 	}
 
 	if err := aws.Initialize(c.Profile); err != nil {
-		fmt.Fprintln(cli.stderr, err)
+		cli.printError(err, c.Debug)
 		return exitCodeError
 	}
 
 	if c.Upload != "" {
 		path, err := filepath.Abs(c.Upload)
 		if err != nil {
-			fmt.Fprintln(cli.stderr, err)
+			cli.printError(err, c.Debug)
 			return exitCodeError
 		}
 
 		body, err := ioutil.ReadFile(path)
 		if err != nil {
-			fmt.Fprintln(cli.stderr, err)
+			cli.printError(err, c.Debug)
 			return exitCodeError
 		}
 
 		if err := aws.S3.UploadToS3(c.Bucket, c.Key, body); err != nil {
-			fmt.Fprintln(cli.stderr, err)
+			cli.printError(err, c.Debug)
 			return exitCodeError
 		}
 
@@ -125,13 +126,21 @@ func (cli *CLI) Run(args []string) int {
 
 	signedURL, err := aws.S3.GetPresignedURL(c.Bucket, c.Key, c.Duration)
 	if err != nil {
-		fmt.Fprintln(cli.stderr, err)
+		cli.printError(err, c.Debug)
 		return exitCodeError
 	}
 
 	fmt.Fprintln(cli.stdout, signedURL)
 
 	return exitCodeOK
+}
+
+func (cli *CLI) printError(err error, debug bool) {
+	if debug {
+		fmt.Fprintf(cli.stderr, "%+v\n", err)
+	} else {
+		fmt.Fprintln(cli.stderr, err)
+	}
 }
 
 func (cli *CLI) printVersion() {

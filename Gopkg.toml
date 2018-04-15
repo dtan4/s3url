@@ -30,3 +30,7 @@
 
 [[constraint]]
   name = "github.com/spf13/pflag"
+
+[[constraint]]
+  name = "github.com/pkg/errors"
+  version = "v0.8.0"

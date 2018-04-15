@@ -4,6 +4,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	s3api "github.com/aws/aws-sdk-go/service/s3"
+	"github.com/pkg/errors"
 
 	"github.com/dtan4/s3url/aws/s3"
 )
@@ -25,7 +26,7 @@ func Initialize(profile string) error {
 			Profile: profile,
 		})
 		if err != nil {
-			return err
+			return errors.Wrapf(err, "cannot create session using profile %q", profile)
 		}
 	} else {
 		sess = session.New()

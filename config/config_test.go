@@ -48,11 +48,11 @@ func TestParseURL_invalid(t *testing.T) {
 	}{
 		{
 			url:    "foobarbaz",
-			errMsg: "Invalid URL, hostname is invalid. url: \"foobarbaz\", hostname: \"\"",
+			errMsg: "invalid hostname: url: \"foobarbaz\", hostname: \"\"",
 		},
 		{
 			url:    "https://s3-ap-northeast-1.amazonaws.com/bucket",
-			errMsg: "Invalid URL, path is invalid. url: \"https://s3-ap-northeast-1.amazonaws.com/bucket\", path: \"/bucket\"",
+			errMsg: "invalid path: url: \"https://s3-ap-northeast-1.amazonaws.com/bucket\", path: \"/bucket\"",
 		},
 	}
 
