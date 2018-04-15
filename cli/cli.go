@@ -12,6 +12,11 @@ import (
 	config "github.com/dtan4/s3url/config"
 )
 
+const (
+	exitCodeOK int = iota
+	exitCodeError
+)
+
 // CLI represent CLI implementation
 type CLI struct {
 	stdout   io.Writer
@@ -31,7 +36,7 @@ func New(stdout, stderr io.Writer, version, revision string) *CLI {
 }
 
 // Execute executes s3url command process
-func (cli *CLI) Run(args []string) error {
+func (cli *CLI) Run(args []string) int {
 	f := flag.NewFlagSet("s3url", flag.ExitOnError)
 
 	f.Usage = func() {
@@ -58,7 +63,7 @@ Options:
 
 	if c.Version {
 		cli.printVersion()
-		return nil
+		return exitCodeOK
 	}
 
 	var s3URL string
@@ -70,40 +75,47 @@ Options:
 
 	if s3URL == "" && (c.Bucket == "" || c.Key == "") {
 		f.Usage()
-		return fmt.Errorf("insufficient arguments")
+		return exitCodeError
 	}
 
 	if s3URL != "" {
 		if err := c.ParseS3URL(s3URL); err != nil {
-			return err
+			fmt.Fprintln(cli.stderr, err)
+			return exitCodeError
 		}
 	}
 
 	if c.Bucket == "" {
-		return fmt.Errorf("Bucket name is required.")
+		fmt.Fprintln(cli.stderr, "Bucket name is required.")
+		return exitCodeError
 	}
 
 	if c.Key == "" {
-		return fmt.Errorf("Object key is required.")
+		fmt.Fprintln(cli.stderr, "Object key is required.")
+		return exitCodeError
 	}
 
 	if err := aws.Initialize(c.Profile); err != nil {
-		return err
+		fmt.Fprintln(cli.stderr, err)
+		return exitCodeError
 	}
 
 	if c.Upload != "" {
 		path, err := filepath.Abs(c.Upload)
 		if err != nil {
-			return err
+			fmt.Fprintln(cli.stderr, err)
+			return exitCodeError
 		}
 
 		body, err := ioutil.ReadFile(path)
 		if err != nil {
-			return err
+			fmt.Fprintln(cli.stderr, err)
+			return exitCodeError
 		}
 
 		if err := aws.S3.UploadToS3(c.Bucket, c.Key, body); err != nil {
-			return err
+			fmt.Fprintln(cli.stderr, err)
+			return exitCodeError
 		}
 
 		fmt.Fprintln(cli.stderr, "uploaded: "+path)
@@ -111,12 +123,13 @@ Options:
 
 	signedURL, err := aws.S3.GetPresignedURL(c.Bucket, c.Key, c.Duration)
 	if err != nil {
-		return err
+		fmt.Fprintln(cli.stderr, err)
+		return exitCodeError
 	}
 
 	fmt.Fprintln(cli.stdout, signedURL)
 
-	return nil
+	return exitCodeOK
 }
 
 func (cli *CLI) printVersion() {
