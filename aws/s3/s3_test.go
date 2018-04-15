@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/dtan4/s3url/awsmock"
+	"github.com/dtan4/s3url/aws/mock"
 	"github.com/golang/mock/gomock"
 )
 
@@ -76,7 +76,7 @@ func TestNew(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	s3mock := awsmock.NewMockS3API(ctrl)
+	s3mock := mock.NewMockS3API(ctrl)
 	client := New(s3mock)
 
 	if client.api != s3mock {
@@ -98,7 +98,7 @@ func TestGetPresignedURL(t *testing.T) {
 		Path:   "/key",
 	}
 
-	s3mock := awsmock.NewMockS3API(ctrl)
+	s3mock := mock.NewMockS3API(ctrl)
 	s3mock.EXPECT().GetObjectRequest(&s3.GetObjectInput{
 		Bucket: aws.String(bucket),
 		Key:    aws.String(key),
@@ -130,7 +130,7 @@ func TestUploadToS3(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	s3mock := awsmock.NewMockS3API(ctrl)
+	s3mock := mock.NewMockS3API(ctrl)
 	s3mock.EXPECT().PutObject(&s3.PutObjectInput{
 		Bucket: aws.String(bucket),
 		Key:    aws.String(key),
