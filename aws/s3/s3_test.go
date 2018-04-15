@@ -14,6 +14,8 @@ import (
 )
 
 func TestNew(t *testing.T) {
+	t.Parallel()
+
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
@@ -26,6 +28,8 @@ func TestNew(t *testing.T) {
 }
 
 func TestGetPresignedURL(t *testing.T) {
+	t.Parallel()
+
 	bucket := "bucket"
 	key := "key"
 	duration := int64(100)
@@ -64,6 +68,8 @@ func TestGetPresignedURL(t *testing.T) {
 }
 
 func TestUploadToS3(t *testing.T) {
+	t.Parallel()
+
 	bucket := "bucket"
 	key := "key"
 	body := []byte("filebody")
