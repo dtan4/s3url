@@ -3,7 +3,34 @@
 
 [[projects]]
   name = "github.com/aws/aws-sdk-go"
-  packages = ["aws","aws/awserr","aws/awsutil","aws/client","aws/client/metadata","aws/corehandlers","aws/credentials","aws/credentials/ec2rolecreds","aws/credentials/endpointcreds","aws/credentials/stscreds","aws/defaults","aws/ec2metadata","aws/endpoints","aws/request","aws/session","aws/signer/v4","private/protocol","private/protocol/query","private/protocol/query/queryutil","private/protocol/rest","private/protocol/restxml","private/protocol/xml/xmlutil","private/waiter","service/s3","service/s3/s3iface","service/sts"]
+  packages = [
+    "aws",
+    "aws/awserr",
+    "aws/awsutil",
+    "aws/client",
+    "aws/client/metadata",
+    "aws/corehandlers",
+    "aws/credentials",
+    "aws/credentials/ec2rolecreds",
+    "aws/credentials/endpointcreds",
+    "aws/credentials/stscreds",
+    "aws/defaults",
+    "aws/ec2metadata",
+    "aws/endpoints",
+    "aws/request",
+    "aws/session",
+    "aws/signer/v4",
+    "private/protocol",
+    "private/protocol/query",
+    "private/protocol/query/queryutil",
+    "private/protocol/rest",
+    "private/protocol/restxml",
+    "private/protocol/xml/xmlutil",
+    "private/waiter",
+    "service/s3",
+    "service/s3/s3iface",
+    "service/sts"
+  ]
   revision = "3f8f870ec9939e32b3372abf74d24e468bcd285d"
   version = "v1.6.18"
 
@@ -25,6 +52,12 @@
   revision = "bd40a432e4c76585ef6b72d3fd96fb9b6dc7b68d"
 
 [[projects]]
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
+
+[[projects]]
   name = "github.com/spf13/pflag"
   packages = ["."]
   revision = "c7e63cf4530bcd3ba943729cee0efeff2ebea63f"
@@ -32,6 +65,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "58564d3bb93a3ffd79190c8a2c79830e66263548960fa5a6ada70453c63a6d77"
+  inputs-digest = "027d3af2684be629f142bee09cfcbb8b3f71ca3826e933e36436a25d33003d98"
   solver-name = "gps-cdcl"
   solver-version = 1
