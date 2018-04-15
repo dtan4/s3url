@@ -17,6 +17,14 @@ const (
 	exitCodeError
 )
 
+const usage = `Usage of %s:
+   %s https://s3-region.amazonaws.com/BUCKET/KEY [-d DURATION]
+   %s s3://BUCKET/KEY [-d DURATION]
+   %s -b BUCKET -k KEY [-d DURATION]
+
+Options:
+`
+
 // CLI represent CLI implementation
 type CLI struct {
 	stdout   io.Writer
@@ -40,13 +48,7 @@ func (cli *CLI) Run(args []string) int {
 	f := flag.NewFlagSet("s3url", flag.ExitOnError)
 
 	f.Usage = func() {
-		fmt.Fprintf(cli.stderr, `Usage of %s:
-   %s https://s3-region.amazonaws.com/BUCKET/KEY [-d DURATION]
-   %s s3://BUCKET/KEY [-d DURATION]
-   %s -b BUCKET -k KEY [-d DURATION]
-
-Options:
-`, args[0], args[0], args[0], args[0])
+		fmt.Fprintf(cli.stderr, usage, args[0], args[0], args[0], args[0])
 		f.PrintDefaults()
 	}
 
