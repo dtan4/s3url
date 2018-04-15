@@ -7,6 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
+	"github.com/pkg/errors"
 )
 
 // Client represents the wrapper of S3 API Client
@@ -30,7 +31,7 @@ func (c *Client) GetPresignedURL(bucket, key string, duration int64) (string, er
 
 	signedURL, err := req.Presign(time.Duration(duration) * time.Minute)
 	if err != nil {
-		return "", err
+		return "", errors.Wrap(err, "cannot generate signed URL")
 	}
 
 	return signedURL, nil
@@ -44,7 +45,7 @@ func (c *Client) UploadToS3(bucket, key string, body []byte) error {
 		Body:   bytes.NewReader(body),
 	})
 	if err != nil {
-		return err
+		return errors.Wrap(err, "cannot upload file to S3")
 	}
 
 	return nil
