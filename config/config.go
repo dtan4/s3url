@@ -60,3 +60,16 @@ func (c *Config) ParseS3URL(s3URL string) error {
 
 	return nil
 }
+
+// Validate validates that current configurations are prepared sufficiently
+func (c *Config) Validate() error {
+	if c.Bucket == "" {
+		return errors.New("bucket name is required")
+	}
+
+	if c.Key == "" {
+		return errors.New("object key is required")
+	}
+
+	return nil
+}

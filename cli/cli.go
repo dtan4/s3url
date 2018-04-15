@@ -88,13 +88,8 @@ func (cli *CLI) Run(args []string) int {
 		}
 	}
 
-	if c.Bucket == "" {
-		cli.printError(fmt.Errorf("Bucket name is required."), c.Debug)
-		return exitCodeError
-	}
-
-	if c.Key == "" {
-		cli.printError(fmt.Errorf("Object key is required."), c.Debug)
+	if err := c.Validate(); err != nil {
+		cli.printError(err, c.Debug)
 		return exitCodeError
 	}
 
