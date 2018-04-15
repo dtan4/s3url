@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -66,6 +67,60 @@ func TestParseURL_invalid(t *testing.T) {
 
 		if err.Error() != tc.errMsg {
 			t.Errorf("Error message does not match. expected: %s, actual: %s", tc.errMsg, err.Error())
+		}
+	}
+}
+
+func TestValidate(t *testing.T) {
+	t.Parallel()
+
+	testcases := []struct {
+		bucket string
+		key    string
+		err    error
+	}{
+		{
+			bucket: "foobar",
+			key:    "baz",
+			err:    nil,
+		},
+		{
+			bucket: "",
+			key:    "baz",
+			err:    fmt.Errorf("bucket name is required"),
+		},
+		{
+			bucket: "foobar",
+			key:    "",
+			err:    fmt.Errorf("object key is required"),
+		},
+		{
+			bucket: "",
+			key:    "",
+			err:    fmt.Errorf("bucket name is required"),
+		},
+	}
+
+	for _, tc := range testcases {
+		c := &Config{
+			Bucket: tc.bucket,
+			Key:    tc.key,
+		}
+
+		err := c.Validate()
+
+		if err == nil && tc.err != nil {
+			t.Errorf("no error raised, want: %q", tc.err)
+			continue
+		}
+
+		if err != nil && tc.err == nil {
+			t.Errorf("unexpected error raised, got: %q", err)
+			continue
+		}
+
+		if err != nil && tc.err != nil && (err.Error() != tc.err.Error()) {
+			t.Errorf("invalid error, want: %q, got: %q", tc.err, err)
 		}
 	}
 }
