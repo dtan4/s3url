@@ -61,7 +61,7 @@ release:
 
 .PHONY: test
 test:
-	go test -cover -v $(NOVENDOR)
+	go test -coverpkg=./... -v $(NOVENDOR)
 
 .PHONY: update-deps
 update-deps: dep
