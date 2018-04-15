@@ -20,6 +20,7 @@ var (
 // Config represents s3url configurations
 type Config struct {
 	Bucket   string
+	Debug    bool
 	Duration int64
 	Key      string
 	Profile  string
