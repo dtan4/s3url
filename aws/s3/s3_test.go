@@ -1,6 +1,8 @@
 package s3
 
 import (
+	"bytes"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
@@ -96,5 +98,27 @@ func TestUploadToS3(t *testing.T) {
 
 	if err := client.UploadToS3(bucket, key, f); err != nil {
 		t.Fatalf("Error should not be raised. error: %s", err)
+	}
+}
+
+func BenchmarkReadFileEntirely(b *testing.B) {
+	testfile := filepath.Join("..", "..", "_testdata", "test.txt")
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		body, _ := ioutil.ReadFile(testfile)
+		r := bytes.NewReader(body)
+		_, _ = ioutil.ReadAll(r)
+	}
+}
+
+func BenchmarkReadFileStream(b *testing.B) {
+	testfile := filepath.Join("..", "..", "_testdata", "test.txt")
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		f, _ := os.Open(testfile)
+		_, _ = ioutil.ReadAll(f)
+		f.Close()
 	}
 }
