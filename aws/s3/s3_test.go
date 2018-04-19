@@ -1,9 +1,10 @@
 package s3
 
 import (
-	"bytes"
 	"net/http"
 	"net/url"
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -72,22 +73,28 @@ func TestUploadToS3(t *testing.T) {
 
 	bucket := "bucket"
 	key := "key"
-	body := []byte("filebody")
+	testfile := filepath.Join("..", "..", "_testdata", "test.txt")
+
+	f, err := os.Open(testfile)
+	if err != nil {
+		t.Fatalf("cannot open testdata %q: %s", testfile, err)
+	}
 
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
 	s3mock := mock.NewMockS3API(ctrl)
+	// TODO: hard to write io.ReadSeeker expectation
 	s3mock.EXPECT().PutObject(&s3.PutObjectInput{
 		Bucket: aws.String(bucket),
 		Key:    aws.String(key),
-		Body:   bytes.NewReader([]byte(body)),
+		Body:   f,
 	}).Return(&s3.PutObjectOutput{}, nil)
 	client := &Client{
 		api: s3mock,
 	}
 
-	if err := client.UploadToS3(bucket, key, body); err != nil {
+	if err := client.UploadToS3(bucket, key, f); err != nil {
 		t.Fatalf("Error should not be raised. error: %s", err)
 	}
 }

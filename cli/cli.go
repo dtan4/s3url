@@ -3,9 +3,9 @@ package cli
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
-	"path/filepath"
+	"os"
 
+	"github.com/pkg/errors"
 	flag "github.com/spf13/pflag"
 
 	"github.com/dtan4/s3url/aws"
@@ -99,24 +99,12 @@ func (cli *CLI) Run(args []string) int {
 	}
 
 	if c.Upload != "" {
-		path, err := filepath.Abs(c.Upload)
-		if err != nil {
+		if err := cli.uploadFile(c.Bucket, c.Key, c.Upload); err != nil {
 			cli.printError(err, c.Debug)
 			return exitCodeError
 		}
 
-		body, err := ioutil.ReadFile(path)
-		if err != nil {
-			cli.printError(err, c.Debug)
-			return exitCodeError
-		}
-
-		if err := aws.S3.UploadToS3(c.Bucket, c.Key, body); err != nil {
-			cli.printError(err, c.Debug)
-			return exitCodeError
-		}
-
-		fmt.Fprintln(cli.stderr, "uploaded: "+path)
+		fmt.Fprintln(cli.stderr, "uploaded: "+c.Upload)
 	}
 
 	signedURL, err := aws.S3.GetPresignedURL(c.Bucket, c.Key, c.Duration)
@@ -128,6 +116,20 @@ func (cli *CLI) Run(args []string) int {
 	fmt.Fprintln(cli.stdout, signedURL)
 
 	return exitCodeOK
+}
+
+func (cli *CLI) uploadFile(bucket, key, filename string) error {
+	f, err := os.Open(filename)
+	if err != nil {
+		return errors.Wrapf(err, "cannot open %q", filename)
+	}
+	defer f.Close()
+
+	if err := aws.S3.UploadToS3(bucket, key, f); err != nil {
+		return errors.Wrapf(err, "cannot uplaod %q to S3", filename)
+	}
+
+	return nil
 }
 
 func (cli *CLI) printError(err error, debug bool) {
