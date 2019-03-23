@@ -11,11 +11,11 @@ DIST_DIRS := find * -type d -exec
 .DEFAULT_GOAL := bin/$(NAME)
 
 bin/$(NAME): $(SRCS)
-	go build $(LDFLAGS) -o bin/$(NAME)
+	GO111MODULE=on go build $(LDFLAGS) -o bin/$(NAME)
 
 .PHONY: ci-test
 ci-test:
-	go test -coverpkg=./... -coverprofile=coverage.txt -v ./...
+	GO111MODULE=on go test -coverpkg=./... -coverprofile=coverage.txt -v ./...
 
 .PHONY: clean
 clean:
@@ -23,23 +23,13 @@ clean:
 	rm -rf vendor/*
 
 .PHONY: cross-build
-cross-build: deps
+cross-build:
 	set -e; \
 	for os in darwin linux windows; do \
 		for arch in amd64 386; do \
-			GOOS=$$os GOARCH=$$arch go build -a -tags netgo -installsuffix netgo $(LDFLAGS) -o dist/$$os-$$arch/$(NAME); \
+			GOOS=$$os GOARCH=$$arch GO111MODULE=on go build -a -tags netgo -installsuffix netgo $(LDFLAGS) -o dist/$$os-$$arch/$(NAME); \
 		done; \
 	done
-
-.PHONY: dep
-dep:
-ifeq ($(shell command -v dep 2> /dev/null),)
-	go get -u github.com/golang/dep/cmd/dep
-endif
-
-.PHONY: deps
-deps: dep
-	dep ensure -v
 
 .PHONY: dist
 dist:
@@ -52,7 +42,7 @@ dist:
 
 .PHONY: install
 install:
-	go install $(LDFLAGS)
+	GO111MODULE=on go install $(LDFLAGS)
 
 .PHONY: mockgen
 mockgen:
@@ -67,8 +57,4 @@ release:
 
 .PHONY: test
 test:
-	go test -coverpkg=./... -v $(NOVENDOR)
-
-.PHONY: update-deps
-update-deps: dep
-	dep ensure -update -v
+	GO111MODULE=on go test -coverpkg=./... -v $(NOVENDOR)

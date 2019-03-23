@@ -8,8 +8,9 @@ branches:
 cache:
   directories:
     - vendor
-install:
-  - make deps
+env:
+  global:
+    - GO111MODULE=on
 script:
   - make ci-test
 after_success:
