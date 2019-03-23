@@ -7,9 +7,11 @@ branches:
     - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 cache:
   directories:
-    - vendor
-install:
-  - make deps
+    - $HOME/.cache/go-build
+    - $HOME/gopath/pkg/mod
+env:
+  global:
+    - GO111MODULE=on
 script:
   - make ci-test
 after_success:
