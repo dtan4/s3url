@@ -16,7 +16,7 @@ jobs:
       - name: Build binaries
         run: GO111MODULE=on make cross-build
       - name: Build artifacts
-        uses: dist
+        run: make dist
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
