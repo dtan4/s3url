@@ -21,6 +21,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: "dist/*.{tar.gz,zip}"
+          files: "dist/*.tar.gz,dist/*.zip"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
