@@ -35,6 +35,10 @@ func (m *mockS3API) GetObjectRequest(input *s3.GetObjectInput) (*request.Request
 	}, &s3.GetObjectOutput{}
 }
 
+func (m *mockS3API) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error) {
+	return &s3.PutObjectOutput{}, nil
+}
+
 func TestNew(t *testing.T) {
 	t.Parallel()
 
@@ -89,18 +93,8 @@ func TestUploadToS3(t *testing.T) {
 		t.Fatalf("cannot open testdata %q: %s", testfile, err)
 	}
 
-	ctrl := gomock.NewController(t)
-	defer ctrl.Finish()
-
-	s3mock := mock.NewMockS3API(ctrl)
-	// TODO: hard to write io.ReadSeeker expectation
-	s3mock.EXPECT().PutObject(&s3.PutObjectInput{
-		Bucket: aws.String(bucket),
-		Key:    aws.String(key),
-		Body:   f,
-	}).Return(&s3.PutObjectOutput{}, nil)
 	client := &Client{
-		api: s3mock,
+		api: &mockS3API{},
 	}
 
 	if err := client.UploadToS3(bucket, key, f); err != nil {
