@@ -2,6 +2,7 @@ package s3
 
 import (
 	"bytes"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -12,9 +13,27 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 	"github.com/dtan4/s3url/aws/mock"
 	"github.com/golang/mock/gomock"
 )
+
+type mockS3API struct {
+	s3iface.S3API
+}
+
+func (m *mockS3API) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
+	return &request.Request{
+		HTTPRequest: &http.Request{
+			URL: &url.URL{
+				Scheme: "http",
+				Host:   fmt.Sprintf("%s.s3-ap-northeast-1.amazonaws.com", aws.StringValue(input.Bucket)),
+				Path:   fmt.Sprintf("/%s", aws.StringValue(input.Key)),
+			},
+		},
+		Operation: &request.Operation{},
+	}, &s3.GetObjectOutput{}
+}
 
 func TestNew(t *testing.T) {
 	t.Parallel()
@@ -37,36 +56,24 @@ func TestGetPresignedURL(t *testing.T) {
 	key := "key"
 	duration := int64(100)
 
-	ctrl := gomock.NewController(t)
-	defer ctrl.Finish()
-
-	u := &url.URL{
+	u := url.URL{
 		Scheme: "http",
 		Host:   "bucket.s3-ap-northeast-1.amazonaws.com",
 		Path:   "/key",
 	}
+	want := u.String()
 
-	s3mock := mock.NewMockS3API(ctrl)
-	s3mock.EXPECT().GetObjectRequest(&s3.GetObjectInput{
-		Bucket: aws.String(bucket),
-		Key:    aws.String(key),
-	}).Return(&request.Request{
-		HTTPRequest: &http.Request{
-			URL: u,
-		},
-		Operation: &request.Operation{},
-	}, &s3.GetObjectOutput{})
 	client := &Client{
-		api: s3mock,
+		api: &mockS3API{},
 	}
 
-	signedURL, err := client.GetPresignedURL(bucket, key, duration)
+	got, err := client.GetPresignedURL(bucket, key, duration)
 	if err != nil {
 		t.Fatalf("Error should not be raised. error:%s", err)
 	}
 
-	if signedURL != u.String() {
-		t.Errorf("Invalid signed URL. signedURL: %s", signedURL)
+	if got != want {
+		t.Errorf("Invalid signed URL. want: %s, got: %s", want, got)
 	}
 }
 
