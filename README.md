@@ -1,6 +1,5 @@
 # s3url(1)
 
-[![Build Status](https://travis-ci.org/dtan4/s3url.svg?branch=master)](https://travis-ci.org/dtan4/s3url)
 [![GitHub Actions](https://github.com/dtan4/s3url/workflows/Test/badge.svg)](https://github.com/dtan4/s3url/actions?query=workflow%3A%22Test%22)
 [![codecov](https://codecov.io/gh/dtan4/s3url/branch/master/graph/badge.svg)](https://codecov.io/gh/dtan4/s3url)
 [![GitHub release](https://img.shields.io/github/release/dtan4/s3url.svg)](https://github.com/dtan4/s3url/releases)
