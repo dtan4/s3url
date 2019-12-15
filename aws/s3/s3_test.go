@@ -14,8 +14,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
-	"github.com/dtan4/s3url/aws/mock"
-	"github.com/golang/mock/gomock"
 )
 
 type mockS3API struct {
@@ -42,13 +40,10 @@ func (m *mockS3API) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, er
 func TestNew(t *testing.T) {
 	t.Parallel()
 
-	ctrl := gomock.NewController(t)
-	defer ctrl.Finish()
+	api := &mockS3API{}
+	client := New(api)
 
-	s3mock := mock.NewMockS3API(ctrl)
-	client := New(s3mock)
-
-	if client.api != s3mock {
+	if client.api != api {
 		t.Error("api does not match.")
 	}
 }
