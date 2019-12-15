@@ -37,5 +37,5 @@ jobs:
             ## WHY
 
             Current `go.mod` and `go.sum` don't match the source code.
-          branch-name: go-mod-tidy
+          branch: go-mod-tidy
           branch-suffix: timestamp
