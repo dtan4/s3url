@@ -6,7 +6,8 @@ on:
   pull_request:
 
 jobs:
-  run-tests:
+  test:
+    name: Test
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
