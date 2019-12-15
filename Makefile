@@ -44,12 +44,6 @@ dist:
 install:
 	GO111MODULE=on go install $(LDFLAGS)
 
-.PHONY: mockgen
-mockgen:
-	go get -v github.com/golang/mock/gomock
-	go get -v github.com/golang/mock/mockgen
-	mockgen -source vendor/github.com/aws/aws-sdk-go/service/s3/s3iface/interface.go -destination aws/mock/s3.go -package mock
-
 .PHONY: release
 release:
 	git tag $(VERSION)
