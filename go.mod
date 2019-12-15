@@ -7,7 +7,7 @@ require (
 	github.com/go-ini/ini v1.35.0 // indirect
 	github.com/golang/mock v0.0.0-20160127222235-bd3c8e81be01
 	github.com/jmespath/go-jmespath v0.0.0-20160202185014-0b12d6b521d8 // indirect
-	github.com/pkg/errors v0.8.0
+	github.com/pkg/errors v0.8.1
 	github.com/smartystreets/goconvey v1.6.4 // indirect
 	github.com/spf13/pflag v0.0.0-20160915153101-c7e63cf4530b
 	github.com/stretchr/testify v1.4.0 // indirect
