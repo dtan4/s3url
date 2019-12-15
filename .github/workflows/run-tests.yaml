@@ -19,6 +19,6 @@ jobs:
       - name: Run tests
         run: GO111MODULE=on make ci-test
       - name: Send test coverage to Codecov
-        uses: codecov/codecov-action@v1.0.2
+        uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
