@@ -3,7 +3,7 @@ module github.com/dtan4/s3url
 go 1.12
 
 require (
-	github.com/aws/aws-sdk-go v1.13.32
+	github.com/aws/aws-sdk-go v1.26.2
 	github.com/go-ini/ini v1.35.0 // indirect
 	github.com/jmespath/go-jmespath v0.0.0-20160202185014-0b12d6b521d8 // indirect
 	github.com/pkg/errors v0.8.1
