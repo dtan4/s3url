@@ -27,6 +27,16 @@ archives:
   format_overrides:
   - goos: windows
     format: zip
+brews:
+- github:
+    owner: dtan4
+    name: homebrew-tools
+  folder: Formula
+  homepage: https://github.com/dtan4/s3url
+  description: Generate S3 object pre-signed URL in one command
+  skip_upload: auto # skip if the version is rc (e.g. v1.0.0-rc1)
+  test: |
+    system "#{bin}/s3url", "-v"
 checksum:
   name_template: 'checksums.txt'
 snapshot:
