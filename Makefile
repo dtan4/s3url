@@ -20,6 +20,7 @@ ci-test:
 .PHONY: clean
 clean:
 	rm -rf bin/*
+	rm -rf dist/*
 	rm -rf vendor/*
 
 .PHONY: cross-build
