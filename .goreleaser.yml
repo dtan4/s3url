@@ -27,6 +27,8 @@ archives:
   format_overrides:
   - goos: windows
     format: zip
+release:
+  prerelease: auto
 brews:
 - github:
     owner: dtan4
@@ -47,3 +49,5 @@ changelog:
     exclude:
     - '^docs:'
     - '^test:'
+    - Merge pull request
+    - Merge branch
