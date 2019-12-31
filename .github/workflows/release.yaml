@@ -20,4 +20,6 @@ jobs:
           version: latest
           args: release --rm-dist
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # To upload Homebrew recipe to dtan4/homebrew-tools, we need a personal token
+          # instead of Action's temporary token
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
