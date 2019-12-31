@@ -27,19 +27,21 @@ Options:
 
 // CLI represent CLI implementation
 type CLI struct {
-	stdout   io.Writer
-	stderr   io.Writer
-	version  string
-	revision string
+	stdout  io.Writer
+	stderr  io.Writer
+	version string
+	commit  string
+	buildAt string
 }
 
 // New returns new CLI object
-func New(stdout, stderr io.Writer, version, revision string) *CLI {
+func New(stdout, stderr io.Writer, version, commit, buildAt string) *CLI {
 	return &CLI{
-		stdout:   stdout,
-		stderr:   stderr,
-		version:  version,
-		revision: revision,
+		stdout:  stdout,
+		stderr:  stderr,
+		version: version,
+		commit:  commit,
+		buildAt: buildAt,
 	}
 }
 
@@ -141,5 +143,5 @@ func (cli *CLI) printError(err error, debug bool) {
 }
 
 func (cli *CLI) printVersion() {
-	fmt.Fprintln(cli.stdout, "s3url version "+cli.version+", build "+cli.revision)
+	fmt.Fprintf(cli.stdout, "s3url version: %s, commit: %s, build at: %s\n", cli.version, cli.commit, cli.buildAt)
 }
