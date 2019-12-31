@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	c := cli.New(os.Stdout, os.Stderr, Version, Revision)
+	c := cli.New(os.Stdout, os.Stderr, version, commit, date)
 
 	os.Exit(c.Run(os.Args))
 }

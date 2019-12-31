@@ -1,6 +1,7 @@
 package main
 
 var (
-	Version  string
-	Revision string
+	version string
+	commit  string
+	date    string
 )
