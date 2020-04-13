@@ -4,6 +4,7 @@
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dtan4/s3url)](https://dependabot.com)
 [![codecov](https://codecov.io/gh/dtan4/s3url/branch/master/graph/badge.svg)](https://codecov.io/gh/dtan4/s3url)
 [![GitHub release](https://img.shields.io/github/release/dtan4/s3url.svg)](https://github.com/dtan4/s3url/releases)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdtan4%2Fs3url.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdtan4%2Fs3url?ref=badge_shield)
 
 Generate [S3 object pre-signed URL](http://docs.aws.amazon.com/AmazonS3/latest/dev/ShareObjectPreSignedURL.html) in one command
 
@@ -108,3 +109,6 @@ $ make
 ## License
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdtan4%2Fs3url.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdtan4%2Fs3url?ref=badge_large)
