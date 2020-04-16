@@ -3,7 +3,7 @@ name: go mod tidy for Dependabot
 on:
   push:
     branches:
-      - "dependabot/go_modules/*"
+      - "dependabot/go_modules/**"
     paths:
       - "go.mod"
       - "go.sum"
