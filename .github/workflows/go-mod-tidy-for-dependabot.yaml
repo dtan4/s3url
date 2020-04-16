@@ -10,7 +10,7 @@ on:
 
 jobs:
   go-mod-tidy:
-    if: ${{ github.actor == "dependabot-preview" }}
+    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
