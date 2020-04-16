@@ -1,7 +1,7 @@
 name: go mod tidy for Dependabot
 
 on:
-  pull-request:
+  pull_request:
     paths:
       - "go.mod"
       - "go.sum"
