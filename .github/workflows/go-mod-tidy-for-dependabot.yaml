@@ -27,4 +27,5 @@ jobs:
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4.1.2
         with:
+          branch: ${{ github.head_ref }}
           commit_message: "go mod tidy"
