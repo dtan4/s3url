@@ -14,6 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          ref: ${{ github.head_ref }}
           # Personal Access Token is required to trigger the consective CI jobs
           # https://github.com/stefanzweifel/git-auto-commit-action/tree/8040ba33d64985395ed5059f60a4d602cbefee73#commit-of-this-action-does-not-trigger-a-new-workflow-run
           token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
