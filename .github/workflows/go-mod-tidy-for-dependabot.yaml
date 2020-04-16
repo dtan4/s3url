@@ -30,3 +30,4 @@ jobs:
         with:
           branch: ${{ github.head_ref }}
           commit_message: "go mod tidy"
+          commit_author: Daisuke Fujita <dtanshi45@gmail.com>
