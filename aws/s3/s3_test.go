@@ -2,49 +2,48 @@ package s3
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"io/ioutil"
-	"net/http"
 	"net/url"
 	"os"
 	"path/filepath"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3iface"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
 )
 
-type mockS3API struct {
-	s3iface.S3API
+type fakeS3Client struct {
+	putObject func(ctx context.Context, params *s3.PutObjectInput, optFns ...func(*s3.Options)) (*s3.PutObjectOutput, error)
 }
 
-func (m *mockS3API) GetObjectRequest(input *s3.GetObjectInput) (*request.Request, *s3.GetObjectOutput) {
-	return &request.Request{
-		HTTPRequest: &http.Request{
-			URL: &url.URL{
-				Scheme: "http",
-				Host:   fmt.Sprintf("%s.s3-ap-northeast-1.amazonaws.com", aws.StringValue(input.Bucket)),
-				Path:   fmt.Sprintf("/%s", aws.StringValue(input.Key)),
-			},
-		},
-		Operation: &request.Operation{},
-	}, &s3.GetObjectOutput{}
+func (c *fakeS3Client) PutObject(ctx context.Context, params *s3.PutObjectInput, optFns ...func(*s3.Options)) (*s3.PutObjectOutput, error) {
+	return c.putObject(ctx, params, optFns...)
 }
 
-func (m *mockS3API) PutObject(input *s3.PutObjectInput) (*s3.PutObjectOutput, error) {
-	return &s3.PutObjectOutput{}, nil
+type fakeS3PresignClient struct {
+	presignGetObject func(ctx context.Context, params *s3.GetObjectInput, optFns ...func(*s3.PresignOptions)) (*v4.PresignedHTTPRequest, error)
+}
+
+func (c *fakeS3PresignClient) PresignGetObject(ctx context.Context, params *s3.GetObjectInput, optFns ...func(*s3.PresignOptions)) (*v4.PresignedHTTPRequest, error) {
+	return c.presignGetObject(ctx, params, optFns...)
 }
 
 func TestNew(t *testing.T) {
 	t.Parallel()
 
-	api := &mockS3API{}
-	client := New(api)
+	s3Client := &fakeS3Client{}
+	s3PresignClient := &fakeS3PresignClient{}
+	client := New(s3Client, s3PresignClient)
 
-	if client.api != api {
-		t.Error("api does not match.")
+	if client.s3Client != s3Client {
+		t.Error("s3Client does not match")
+	}
+
+	if client.s3PresignClient != s3PresignClient {
+		t.Error("s3Client does not match")
 	}
 }
 
@@ -63,10 +62,22 @@ func TestGetPresignedURL(t *testing.T) {
 	want := u.String()
 
 	client := &Client{
-		api: &mockS3API{},
+		s3PresignClient: &fakeS3PresignClient{
+			presignGetObject: func(ctx context.Context, params *s3.GetObjectInput, optFns ...func(*s3.PresignOptions)) (*v4.PresignedHTTPRequest, error) {
+				u := &url.URL{
+					Scheme: "http",
+					Host:   fmt.Sprintf("%s.s3-ap-northeast-1.amazonaws.com", aws.ToString(params.Bucket)),
+					Path:   fmt.Sprintf("/%s", aws.ToString(params.Key)),
+				}
+
+				return &v4.PresignedHTTPRequest{
+					URL: u.String(),
+				}, nil
+			},
+		},
 	}
 
-	got, err := client.GetPresignedURL(bucket, key, duration)
+	got, err := client.GetPresignedURL(context.Background(), bucket, key, duration)
 	if err != nil {
 		t.Fatalf("Error should not be raised. error:%s", err)
 	}
@@ -89,10 +100,14 @@ func TestUploadToS3(t *testing.T) {
 	}
 
 	client := &Client{
-		api: &mockS3API{},
+		s3Client: &fakeS3Client{
+			putObject: func(ctx context.Context, params *s3.PutObjectInput, optFns ...func(*s3.Options)) (*s3.PutObjectOutput, error) {
+				return &s3.PutObjectOutput{}, nil
+			},
+		},
 	}
 
-	if err := client.UploadToS3(bucket, key, f); err != nil {
+	if err := client.UploadToS3(context.Background(), bucket, key, f); err != nil {
 		t.Fatalf("Error should not be raised. error: %s", err)
 	}
 }

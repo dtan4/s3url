@@ -1,45 +1,55 @@
 package s3
 
 import (
+	"context"
 	"io"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3iface"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
+
 	"github.com/pkg/errors"
 )
 
+type s3Client interface {
+	PutObject(ctx context.Context, params *s3.PutObjectInput, optFns ...func(*s3.Options)) (*s3.PutObjectOutput, error)
+}
+
+type s3PresignClient interface {
+	PresignGetObject(ctx context.Context, params *s3.GetObjectInput, optFns ...func(*s3.PresignOptions)) (*v4.PresignedHTTPRequest, error)
+}
+
 // Client represents the wrapper of S3 API Client
 type Client struct {
-	api s3iface.S3API
+	s3Client        s3Client
+	s3PresignClient s3PresignClient
 }
 
 // New creates new Client
-func New(api s3iface.S3API) *Client {
+func New(s3Client s3Client, s3PresignClient s3PresignClient) *Client {
 	return &Client{
-		api: api,
+		s3Client:        s3Client,
+		s3PresignClient: s3PresignClient,
 	}
 }
 
 // GetPresignedURL returns S3 object pre-signed URL
-func (c *Client) GetPresignedURL(bucket, key string, duration int64) (string, error) {
-	req, _ := c.api.GetObjectRequest(&s3.GetObjectInput{
+func (c *Client) GetPresignedURL(ctx context.Context, bucket, key string, duration int64) (string, error) {
+	req, err := c.s3PresignClient.PresignGetObject(ctx, &s3.GetObjectInput{
 		Bucket: aws.String(bucket),
 		Key:    aws.String(key),
-	})
-
-	signedURL, err := req.Presign(time.Duration(duration) * time.Minute)
+	}, s3.WithPresignExpires(time.Duration(duration)*time.Minute))
 	if err != nil {
 		return "", errors.Wrap(err, "cannot generate signed URL")
 	}
 
-	return signedURL, nil
+	return req.URL, nil
 }
 
 // UploadToS3 uploads local file to the specified S3 location
-func (c *Client) UploadToS3(bucket, key string, reader io.ReadSeeker) error {
-	_, err := c.api.PutObject(&s3.PutObjectInput{
+func (c *Client) UploadToS3(ctx context.Context, bucket, key string, reader io.ReadSeeker) error {
+	_, err := c.s3Client.PutObject(ctx, &s3.PutObjectInput{
 		Bucket: aws.String(bucket),
 		Key:    aws.String(key),
 		Body:   reader,

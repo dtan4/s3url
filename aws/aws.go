@@ -1,9 +1,11 @@
 package aws
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	s3api "github.com/aws/aws-sdk-go/service/s3"
+	"context"
+
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/config"
+	s3svc "github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/pkg/errors"
 
 	"github.com/dtan4/s3url/aws/s3"
@@ -15,25 +17,28 @@ var (
 )
 
 // Initialize creates S3 API client objects
-func Initialize(profile string) error {
+func Initialize(ctx context.Context, profile string) error {
 	var (
-		sess *session.Session
-		err  error
+		cfg aws.Config
+		err error
 	)
 
 	if profile != "" {
-		sess, err = session.NewSessionWithOptions(session.Options{
-			Profile: profile,
-		})
+		cfg, err = config.LoadDefaultConfig(ctx, config.WithSharedConfigProfile(profile))
 		if err != nil {
-			return errors.Wrapf(err, "cannot create session using profile %q", profile)
+			return errors.Wrapf(err, "cannot load config using profile %q", profile)
 		}
 	} else {
-		sess = session.New()
+		cfg, err = config.LoadDefaultConfig(ctx)
+		if err != nil {
+			return errors.Wrap(err, "cannot load default config")
+		}
 	}
 
-	api := s3api.New(sess, &aws.Config{})
-	S3 = s3.New(api)
+	s3Client := s3svc.NewFromConfig(cfg)
+	s3PresignClient := s3svc.NewPresignClient(s3Client)
+
+	S3 = s3.New(s3Client, s3PresignClient)
 
 	return nil
 }
