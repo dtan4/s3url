@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"os"
@@ -95,13 +96,15 @@ func (cli *CLI) Run(args []string) int {
 		return exitCodeError
 	}
 
-	if err := aws.Initialize(c.Profile); err != nil {
+	ctx := context.Background()
+
+	if err := aws.Initialize(ctx, c.Profile); err != nil {
 		cli.printError(err, c.Debug)
 		return exitCodeError
 	}
 
 	if c.Upload != "" {
-		if err := cli.uploadFile(c.Bucket, c.Key, c.Upload); err != nil {
+		if err := cli.uploadFile(ctx, c.Bucket, c.Key, c.Upload); err != nil {
 			cli.printError(err, c.Debug)
 			return exitCodeError
 		}
@@ -109,7 +112,7 @@ func (cli *CLI) Run(args []string) int {
 		fmt.Fprintln(cli.stderr, "uploaded: "+c.Upload)
 	}
 
-	signedURL, err := aws.S3.GetPresignedURL(c.Bucket, c.Key, c.Duration)
+	signedURL, err := aws.S3.GetPresignedURL(ctx, c.Bucket, c.Key, c.Duration)
 	if err != nil {
 		cli.printError(err, c.Debug)
 		return exitCodeError
@@ -120,14 +123,14 @@ func (cli *CLI) Run(args []string) int {
 	return exitCodeOK
 }
 
-func (cli *CLI) uploadFile(bucket, key, filename string) error {
+func (cli *CLI) uploadFile(ctx context.Context, bucket, key, filename string) error {
 	f, err := os.Open(filename)
 	if err != nil {
 		return errors.Wrapf(err, "cannot open %q", filename)
 	}
 	defer f.Close()
 
-	if err := aws.S3.UploadToS3(bucket, key, f); err != nil {
+	if err := aws.S3.UploadToS3(ctx, bucket, key, f); err != nil {
 		return errors.Wrapf(err, "cannot uplaod %q to S3", filename)
 	}
 
