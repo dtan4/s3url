@@ -2,11 +2,11 @@ package aws
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	s3svc "github.com/aws/aws-sdk-go-v2/service/s3"
-	"github.com/pkg/errors"
 
 	"github.com/dtan4/s3url/aws/s3"
 )
@@ -26,12 +26,12 @@ func Initialize(ctx context.Context, profile string) error {
 	if profile != "" {
 		cfg, err = config.LoadDefaultConfig(ctx, config.WithSharedConfigProfile(profile))
 		if err != nil {
-			return errors.Wrapf(err, "cannot load config using profile %q", profile)
+			return fmt.Errorf("cannot load config using profile %q: %w", profile, err)
 		}
 	} else {
 		cfg, err = config.LoadDefaultConfig(ctx)
 		if err != nil {
-			return errors.Wrap(err, "cannot load default config")
+			return fmt.Errorf("cannot load default config: %w", err)
 		}
 	}
 
