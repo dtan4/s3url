@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 
+	"github.com/pkg/errors"
 	flag "github.com/spf13/pflag"
 
 	"github.com/dtan4/s3url/aws"
@@ -125,12 +126,12 @@ func (cli *CLI) Run(args []string) int {
 func (cli *CLI) uploadFile(ctx context.Context, bucket, key, filename string) error {
 	f, err := os.Open(filename)
 	if err != nil {
-		return fmt.Errorf("cannot open %q: %w", filename, err)
+		return errors.Wrapf(err, "cannot open %q", filename)
 	}
 	defer f.Close()
 
 	if err := aws.S3.UploadToS3(ctx, bucket, key, f); err != nil {
-		return fmt.Errorf("cannot uplaod %q to S3: %w", filename, err)
+		return errors.Wrapf(err, "cannot uplaod %q to S3", filename)
 	}
 
 	return nil
