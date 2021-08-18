@@ -2,13 +2,14 @@ package s3
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"time"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
+
+	"github.com/pkg/errors"
 )
 
 type s3Client interface {
@@ -40,7 +41,7 @@ func (c *Client) GetPresignedURL(ctx context.Context, bucket, key string, durati
 		Key:    aws.String(key),
 	}, s3.WithPresignExpires(time.Duration(duration)*time.Minute))
 	if err != nil {
-		return "", fmt.Errorf("cannot generate signed URL: %w", err)
+		return "", errors.Wrap(err, "cannot generate signed URL")
 	}
 
 	return req.URL, nil
@@ -54,7 +55,7 @@ func (c *Client) UploadToS3(ctx context.Context, bucket, key string, reader io.R
 		Body:   reader,
 	})
 	if err != nil {
-		return fmt.Errorf("cannot upload file to S3: %w", err)
+		return errors.Wrap(err, "cannot upload file to S3")
 	}
 
 	return nil
