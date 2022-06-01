@@ -3,7 +3,7 @@ module github.com/dtan4/s3url
 go 1.17
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.14.0
+	github.com/aws/aws-sdk-go-v2 v1.16.4
 	github.com/aws/aws-sdk-go-v2/config v1.14.0
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.25.0
 	github.com/pkg/errors v0.9.1
@@ -23,5 +23,5 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.12.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.10.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.15.0 // indirect
-	github.com/aws/smithy-go v1.11.0 // indirect
+	github.com/aws/smithy-go v1.11.2 // indirect
 )
