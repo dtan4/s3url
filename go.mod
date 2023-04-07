@@ -3,7 +3,7 @@ module github.com/dtan4/s3url
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.17.7
+	github.com/aws/aws-sdk-go-v2 v1.17.8
 	github.com/aws/aws-sdk-go-v2/config v1.18.19
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.31.1
 	github.com/pkg/errors v0.9.1
